@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	>
+
+<channel>
+	<title>SpringSource Team Blog</title>
+	<atom:link href="http://blog.springsource.org/feed/" rel="self" type="application/rss+xml" />
+	<link>http://blog.springsource.org</link>
+	<description>The voice of SpringSource</description>
+	<lastBuildDate>Thu, 31 Jan 2013 04:18:51 +0000</lastBuildDate>
+	<language>en</language>
+	<sy:updatePeriod>hourly</sy:updatePeriod>
+	<sy:updateFrequency>1</sy:updateFrequency>
+	<generator>http://wordpress.org/?v=3.1.1</generator>
+		<item>
+		<title>Groovy 2.1 released</title>
+		<link>http://blog.springsource.org/2013/01/25/groovy-2-1-released/</link>
+		<comments>http://blog.springsource.org/2013/01/25/groovy-2-1-released/#comments</comments>
+		<pubDate>Fri, 25 Jan 2013 09:33:50 +0000</pubDate>
+		<dc:creator>Guillaume Laforge</dc:creator>
+				<category><![CDATA[Groovy/Grails]]></category>
+		<category><![CDATA[Java]]></category>
+
+		<guid isPermaLink="false">http://blog.springsource.org/?p=12590</guid>
+		<description><![CDATA[The Groovy team is pleased to announce the release of Groovy 2.1.0. With over 1.7 million downloads in 2012, a strong ecosystem of successful projects like Grails, Gradle, Spock or Griffon built on Groovy, the Groovy programming language continues its development and adoption, refines existing features and evolves new ones. In this new release, Groovy 2.1: offers full support  <a href="http://blog.springsource.org/2013/01/25/groovy-2-1-released/"><em>Read more...</em></a>]]></description>
+		<wfw:commentRss>http://blog.springsource.org/2013/01/25/groovy-2-1-released/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>Simple templates for the Scripted Editor</title>
+		<link>http://blog.springsource.org/2013/01/22/simple-templates-for-the-scripted-editor/</link>
+		<comments>http://blog.springsource.org/2013/01/22/simple-templates-for-the-scripted-editor/#comments</comments>
+		<pubDate>Wed, 23 Jan 2013 00:42:05 +0000</pubDate>
+		<dc:creator>Andrew Eisenberg</dc:creator>
+				<category><![CDATA[Open Source]]></category>
+		<category><![CDATA[Tools]]></category>
+		<category><![CDATA[Web]]></category>
+		<category><![CDATA[JavaScript]]></category>
+
+		<guid isPermaLink="false">http://blog.springsource.org/?p=12562</guid>
+		<description><![CDATA[One of the major goals of <a href="https://github.com/scripted-editor/scripted/">Scripted Editor</a> 0.4 is extensibility.  We <a href="http://blog.springsource.org/2013/01/08/scripted-editor-0-3-release-available/">recently released 0.3</a> and we are making fast progress towards 0.4.  Part of the extensibility story is simple declarative extensions to editor functionality (the other part is a powerful plugin model, which will be described in a future blog post).  In this blog post, I will introduce custom code completions and templates for the Scripted editor.]]></description>
+		<wfw:commentRss>http://blog.springsource.org/2013/01/22/simple-templates-for-the-scripted-editor/feed/</wfw:commentRss>
+		<slash:comments>1</slash:comments>
+		</item>
+		<item>
+		<title>Next Stop: Spring Framework 4.0</title>
+		<link>http://blog.springsource.org/2013/01/16/next-stop-spring-framework-4-0/</link>
+		<comments>http://blog.springsource.org/2013/01/16/next-stop-spring-framework-4-0/#comments</comments>
+		<pubDate>Wed, 16 Jan 2013 13:20:17 +0000</pubDate>
+		<dc:creator>Juergen Hoeller</dc:creator>
+				<category><![CDATA[Java]]></category>
+		<category><![CDATA[Spring]]></category>
+
+		<guid isPermaLink="false">http://blog.springsource.org/?p=12463</guid>
+		<description><![CDATA[Dear Spring community, I&#039;m happy to announce that the next iteration of the core framework will be Spring Framework 4.0! The current 3.2 generation is a natural conclusion of the 3.x line, with Java-based configuration and REST having been recent focus areas next to Java SE 7 and Servlet 3.0 support. For Spring Framework 4.0,  <a href="http://blog.springsource.org/2013/01/16/next-stop-spring-framework-4-0/"><em>Read more...</em></a>]]></description>
+		<wfw:commentRss>http://blog.springsource.org/2013/01/16/next-stop-spring-framework-4-0/feed/</wfw:commentRss>
+		<slash:comments>16</slash:comments>
+		</item>
+		<item>
+		<title>Scripted Editor 0.3 release available</title>
+		<link>http://blog.springsource.org/2013/01/08/scripted-editor-0-3-release-available/</link>
+		<comments>http://blog.springsource.org/2013/01/08/scripted-editor-0-3-release-available/#comments</comments>
+		<pubDate>Tue, 08 Jan 2013 20:20:37 +0000</pubDate>
+		<dc:creator>aclement</dc:creator>
+				<category><![CDATA[Open Source]]></category>
+		<category><![CDATA[Tools]]></category>
+		<category><![CDATA[JavaScript]]></category>
+
+		<guid isPermaLink="false">http://blog.springsource.org/?p=12415</guid>
+		<description><![CDATA[In October the first public version of the Scripted code editor was made available, a browser based editor using a Node.js local server, with a focus on providing a great JavaScript editing experience. Today the first update is available, version 0.3. A full set of Release Notes about the latest features is available here. Here  <a href="http://blog.springsource.org/2013/01/08/scripted-editor-0-3-release-available/"><em>Read more...</em></a>]]></description>
+		<wfw:commentRss>http://blog.springsource.org/2013/01/08/scripted-editor-0-3-release-available/feed/</wfw:commentRss>
+		<slash:comments>5</slash:comments>
+		</item>
+		<item>
+		<title>Spring Roo 1.2.3.RELEASE available</title>
+		<link>http://blog.springsource.org/2012/12/18/spring-roo-1-2-3-release-available/</link>
+		<comments>http://blog.springsource.org/2012/12/18/spring-roo-1-2-3-release-available/#comments</comments>
+		<pubDate>Tue, 18 Dec 2012 08:28:43 +0000</pubDate>
+		<dc:creator>Alan Stewart</dc:creator>
+				<category><![CDATA[Spring]]></category>
+
+		<guid isPermaLink="false">http://blog.springsource.org/?p=12401</guid>
+		<description><![CDATA[The Spring Roo team is pleased to announce the availability 1.2.3.RELEASE.  This is the third maintenance release for 1.2 and includes fixes for a number of issues and includes support for Spring Framework 3.2.0. Please see the change log for a list of the bugs and improvements completed. I hope you enjoy this new release!  <a href="http://blog.springsource.org/2012/12/18/spring-roo-1-2-3-release-available/"><em>Read more...</em></a>]]></description>
+		<wfw:commentRss>http://blog.springsource.org/2012/12/18/spring-roo-1-2-3-release-available/feed/</wfw:commentRss>
+		<slash:comments>1</slash:comments>
+		</item>
+		<item>
+		<title>Spring Security 3.2 M1 Highlights, Servlet 3 API Support</title>
+		<link>http://blog.springsource.org/2012/12/17/spring-security-3-2-m1-highlights-servlet-3-api-support/</link>
+		<comments>http://blog.springsource.org/2012/12/17/spring-security-3-2-m1-highlights-servlet-3-api-support/#comments</comments>
+		<pubDate>Mon, 17 Dec 2012 19:34:43 +0000</pubDate>
+		<dc:creator>rwinch</dc:creator>
+				<category><![CDATA[Security]]></category>
+		<category><![CDATA[Spring]]></category>
+
+		<guid isPermaLink="false">http://blog.springsource.org/?p=12321</guid>
+		<description><![CDATA[Last week I announced the release of Spring Security 3.2 M1 that contains improved Servlet 3 support. In this post, I will introduce some of the more exciting features found in the 3.2 M1 release. Specifically, we will take a look at the following new Spring Security features: Concurrency Support Servlet 3 API Integration Servlet  <a href="http://blog.springsource.org/2012/12/17/spring-security-3-2-m1-highlights-servlet-3-api-support/"><em>Read more...</em></a>]]></description>
+		<wfw:commentRss>http://blog.springsource.org/2012/12/17/spring-security-3-2-m1-highlights-servlet-3-api-support/feed/</wfw:commentRss>
+		<slash:comments>9</slash:comments>
+		</item>
+		<item>
+		<title>Spring Framework 3.2 goes GA</title>
+		<link>http://blog.springsource.org/2012/12/13/spring-framework-3-2-goes-ga/</link>
+		<comments>http://blog.springsource.org/2012/12/13/spring-framework-3-2-goes-ga/#comments</comments>
+		<pubDate>Thu, 13 Dec 2012 19:07:12 +0000</pubDate>
+		<dc:creator>Juergen Hoeller</dc:creator>
+				<category><![CDATA[Spring]]></category>
+
+		<guid isPermaLink="false">http://blog.springsource.org/?p=12297</guid>
+		<description><![CDATA[Dear Spring community, Exactly one year after the Spring Framework 3.1 release, I&#039;m pleased to announce that Spring Framework 3.2 is generally available now! We recommend an upgrade from all previous Spring releases, in particular from Spring Framework 3.1.x which this is a direct successor for. As previously discussed, key features in Spring Framework 3.2  <a href="http://blog.springsource.org/2012/12/13/spring-framework-3-2-goes-ga/"><em>Read more...</em></a>]]></description>
+		<wfw:commentRss>http://blog.springsource.org/2012/12/13/spring-framework-3-2-goes-ga/feed/</wfw:commentRss>
+		<slash:comments>15</slash:comments>
+		</item>
+		<item>
+		<title>Introducing Spring Scala</title>
+		<link>http://blog.springsource.org/2012/12/10/introducing-spring-scala/</link>
+		<comments>http://blog.springsource.org/2012/12/10/introducing-spring-scala/#comments</comments>
+		<pubDate>Mon, 10 Dec 2012 13:50:51 +0000</pubDate>
+		<dc:creator>Arjen Poutsma</dc:creator>
+				<category><![CDATA[Scala]]></category>
+		<category><![CDATA[Spring]]></category>
+
+		<guid isPermaLink="false">http://blog.springsource.org/?p=12215</guid>
+		<description><![CDATA[Last October, at SpringOne2GX, I introduced the Spring Scala project to the world. Since then, I&#039;ve also presented this project at Devoxx. In this blog post, I would like to give further details about this project and how you can use it in your Scala projects. Why Spring Scala? The goal of the Spring Scala  <a href="http://blog.springsource.org/2012/12/10/introducing-spring-scala/"><em>Read more...</em></a>]]></description>
+		<wfw:commentRss>http://blog.springsource.org/2012/12/10/introducing-spring-scala/feed/</wfw:commentRss>
+		<slash:comments>24</slash:comments>
+		</item>
+		<item>
+		<title>IOC + Javascript at SpringOne 2GX</title>
+		<link>http://blog.springsource.org/2012/12/06/ioc-javascript-at-springone-2gx/</link>
+		<comments>http://blog.springsource.org/2012/12/06/ioc-javascript-at-springone-2gx/#comments</comments>
+		<pubDate>Thu, 06 Dec 2012 19:01:47 +0000</pubDate>
+		<dc:creator>John Hann</dc:creator>
+				<category><![CDATA[IOC Container]]></category>
+		<category><![CDATA[Spring]]></category>
+		<category><![CDATA[ioc]]></category>
+		<category><![CDATA[JavaScript]]></category>
+		<category><![CDATA[s2js]]></category>
+
+		<guid isPermaLink="false">http://blog.springsource.org/?p=12239</guid>
+		<description><![CDATA[by Brian Cavalier &#38; John Hann We gave a talk on IOC + Javascript at SpringOne 2GX. Front-end web application architecture seemed to be quite a hot topic at the conference, in general, and our talk seemed to be very well received. Here are the video and slides from the talk. We&#039;ll also be starting a blog series about architectural  <a href="http://blog.springsource.org/2012/12/06/ioc-javascript-at-springone-2gx/"><em>Read more...</em></a>]]></description>
+		<wfw:commentRss>http://blog.springsource.org/2012/12/06/ioc-javascript-at-springone-2gx/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>Introducing Spring Migration Analyzer</title>
+		<link>http://blog.springsource.org/2012/11/27/introducing-spring-migration-analyzer/</link>
+		<comments>http://blog.springsource.org/2012/11/27/introducing-spring-migration-analyzer/#comments</comments>
+		<pubDate>Tue, 27 Nov 2012 09:55:28 +0000</pubDate>
+		<dc:creator>Andy Wilkinson</dc:creator>
+				<category><![CDATA[Spring]]></category>
+
+		<guid isPermaLink="false">http://blog.springsource.org/?p=12134</guid>
+		<description><![CDATA[It&#039;s my pleasure to announce that we&#039;ve released the first milestone of Spring Migration Analyzer (SMA), a command-line utility that analyzes enterprise Java applications and produces a report describing the application and how it can be migrated to Spring. Why migrate an application to Spring? We see two main reasons when people choose to use  <a href="http://blog.springsource.org/2012/11/27/introducing-spring-migration-analyzer/"><em>Read more...</em></a>]]></description>
+		<wfw:commentRss>http://blog.springsource.org/2012/11/27/introducing-spring-migration-analyzer/feed/</wfw:commentRss>
+		<slash:comments>4</slash:comments>
+		</item>
+	</channel>
+</rss>

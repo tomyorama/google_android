@@ -1,0 +1,607 @@
+#
+# A fatal error has been detected by the Java Runtime Environment:
+#
+#  SIGSEGV (0xb) at pc=0xb6e173bd, pid=8750, tid=2334735168
+#
+# JRE version: 6.0_24-b24
+# Java VM: OpenJDK Server VM (20.0-b12 mixed mode linux-x86 )
+# Derivative: IcedTea6 1.11.4
+# Distribution: Ubuntu 12.04 LTS, package 6b24-1.11.4-1ubuntu0.12.04.1
+# Problematic frame:
+# V  [libjvm.so+0x5823bd]  PSPromotionManager::copy_to_survivor_space(oopDesc*)+0x2d
+#
+# If you would like to submit a bug report, please include
+# instructions how to reproduce the bug and visit:
+#   https://bugs.launchpad.net/ubuntu/+source/openjdk-6/
+#
+
+---------------  T H R E A D  ---------------
+
+Current thread (0xb6611c00):  GCTaskThread [stack: 0x8b213000,0x8b294000] [id=8756]
+
+siginfo:si_signo=SIGSEGV: si_errno=0, si_code=1 (SEGV_MAPERR), si_addr=0x0000000c
+
+Registers:
+EAX=0x00000000, EBX=0xb70f7ff4, ECX=0x499b004a, EDX=0xa9ad0600
+ESP=0x8b292e30, EBP=0xa9ad0600, ESI=0xb665e4c8, EDI=0xb665e570
+EIP=0xb6e173bd, EFLAGS=0x00210293, CR2=0x0000000c
+
+Top of Stack: (sp=0x8b292e30)
+0x8b292e30:   8b902448 b665e4c8 a9d82b70 a9c8e510
+0x8b292e40:   b6da013c a8a20000 b6da0b9d b70ef468
+0x8b292e50:   a9d82b70 a9ad0698 00000006 000f7ff4
+0x8b292e60:   a9d80000 00001000 934d69d0 b6c1b0df
+0x8b292e70:   8b4f2530 b665e4c8 934d69c0 b70f7ff4
+0x8b292e80:   b665e4c8 b665e570 a9d82b78 b6e180d4
+0x8b292e90:   b665e4c8 a9ad0600 b7112e78 b6db5abc
+0x8b292ea0:   b70f7ff4 b6614440 b6da0c09 00c80000 
+
+Instructions: (pc=0xb6e173bd)
+0xb6e1739d:   81 c3 58 0c 2e 00 8b 6c 24 64 8b 45 00 89 44 24
+0xb6e173ad:   24 83 e0 03 83 f8 03 0f 84 86 00 00 00 8b 45 04
+0xb6e173bd:   8b 48 0c 83 f9 00 0f 8e 17 01 00 00 c1 f9 02 89
+0xb6e173cd:   4c 24 28 8b 44 24 24 f6 44 24 24 01 0f 85 f1 00 
+
+Register to memory mapping:
+
+EAX=0x00000000 is an unknown value
+EBX=0xb70f7ff4: <offset 0x862ff4> in /usr/lib/jvm/java-6-openjdk-i386/jre/lib/i386/server/libjvm.so at 0xb6895000
+ECX=0x499b004a is an unknown value
+EDX=0xa9ad0600 is an unknown value
+ESP=0x8b292e30 is an unknown value
+EBP=0xa9ad0600 is an unknown value
+ESI=0xb665e4c8 is an unknown value
+EDI=0xb665e570 is an unknown value
+
+
+Stack: [0x8b213000,0x8b294000],  sp=0x8b292e30,  free space=511k
+Native frames: (J=compiled Java code, j=interpreted, Vv=VM code, C=native code)
+V  [libjvm.so+0x5823bd]  PSPromotionManager::copy_to_survivor_space(oopDesc*)+0x2d
+C  0x00000000
+
+
+---------------  P R O C E S S  ---------------
+
+Java Threads: ( => current thread )
+  0x89976800 JavaThread "18895884@qtp-23103909-1" [_thread_blocked, id=8770, stack(0x8974e000,0x8979f000)]
+  0x8997e000 JavaThread "6169134@qtp-23103909-0" [_thread_blocked, id=8769, stack(0x8979f000,0x897f0000)]
+  0x8a2d1c00 JavaThread "Keep-Alive-Timer" daemon [_thread_blocked, id=8768, stack(0x89e14000,0x89e65000)]
+  0x8a8ff400 JavaThread "Timer-0" daemon [_thread_blocked, id=8766, stack(0x8a3a0000,0x8a3f1000)]
+  0x8a8d1000 JavaThread "Low Memory Detector" daemon [_thread_blocked, id=8764, stack(0x8a479000,0x8a4ca000)]
+  0x8a8cf400 JavaThread "C2 CompilerThread1" daemon [_thread_blocked, id=8763, stack(0x8a4ca000,0x8a54b000)]
+  0x8a8cd400 JavaThread "C2 CompilerThread0" daemon [_thread_blocked, id=8762, stack(0x8a54b000,0x8a5cc000)]
+  0xb66a4400 JavaThread "Signal Dispatcher" daemon [_thread_blocked, id=8761, stack(0x8a9fa000,0x8aa4b000)]
+  0xb6694c00 JavaThread "Finalizer" daemon [_thread_blocked, id=8760, stack(0x8ac4b000,0x8ac9c000)]
+  0xb6693400 JavaThread "Reference Handler" daemon [_thread_blocked, id=8759, stack(0x8ac9c000,0x8aced000)]
+  0xb660ac00 JavaThread "main" [_thread_blocked, id=8755, stack(0xb6715000,0xb6766000)]
+
+Other Threads:
+  0xb668f400 VMThread [stack: 0x8aced000,0x8ad6e000] [id=8758]
+  0x8a8db000 WatcherThread [stack: 0x8a3f8000,0x8a479000] [id=8765]
+
+=>0xb6611c00 (exited) GCTaskThread [stack: 0x8b213000,0x8b294000] [id=8756]
+
+VM state:at safepoint (normal execution)
+
+VM Mutex/Monitor currently owned by a thread:  ([mutex/lock_event])
+[0xb66053a0] Threads_lock - owner thread: 0xb668f400
+[0xb66057b0] Heap_lock - owner thread: 0xb660ac00
+
+Heap
+ PSYoungGen      total 18816K, used 18802K [0xa8a20000, 0xa9f10000, 0xb34c0000)
+  eden space 16192K, 100% used [0xa8a20000,0xa99f0000,0xa99f0000)
+  from space 2624K, 99% used [0xa99f0000,0xa9c7cb38,0xa9c80000)
+  to   space 2624K, 99% used [0xa9c80000,0xa9f0eb28,0xa9f10000)
+ PSOldGen        total 43008K, used 3037K [0x934c0000, 0x95ec0000, 0xa8a20000)
+  object space 43008K, 7% used [0x934c0000,0x937b74c0,0x95ec0000)
+ PSPermGen       total 16384K, used 12416K [0x8b4c0000, 0x8c4c0000, 0x934c0000)
+  object space 16384K, 75% used [0x8b4c0000,0x8c0e03a8,0x8c4c0000)
+
+Code Cache  [0xb3584000, 0xb37c4000, 0xb6584000)
+ total_blobs=344 nmethods=204 adapters=94 free_code_cache=49628416 largest_free_block=6848
+
+Dynamic libraries:
+08048000-08051000 r-xp 00000000 08:06 2958138    /usr/lib/jvm/java-6-openjdk-i386/jre/bin/java
+08051000-08052000 r--p 00008000 08:06 2958138    /usr/lib/jvm/java-6-openjdk-i386/jre/bin/java
+08052000-08053000 rw-p 00009000 08:06 2958138    /usr/lib/jvm/java-6-openjdk-i386/jre/bin/java
+0988a000-0aa0d000 rw-p 00000000 00:00 0          [heap]
+88b00000-88bb8000 rw-p 00000000 00:00 0 
+88bb8000-88c00000 ---p 00000000 00:00 0 
+88d00000-88df6000 rw-p 00000000 00:00 0 
+88df6000-88e00000 ---p 00000000 00:00 0 
+88e00000-88efb000 rw-p 00000000 00:00 0 
+88efb000-88f00000 ---p 00000000 00:00 0 
+89000000-89200000 rw-p 00000000 00:00 0 
+89200000-89240000 rw-p 00000000 00:00 0 
+89240000-89300000 ---p 00000000 00:00 0 
+893a0000-893a3000 r--s 00077000 08:06 2958125    /usr/lib/jvm/java-6-openjdk-common/jre/lib/ext/localedata.jar
+893a3000-893a4000 r--s 00007000 08:06 2580799    /usr/share/java/java-atk-wrapper.jar
+893a4000-893a5000 r--s 00000000 08:06 2713181    /usr/lib/jvm/java-6-openjdk-common/jre/lib/management-agent.jar
+893a5000-893a9000 r--s 00038000 08:06 2958124    /usr/lib/jvm/java-6-openjdk-common/jre/lib/ext/sunpkcs11.jar
+893a9000-893ab000 r--s 0000f000 08:06 2958128    /usr/lib/jvm/java-6-openjdk-common/jre/lib/ext/pulse-java.jar
+893ab000-893b8000 r--s 00107000 08:06 2713182    /usr/lib/jvm/java-6-openjdk-common/jre/lib/rhino.jar
+893b8000-893ba000 r--s 00013000 08:06 2713174    /usr/lib/jvm/java-6-openjdk-common/jre/lib/jce.jar
+893ba000-893bb000 r--s 00002000 08:06 2958130    /usr/lib/jvm/java-6-openjdk-common/jre/lib/im/indicim.jar
+893bb000-893bd000 r--s 00001000 08:06 2958131    /usr/lib/jvm/java-6-openjdk-common/jre/lib/im/thaiim.jar
+893bd000-893c0000 r--s 0007d000 08:06 2713173    /usr/lib/jvm/java-6-openjdk-common/jre/lib/jsse.jar
+893c0000-893c1000 r--s 00000000 08:06 2713179    /usr/lib/jvm/java-6-openjdk-common/jre/lib/compilefontconfig.jar
+893c1000-893c8000 r--s 000fb000 08:06 2713183    /usr/lib/jvm/java-6-openjdk-common/jre/lib/resources.jar
+893c8000-893ca000 r--s 00001000 08:06 2958127    /usr/lib/jvm/java-6-openjdk-common/jre/lib/ext/dnsns.jar
+893ca000-893cc000 r--s 00021000 08:03 1779829    /home/tomy/googleEngine/JavaEE/eclipse/plugins/com.google.appengine.eclipse.sdkbundle_1.7.2.1/appengine-java-sdk-1.7.2.1/lib/opt/tools/appengine-local-endpoints/v1/appengine-local-endpoints.jar
+893cc000-893d2000 r--s 000a6000 08:03 1417399    /home/tomy/workspaceGoogleEngine/Fuca/war/WEB-INF/lib/spring-orm-3.2.0.M2-javadoc.jar
+893d2000-893d5000 r--s 00018000 08:03 1417377    /home/tomy/workspaceGoogleEngine/Fuca/war/WEB-INF/lib/spring-context-support-3.2.0.M2.jar
+893d5000-893d6000 r--s 00000000 08:03 1417388    /home/tomy/workspaceGoogleEngine/Fuca/war/WEB-INF/lib/spring-instrument-3.2.0.M2-sources.jar
+893d6000-893dc000 r--s 00017000 08:03 1417355    /home/tomy/workspaceGoogleEngine/Fuca/war/WEB-INF/lib/geronimo-jpa_2.0_spec-1.0.jar
+893dc000-893e3000 r--s 00034000 08:03 1417410    /home/tomy/workspaceGoogleEngine/Fuca/war/WEB-INF/lib/spring-tx-3.2.0.M2.jar
+893e3000-893ef000 r--s 00154000 08:03 1417417    /home/tomy/workspaceGoogleEngine/Fuca/war/WEB-INF/lib/spring-webmvc-3.2.0.M2-javadoc.jar
+893ef000-893f0000 r--s 00002000 08:03 1417389    /home/tomy/workspaceGoogleEngine/Fuca/war/WEB-INF/lib/spring-instrument-tomcat-3.2.0.M2.jar
+893f0000-893f9000 r--s 00055000 08:03 1417398    /home/tomy/workspaceGoogleEngine/Fuca/war/WEB-INF/lib/spring-orm-3.2.0.M2.jar
+893f9000-893fe000 r--s 00034000 08:03 1417363    /home/tomy/workspaceGoogleEngine/Fuca/war/WEB-INF/lib/commons-beanutils-1.8.0.jar
+893fe000-89400000 r--s 00010000 08:03 1417401    /home/tomy/workspaceGoogleEngine/Fuca/war/WEB-INF/lib/spring-oxm-3.2.0.M2.jar
+89400000-89401000 r--s 00008000 08:03 1417404    /home/tomy/workspaceGoogleEngine/Fuca/war/WEB-INF/lib/spring-struts-3.2.0.M2.jar
+89401000-89402000 r--s 00001000 08:03 1417345    /home/tomy/workspaceGoogleEngine/Fuca/war/WEB-INF/lib/appengine-jsr107cache-1.7.2.1.jar
+89402000-89408000 r--s 0002c000 08:03 1417354    /home/tomy/workspaceGoogleEngine/Fuca/war/WEB-INF/lib/jdo-api-3.0.1.jar
+89408000-8940c000 r--s 00044000 08:03 1417378    /home/tomy/workspaceGoogleEngine/Fuca/war/WEB-INF/lib/spring-context-support-3.2.0.M2-javadoc.jar
+8940c000-89410000 r--s 00018000 08:03 1417427    /home/tomy/workspaceGoogleEngine/Fuca/war/WEB-INF/lib/commons-logging-tests.jar
+89410000-8941a000 r--s 00058000 08:03 1417392    /home/tomy/workspaceGoogleEngine/Fuca/war/WEB-INF/lib/spring-jdbc-3.2.0.M2.jar
+8941a000-8941e000 r--s 0006b000 08:03 1417420    /home/tomy/workspaceGoogleEngine/Fuca/war/WEB-INF/lib/spring-webmvc-portlet-3.2.0.M2-javadoc.jar
+8941e000-89427000 r--s 000ed000 08:03 1417393    /home/tomy/workspaceGoogleEngine/Fuca/war/WEB-INF/lib/spring-jdbc-3.2.0.M2-javadoc.jar
+89427000-89432000 r--s 00088000 08:03 1417415    /home/tomy/workspaceGoogleEngine/Fuca/war/WEB-INF/lib/spring-web-3.2.0.M2-sources.jar
+89432000-89436000 r--s 0002a000 08:03 1417419    /home/tomy/workspaceGoogleEngine/Fuca/war/WEB-INF/lib/spring-webmvc-portlet-3.2.0.M2.jar
+89436000-89437000 r--s 00006000 08:03 1417425    /home/tomy/workspaceGoogleEngine/Fuca/war/WEB-INF/lib/commons-logging-adapters-1.1.1.jar
+89437000-8943d000 r--s 0004d000 08:03 1417352    /home/tomy/workspaceGoogleEngine/Fuca/war/WEB-INF/lib/datanucleus-appengine-2.1.0-final.jar
+8943d000-89455000 r--s 00187000 08:03 1417351    /home/tomy/workspaceGoogleEngine/Fuca/war/WEB-INF/lib/datanucleus-core-3.1.0-m5.jar
+89455000-8945b000 r--s 0003e000 08:03 1417412    /home/tomy/workspaceGoogleEngine/Fuca/war/WEB-INF/lib/spring-tx-3.2.0.M2-sources.jar
+8945b000-89460000 r--s 00056000 08:03 1417384    /home/tomy/workspaceGoogleEngine/Fuca/war/WEB-INF/lib/spring-expression-3.2.0.M2-javadoc.jar
+89460000-89464000 r--s 00021000 08:03 1417364    /home/tomy/workspaceGoogleEngine/Fuca/war/WEB-INF/lib/commons-digester-2.0.jar
+89464000-89466000 r--s 00007000 08:03 1417387    /home/tomy/workspaceGoogleEngine/Fuca/war/WEB-INF/lib/spring-instrument-3.2.0.M2-javadoc.jar
+89466000-8947a000 r--s 000b8000 08:03 1417374    /home/tomy/workspaceGoogleEngine/Fuca/war/WEB-INF/lib/spring-context-3.2.0.M2.jar
+8947a000-8948b000 r--s 000c1000 08:03 1417376    /home/tomy/workspaceGoogleEngine/Fuca/war/WEB-INF/lib/spring-context-3.2.0.M2-sources.jar
+8948b000-8948c000 r--s 00001000 08:03 1417386    /home/tomy/workspaceGoogleEngine/Fuca/war/WEB-INF/lib/spring-instrument-3.2.0.M2.jar
+8948c000-8948e000 r--s 00006000 08:03 1417370    /home/tomy/workspaceGoogleEngine/Fuca/war/WEB-INF/lib/spring-aspects-3.2.0.M2-sources.jar
+8948e000-89492000 r--s 00027000 08:03 1417383    /home/tomy/workspaceGoogleEngine/Fuca/war/WEB-INF/lib/spring-expression-3.2.0.M2.jar
+89492000-89498000 r--s 0004c000 08:03 1417400    /home/tomy/workspaceGoogleEngine/Fuca/war/WEB-INF/lib/spring-orm-3.2.0.M2-sources.jar
+89498000-894c1000 r--s 0032b000 08:03 1417342    /home/tomy/workspaceGoogleEngine/Fuca/war/WEB-INF/lib/appengine-api-labs.jar
+894c1000-894cc000 r--s 0008a000 08:03 1417416    /home/tomy/workspaceGoogleEngine/Fuca/war/WEB-INF/lib/spring-webmvc-3.2.0.M2.jar
+894cc000-894ce000 r--s 0000f000 08:03 1417368    /home/tomy/workspaceGoogleEngine/Fuca/war/WEB-INF/lib/spring-aspects-3.2.0.M2.jar
+894ce000-894e0000 r--s 000ba000 08:03 1417380    /home/tomy/workspaceGoogleEngine/Fuca/war/WEB-INF/lib/spring-core-3.2.0.M2.jar
+894e0000-894e1000 r--s 00003000 08:03 1417350    /home/tomy/workspaceGoogleEngine/Fuca/war/WEB-INF/lib/jta-1.1.jar
+894e1000-894e6000 r--s 0002c000 08:03 1417395    /home/tomy/workspaceGoogleEngine/Fuca/war/WEB-INF/lib/spring-jms-3.2.0.M2.jar
+894e6000-894ed000 r--s 000af000 08:03 1417366    /home/tomy/workspaceGoogleEngine/Fuca/war/WEB-INF/lib/spring-aop-3.2.0.M2-javadoc.jar
+894ed000-894f2000 r--s 00033000 08:03 1417448    /home/tomy/workspaceGoogleEngine/Fuca/war/WEB-INF/lib/hibernate-validator-4.0.2.GA.jar
+894f2000-89500000 r--s 00084000 08:03 1417413    /home/tomy/workspaceGoogleEngine/Fuca/war/WEB-INF/lib/spring-web-3.2.0.M2.jar
+89500000-895fa000 rw-p 00000000 00:00 0 
+895fa000-89600000 ---p 00000000 00:00 0 
+89600000-89602000 r--s 0000a000 08:03 1417349    /home/tomy/workspaceGoogleEngine/Fuca/war/WEB-INF/lib/asm-4.0.jar
+89602000-8960c000 r--s 00122000 08:03 1417372    /home/tomy/workspaceGoogleEngine/Fuca/war/WEB-INF/lib/spring-beans-3.2.0.M2-javadoc.jar
+8960c000-8960e000 r--s 0000d000 08:03 1417403    /home/tomy/workspaceGoogleEngine/Fuca/war/WEB-INF/lib/spring-oxm-3.2.0.M2-sources.jar
+8960e000-8960f000 r--s 00008000 08:03 1417437    /home/tomy/workspaceGoogleEngine/Fuca/war/WEB-INF/lib/tiles-api-2.2.2.jar
+8960f000-8961c000 r--s 00152000 08:03 1417414    /home/tomy/workspaceGoogleEngine/Fuca/war/WEB-INF/lib/spring-web-3.2.0.M2-javadoc.jar
+8961c000-89626000 r--s 00091000 08:03 1417418    /home/tomy/workspaceGoogleEngine/Fuca/war/WEB-INF/lib/spring-webmvc-3.2.0.M2-sources.jar
+89626000-89628000 r--s 0000b000 08:03 1417426    /home/tomy/workspaceGoogleEngine/Fuca/war/WEB-INF/lib/commons-logging-api-1.1.1.jar
+89628000-8962d000 r--s 00034000 08:03 1417407    /home/tomy/workspaceGoogleEngine/Fuca/war/WEB-INF/lib/spring-test-3.2.0.M2.jar
+8962d000-8962f000 r--s 0001a000 08:03 1417405    /home/tomy/workspaceGoogleEngine/Fuca/war/WEB-INF/lib/spring-struts-3.2.0.M2-javadoc.jar
+8962f000-89631000 r--s 0000d000 08:03 1417422    /home/tomy/workspaceGoogleEngine/Fuca/war/WEB-INF/lib/commons-logging-1.1.1.jar
+89631000-8963a000 r--s 00049000 08:03 1417365    /home/tomy/workspaceGoogleEngine/Fuca/war/WEB-INF/lib/spring-aop-3.2.0.M2.jar
+8963a000-89643000 r--s 0007d000 08:03 1417373    /home/tomy/workspaceGoogleEngine/Fuca/war/WEB-INF/lib/spring-beans-3.2.0.M2-sources.jar
+89643000-89646000 r--s 0000f000 08:03 1417369    /home/tomy/workspaceGoogleEngine/Fuca/war/WEB-INF/lib/spring-aspects-3.2.0.M2-javadoc.jar
+89646000-89652000 r--s 00087000 08:03 1417371    /home/tomy/workspaceGoogleEngine/Fuca/war/WEB-INF/lib/spring-beans-3.2.0.M2.jar
+89652000-89702000 r--s 01a28000 08:03 1417346    /home/tomy/workspaceGoogleEngine/Fuca/war/WEB-INF/lib/appengine-api-1.0-sdk-1.7.2.1.jar
+89702000-89716000 r--s 001dc000 08:03 1417375    /home/tomy/workspaceGoogleEngine/Fuca/war/WEB-INF/lib/spring-context-3.2.0.M2-javadoc.jar
+89716000-8971b000 r--s 00036000 08:03 1417409    /home/tomy/workspaceGoogleEngine/Fuca/war/WEB-INF/lib/spring-test-3.2.0.M2-sources.jar
+8971b000-89720000 r--s 00087000 08:03 1417408    /home/tomy/workspaceGoogleEngine/Fuca/war/WEB-INF/lib/spring-test-3.2.0.M2-javadoc.jar
+89720000-89723000 r--s 00009000 08:03 1417449    /home/tomy/workspaceGoogleEngine/Fuca/war/WEB-INF/lib/validation-api-1.0.0.GA.jar
+89723000-8972b000 r--s 000ad000 08:03 1417411    /home/tomy/workspaceGoogleEngine/Fuca/war/WEB-INF/lib/spring-tx-3.2.0.M2-javadoc.jar
+8972b000-8972f000 r--s 00028000 08:03 1417397    /home/tomy/workspaceGoogleEngine/Fuca/war/WEB-INF/lib/spring-jms-3.2.0.M2-sources.jar
+8972f000-89731000 r--s 0000d000 08:03 1417428    /home/tomy/workspaceGoogleEngine/Fuca/war/WEB-INF/lib/tiles-servlet-2.2.2.jar
+89731000-89739000 r--s 00069000 08:03 1417382    /home/tomy/workspaceGoogleEngine/Fuca/war/WEB-INF/lib/spring-core-3.2.0.M2-sources.jar
+89739000-8973a000 r--s 00005000 08:03 1417441    /home/tomy/workspaceGoogleEngine/Fuca/war/WEB-INF/lib/tiles-template-2.2.2.jar
+8973a000-8973d000 r--s 00027000 08:03 1417402    /home/tomy/workspaceGoogleEngine/Fuca/war/WEB-INF/lib/spring-oxm-3.2.0.M2-javadoc.jar
+8973d000-89742000 r--s 00049000 08:03 1417348    /home/tomy/workspaceGoogleEngine/Fuca/war/WEB-INF/lib/datanucleus-api-jdo-3.1.0-m3.jar
+89742000-89746000 r--s 0002c000 08:03 1417421    /home/tomy/workspaceGoogleEngine/Fuca/war/WEB-INF/lib/spring-webmvc-portlet-3.2.0.M2-sources.jar
+89746000-8974e000 r--s 000de000 08:03 1417381    /home/tomy/workspaceGoogleEngine/Fuca/war/WEB-INF/lib/spring-core-3.2.0.M2-javadoc.jar
+8974e000-89751000 ---p 00000000 00:00 0 
+89751000-8979f000 rw-p 00000000 00:00 0 
+8979f000-897a2000 ---p 00000000 00:00 0 
+897a2000-897f0000 rw-p 00000000 00:00 0 
+897f0000-897f2000 r--s 00004000 08:03 1779763    /home/tomy/googleEngine/JavaEE/eclipse/plugins/com.google.appengine.eclipse.sdkbundle_1.7.2.1/appengine-java-sdk-1.7.2.1/lib/tools/jsp/repackaged-appengine-jakarta-jstl-1.1.2.jar
+897f2000-897fb000 r--s 00058000 08:03 1779766    /home/tomy/googleEngine/JavaEE/eclipse/plugins/com.google.appengine.eclipse.sdkbundle_1.7.2.1/appengine-java-sdk-1.7.2.1/lib/tools/jsp/repackaged-appengine-jakarta-standard-1.1.2.jar
+897fb000-89807000 r--s 00152000 08:03 1779765    /home/tomy/googleEngine/JavaEE/eclipse/plugins/com.google.appengine.eclipse.sdkbundle_1.7.2.1/appengine-java-sdk-1.7.2.1/lib/tools/jsp/repackaged-appengine-jasper-jdt-6.0.29.jar
+89807000-89850000 r--s 003f8000 08:03 1779719    /home/tomy/googleEngine/JavaEE/eclipse/plugins/com.google.appengine.eclipse.sdkbundle_1.7.2.1/appengine-java-sdk-1.7.2.1/lib/impl/google_sql.jar
+89850000-89900000 r--s 01a28000 08:03 1779714    /home/tomy/googleEngine/JavaEE/eclipse/plugins/com.google.appengine.eclipse.sdkbundle_1.7.2.1/appengine-java-sdk-1.7.2.1/lib/impl/appengine-api.jar
+89900000-89a00000 rw-p 00000000 00:00 0 
+89a00000-89a2e000 r--s 004c7000 08:03 1417343    /home/tomy/workspaceGoogleEngine/Fuca/war/WEB-INF/lib/appengine-endpoints.jar
+89a2e000-89a79000 r--s 00a57000 08:03 1779717    /home/tomy/googleEngine/JavaEE/eclipse/plugins/com.google.appengine.eclipse.sdkbundle_1.7.2.1/appengine-java-sdk-1.7.2.1/lib/impl/appengine-api-stubs.jar
+89a79000-89aa2000 r--s 0032b000 08:03 1779718    /home/tomy/googleEngine/JavaEE/eclipse/plugins/com.google.appengine.eclipse.sdkbundle_1.7.2.1/appengine-java-sdk-1.7.2.1/lib/impl/appengine-api-labs.jar
+89aa2000-89b00000 r--s 00c70000 08:03 1779720    /home/tomy/googleEngine/JavaEE/eclipse/plugins/com.google.appengine.eclipse.sdkbundle_1.7.2.1/appengine-java-sdk-1.7.2.1/lib/impl/appengine-local-runtime.jar
+89b00000-89bfd000 rw-p 00000000 00:00 0 
+89bfd000-89c00000 ---p 00000000 00:00 0 
+89c00000-89cf9000 rw-p 00000000 00:00 0 
+89cf9000-89d00000 ---p 00000000 00:00 0 
+89d00000-89df3000 rw-p 00000000 00:00 0 
+89df3000-89e00000 ---p 00000000 00:00 0 
+89e00000-89e02000 r--s 00011000 08:03 1417424    /home/tomy/workspaceGoogleEngine/Fuca/war/WEB-INF/lib/commons-logging-1.1.1-sources.jar
+89e02000-89e05000 r--s 0001a000 08:03 1417379    /home/tomy/workspaceGoogleEngine/Fuca/war/WEB-INF/lib/spring-context-support-3.2.0.M2-sources.jar
+89e05000-89e0a000 r--s 00023000 08:03 1417438    /home/tomy/workspaceGoogleEngine/Fuca/war/WEB-INF/lib/tiles-core-2.2.2.jar
+89e0a000-89e0e000 r--s 00066000 08:03 1417396    /home/tomy/workspaceGoogleEngine/Fuca/war/WEB-INF/lib/spring-jms-3.2.0.M2-javadoc.jar
+89e0e000-89e14000 r--s 00049000 08:03 1417367    /home/tomy/workspaceGoogleEngine/Fuca/war/WEB-INF/lib/spring-aop-3.2.0.M2-sources.jar
+89e14000-89e17000 ---p 00000000 00:00 0 
+89e17000-89e65000 rw-p 00000000 00:00 0 
+89e65000-89e67000 r-xp 00000000 08:06 2466206    /lib/libnss_mdns4_minimal.so.2
+89e67000-89e68000 r--p 00001000 08:06 2466206    /lib/libnss_mdns4_minimal.so.2
+89e68000-89e69000 rw-p 00002000 08:06 2466206    /lib/libnss_mdns4_minimal.so.2
+89e69000-89e6a000 r--s 00001000 08:03 1417391    /home/tomy/workspaceGoogleEngine/Fuca/war/WEB-INF/lib/spring-instrument-tomcat-3.2.0.M2-sources.jar
+89e6a000-89e6b000 r--s 0000a000 08:03 1417390    /home/tomy/workspaceGoogleEngine/Fuca/war/WEB-INF/lib/spring-instrument-tomcat-3.2.0.M2-javadoc.jar
+89e6b000-89e6c000 r--s 00005000 08:03 1417430    /home/tomy/workspaceGoogleEngine/Fuca/war/WEB-INF/lib/slf4j-api-1.5.8.jar
+89e6c000-89e6e000 r--s 00001000 08:03 1417440    /home/tomy/workspaceGoogleEngine/Fuca/war/WEB-INF/lib/slf4j-jdk14-1.5.8.jar
+89e6e000-89e72000 r--s 0003a000 08:03 1417347    /home/tomy/workspaceGoogleEngine/Fuca/war/WEB-INF/lib/datanucleus-api-jpa-3.1.0-m3.jar
+89e72000-89e74000 r--s 00021000 08:03 1417423    /home/tomy/workspaceGoogleEngine/Fuca/war/WEB-INF/lib/commons-logging-1.1.1-javadoc.jar
+89e74000-89e78000 r--s 00022000 08:03 1417385    /home/tomy/workspaceGoogleEngine/Fuca/war/WEB-INF/lib/spring-expression-3.2.0.M2-sources.jar
+89e78000-89e80000 r--s 0005f000 08:03 1417394    /home/tomy/workspaceGoogleEngine/Fuca/war/WEB-INF/lib/spring-jdbc-3.2.0.M2-sources.jar
+89e80000-89ed0000 r-xp 00000000 08:06 2875743    /usr/lib/i386-linux-gnu/nss/libfreebl3.so
+89ed0000-89ed1000 r--p 00050000 08:06 2875743    /usr/lib/i386-linux-gnu/nss/libfreebl3.so
+89ed1000-89ed2000 rw-p 00051000 08:06 2875743    /usr/lib/i386-linux-gnu/nss/libfreebl3.so
+89ed2000-89ed6000 rw-p 00000000 00:00 0 
+89ed6000-89ffb000 r-xp 00000000 08:06 2851737    /usr/lib/i386-linux-gnu/libnss3.so
+89ffb000-89ffe000 r--p 00124000 08:06 2851737    /usr/lib/i386-linux-gnu/libnss3.so
+89ffe000-8a000000 rw-p 00127000 08:06 2851737    /usr/lib/i386-linux-gnu/libnss3.so
+8a000000-8a0e8000 rw-p 00000000 00:00 0 
+8a0e8000-8a100000 ---p 00000000 00:00 0 
+8a100000-8a101000 r--s 00001000 08:03 1417344    /home/tomy/workspaceGoogleEngine/Fuca/war/WEB-INF/lib/jsr107cache-1.1.jar
+8a101000-8a114000 r-xp 00000000 08:06 2475000    /lib/i386-linux-gnu/libresolv-2.15.so
+8a114000-8a115000 ---p 00013000 08:06 2475000    /lib/i386-linux-gnu/libresolv-2.15.so
+8a115000-8a116000 r--p 00013000 08:06 2475000    /lib/i386-linux-gnu/libresolv-2.15.so
+8a116000-8a117000 rw-p 00014000 08:06 2475000    /lib/i386-linux-gnu/libresolv-2.15.so
+8a117000-8a119000 rw-p 00000000 00:00 0 
+8a119000-8a1bb000 r-xp 00000000 08:06 2850991    /usr/lib/i386-linux-gnu/libsqlite3.so.0.8.6
+8a1bb000-8a1bc000 r--p 000a2000 08:06 2850991    /usr/lib/i386-linux-gnu/libsqlite3.so.0.8.6
+8a1bc000-8a1bd000 rw-p 000a3000 08:06 2850991    /usr/lib/i386-linux-gnu/libsqlite3.so.0.8.6
+8a1bd000-8a1be000 rw-p 00000000 00:00 0 
+8a1be000-8a1fe000 r-xp 00000000 08:06 2875746    /usr/lib/i386-linux-gnu/nss/libsoftokn3.so
+8a1fe000-8a1ff000 r--p 00040000 08:06 2875746    /usr/lib/i386-linux-gnu/nss/libsoftokn3.so
+8a1ff000-8a200000 rw-p 00041000 08:06 2875746    /usr/lib/i386-linux-gnu/nss/libsoftokn3.so
+8a200000-8a300000 rw-p 00000000 00:00 0 
+8a300000-8a302000 r--s 0000b000 08:03 1417439    /home/tomy/workspaceGoogleEngine/Fuca/war/WEB-INF/lib/tiles-jsp-2.2.2.jar
+8a302000-8a304000 r--s 00003000 08:03 1417429    /home/tomy/workspaceGoogleEngine/Fuca/war/WEB-INF/lib/jcl-over-slf4j-1.5.8.jar
+8a304000-8a306000 r--s 00009000 08:03 1417406    /home/tomy/workspaceGoogleEngine/Fuca/war/WEB-INF/lib/spring-struts-3.2.0.M2-sources.jar
+8a306000-8a308000 r--s 00014000 08:03 1779722    /home/tomy/googleEngine/JavaEE/eclipse/plugins/com.google.appengine.eclipse.sdkbundle_1.7.2.1/appengine-java-sdk-1.7.2.1/lib/impl/agent/appengine-agentruntime.jar
+8a308000-8a30d000 r-xp 00000000 08:06 2474993    /lib/i386-linux-gnu/libnss_dns-2.15.so
+8a30d000-8a30e000 r--p 00004000 08:06 2474993    /lib/i386-linux-gnu/libnss_dns-2.15.so
+8a30e000-8a30f000 rw-p 00005000 08:06 2474993    /lib/i386-linux-gnu/libnss_dns-2.15.so
+8a30f000-8a349000 r-xp 00000000 08:06 2851839    /usr/lib/i386-linux-gnu/libnspr4.so
+8a349000-8a34a000 r--p 00039000 08:06 2851839    /usr/lib/i386-linux-gnu/libnspr4.so
+8a34a000-8a34b000 rw-p 0003a000 08:06 2851839    /usr/lib/i386-linux-gnu/libnspr4.so
+8a34b000-8a34d000 rw-p 00000000 00:00 0 
+8a34d000-8a350000 r-xp 00000000 08:06 2851841    /usr/lib/i386-linux-gnu/libplds4.so
+8a350000-8a351000 r--p 00002000 08:06 2851841    /usr/lib/i386-linux-gnu/libplds4.so
+8a351000-8a352000 rw-p 00003000 08:06 2851841    /usr/lib/i386-linux-gnu/libplds4.so
+8a352000-8a356000 r-xp 00000000 08:06 2851840    /usr/lib/i386-linux-gnu/libplc4.so
+8a356000-8a357000 r--p 00003000 08:06 2851840    /usr/lib/i386-linux-gnu/libplc4.so
+8a357000-8a358000 rw-p 00004000 08:06 2851840    /usr/lib/i386-linux-gnu/libplc4.so
+8a358000-8a372000 r-xp 00000000 08:06 2851735    /usr/lib/i386-linux-gnu/libnssutil3.so
+8a372000-8a375000 r--p 00019000 08:06 2851735    /usr/lib/i386-linux-gnu/libnssutil3.so
+8a375000-8a376000 rw-p 0001c000 08:06 2851735    /usr/lib/i386-linux-gnu/libnssutil3.so
+8a376000-8a38b000 r-xp 00000000 08:06 2713211    /usr/lib/jvm/java-6-openjdk-i386/jre/lib/i386/libnet.so
+8a38b000-8a38c000 r--p 00014000 08:06 2713211    /usr/lib/jvm/java-6-openjdk-i386/jre/lib/i386/libnet.so
+8a38c000-8a38d000 rw-p 00015000 08:06 2713211    /usr/lib/jvm/java-6-openjdk-i386/jre/lib/i386/libnet.so
+8a38d000-8a39c000 r-xp 00000000 08:06 2713188    /usr/lib/jvm/java-6-openjdk-i386/jre/lib/i386/libj2pkcs11.so
+8a39c000-8a39d000 r--p 0000e000 08:06 2713188    /usr/lib/jvm/java-6-openjdk-i386/jre/lib/i386/libj2pkcs11.so
+8a39d000-8a39e000 rw-p 0000f000 08:06 2713188    /usr/lib/jvm/java-6-openjdk-i386/jre/lib/i386/libj2pkcs11.so
+8a39e000-8a3a0000 r--s 00013000 08:06 2713174    /usr/lib/jvm/java-6-openjdk-common/jre/lib/jce.jar
+8a3a0000-8a3a3000 ---p 00000000 00:00 0 
+8a3a3000-8a3f1000 rw-p 00000000 00:00 0 
+8a3f1000-8a3f8000 r--s 000fb000 08:06 2713183    /usr/lib/jvm/java-6-openjdk-common/jre/lib/resources.jar
+8a3f8000-8a3f9000 ---p 00000000 00:00 0 
+8a3f9000-8a479000 rw-p 00000000 00:00 0 
+8a479000-8a47c000 ---p 00000000 00:00 0 
+8a47c000-8a4ca000 rw-p 00000000 00:00 0 
+8a4ca000-8a4cd000 ---p 00000000 00:00 0 
+8a4cd000-8a54b000 rw-p 00000000 00:00 0 
+8a54b000-8a54e000 ---p 00000000 00:00 0 
+8a54e000-8a5cc000 rw-p 00000000 00:00 0 
+8a5cc000-8a5cf000 r--s 00055000 08:03 1779712    /home/tomy/googleEngine/JavaEE/eclipse/plugins/com.google.appengine.eclipse.sdkbundle_1.7.2.1/appengine-java-sdk-1.7.2.1/lib/agent/appengine-agentimpl.jar
+8a5cf000-8a5d2000 r--s 0007d000 08:06 2713173    /usr/lib/jvm/java-6-openjdk-common/jre/lib/jsse.jar
+8a5d2000-8a5d3000 r--s 00008000 08:03 1779711    /home/tomy/googleEngine/JavaEE/eclipse/plugins/com.google.appengine.eclipse.sdkbundle_1.7.2.1/appengine-java-sdk-1.7.2.1/lib/agent/appengine-agent.jar
+8a5d3000-8a5d6000 r--s 0002d000 08:03 1417447    /home/tomy/workspaceGoogleEngine/Fuca/war/WEB-INF/lib/jackson-core-2.0.6.jar
+8a5d6000-8a5e5000 r--s 000c1000 08:03 1417442    /home/tomy/workspaceGoogleEngine/Fuca/war/WEB-INF/lib/jackson-databind-2.0.6.jar
+8a5e5000-8a5e8000 r--s 00006000 08:03 1417446    /home/tomy/workspaceGoogleEngine/Fuca/war/WEB-INF/lib/jackson-annotations-2.0.6.jar
+8a5e8000-8a5eb000 r--s 00009000 08:03 1040449    /home/tomy/googleEngine/hibernate-validator-4.0.2.GA/lib/validation-api-1.0.0.GA.jar
+8a5eb000-8a5f0000 r--s 00033000 08:03 1040459    /home/tomy/googleEngine/hibernate-validator-4.0.2.GA/hibernate-validator-4.0.2.GA.jar
+8a5f0000-8a5f6000 r--s 00017000 08:03 1779783    /home/tomy/googleEngine/JavaEE/eclipse/plugins/com.google.appengine.eclipse.sdkbundle_1.7.2.1/appengine-java-sdk-1.7.2.1/lib/opt/user/datanucleus/v2/geronimo-jpa_2.0_spec-1.0.jar
+8a5f6000-8a5fc000 r--s 0002c000 08:03 1779787    /home/tomy/googleEngine/JavaEE/eclipse/plugins/com.google.appengine.eclipse.sdkbundle_1.7.2.1/appengine-java-sdk-1.7.2.1/lib/opt/user/datanucleus/v2/jdo-api-3.0.1.jar
+8a5fc000-8a602000 r--s 0004d000 08:03 1779785    /home/tomy/googleEngine/JavaEE/eclipse/plugins/com.google.appengine.eclipse.sdkbundle_1.7.2.1/appengine-java-sdk-1.7.2.1/lib/opt/user/datanucleus/v2/datanucleus-appengine-2.1.0-final.jar
+8a602000-8a61a000 r--s 00187000 08:03 1779788    /home/tomy/googleEngine/JavaEE/eclipse/plugins/com.google.appengine.eclipse.sdkbundle_1.7.2.1/appengine-java-sdk-1.7.2.1/lib/opt/user/datanucleus/v2/datanucleus-core-3.1.0-m5.jar
+8a61a000-8a61b000 r--s 00003000 08:03 1779789    /home/tomy/googleEngine/JavaEE/eclipse/plugins/com.google.appengine.eclipse.sdkbundle_1.7.2.1/appengine-java-sdk-1.7.2.1/lib/opt/user/datanucleus/v2/jta-1.1.jar
+8a61b000-8a61d000 r--s 0000a000 08:03 1779786    /home/tomy/googleEngine/JavaEE/eclipse/plugins/com.google.appengine.eclipse.sdkbundle_1.7.2.1/appengine-java-sdk-1.7.2.1/lib/opt/user/datanucleus/v2/asm-4.0.jar
+8a61d000-8a622000 r--s 00049000 08:03 1779784    /home/tomy/googleEngine/JavaEE/eclipse/plugins/com.google.appengine.eclipse.sdkbundle_1.7.2.1/appengine-java-sdk-1.7.2.1/lib/opt/user/datanucleus/v2/datanucleus-api-jdo-3.1.0-m3.jar
+8a622000-8a626000 r--s 0003a000 08:03 1779790    /home/tomy/googleEngine/JavaEE/eclipse/plugins/com.google.appengine.eclipse.sdkbundle_1.7.2.1/appengine-java-sdk-1.7.2.1/lib/opt/user/datanucleus/v2/datanucleus-api-jpa-3.1.0-m3.jar
+8a626000-8a6d6000 r--s 01a28000 08:03 1779727    /home/tomy/googleEngine/JavaEE/eclipse/plugins/com.google.appengine.eclipse.sdkbundle_1.7.2.1/appengine-java-sdk-1.7.2.1/lib/user/appengine-api-1.0-sdk-1.7.2.1.jar
+8a6d6000-8a6d7000 r--s 00001000 08:03 1779804    /home/tomy/googleEngine/JavaEE/eclipse/plugins/com.google.appengine.eclipse.sdkbundle_1.7.2.1/appengine-java-sdk-1.7.2.1/lib/opt/user/jsr107/v1/appengine-jsr107cache-1.7.2.1.jar
+8a6d7000-8a705000 r--s 004c7000 08:03 1779800    /home/tomy/googleEngine/JavaEE/eclipse/plugins/com.google.appengine.eclipse.sdkbundle_1.7.2.1/appengine-java-sdk-1.7.2.1/lib/opt/user/appengine-endpoints/v1/appengine-endpoints.jar
+8a705000-8a72e000 r--s 0032b000 08:03 1779807    /home/tomy/googleEngine/JavaEE/eclipse/plugins/com.google.appengine.eclipse.sdkbundle_1.7.2.1/appengine-java-sdk-1.7.2.1/lib/opt/user/appengine-api-labs/v1/appengine-api-labs.jar
+8a72e000-8a7a9000 r--s 00e56000 08:03 1779705    /home/tomy/googleEngine/JavaEE/eclipse/plugins/com.google.appengine.eclipse.sdkbundle_1.7.2.1/appengine-java-sdk-1.7.2.1/lib/appengine-tools-api.jar
+8a7a9000-8a7ac000 r--s 00014000 08:03 1779751    /home/tomy/googleEngine/JavaEE/eclipse/plugins/com.google.appengine.eclipse.sdkbundle_1.7.2.1/appengine-java-sdk-1.7.2.1/lib/shared/servlet-api.jar
+8a7ac000-8a7b0000 r--s 00091000 08:03 1779750    /home/tomy/googleEngine/JavaEE/eclipse/plugins/com.google.appengine.eclipse.sdkbundle_1.7.2.1/appengine-java-sdk-1.7.2.1/lib/shared/appengine-local-runtime-shared.jar
+8a7b0000-8a7c4000 r--s 0012b000 08:03 1779759    /home/tomy/googleEngine/JavaEE/eclipse/plugins/com.google.appengine.eclipse.sdkbundle_1.7.2.1/appengine-java-sdk-1.7.2.1/lib/shared/jsp/repackaged-appengine-ant-1.7.1.jar
+8a7c4000-8a7cb000 r--s 0007a000 08:03 1779758    /home/tomy/googleEngine/JavaEE/eclipse/plugins/com.google.appengine.eclipse.sdkbundle_1.7.2.1/appengine-java-sdk-1.7.2.1/lib/shared/jsp/repackaged-appengine-jasper-6.0.29.jar
+8a7cb000-8a7ce000 r--s 00018000 08:03 1779757    /home/tomy/googleEngine/JavaEE/eclipse/plugins/com.google.appengine.eclipse.sdkbundle_1.7.2.1/appengine-java-sdk-1.7.2.1/lib/shared/jsp/repackaged-appengine-jasper-el-6.0.29.jar
+8a7ce000-8a7d2000 r--s 00021000 08:03 1500645    /home/tomy/googleEngine/tiles-3.0.1/lib/commons-digester-2.0.jar
+8a7d2000-8a7d7000 r--s 00034000 08:03 1500646    /home/tomy/googleEngine/tiles-3.0.1/lib/commons-beanutils-1.8.0.jar
+8a7d7000-8a7d9000 r--s 00007000 08:03 1500675    /home/tomy/googleEngine/tiles-3.0.1/tiles-jsp-3.0.1.jar
+8a7d9000-8a7dc000 r--s 00011000 08:03 1500672    /home/tomy/googleEngine/tiles-3.0.1/tiles-core-3.0.1.jar
+8a7dc000-8a7de000 r--s 00006000 08:03 1500670    /home/tomy/googleEngine/tiles-3.0.1/tiles-api-3.0.1.jar
+8a7de000-8a7e2000 r--s 0002c000 08:03 1532481    /home/tomy/googleEngine/spring-3.2.0.M2/libs/spring-webmvc-portlet-3.2.0.M2-sources.jar
+8a7e2000-8a7e6000 r--s 0006b000 08:03 1532482    /home/tomy/googleEngine/spring-3.2.0.M2/libs/spring-webmvc-portlet-3.2.0.M2-javadoc.jar
+8a7e6000-8a7ea000 r--s 0002a000 08:03 1532480    /home/tomy/googleEngine/spring-3.2.0.M2/libs/spring-webmvc-portlet-3.2.0.M2.jar
+8a7ea000-8a7f4000 r--s 00091000 08:03 1532478    /home/tomy/googleEngine/spring-3.2.0.M2/libs/spring-webmvc-3.2.0.M2-sources.jar
+8a7f4000-8a800000 r--s 00154000 08:03 1532479    /home/tomy/googleEngine/spring-3.2.0.M2/libs/spring-webmvc-3.2.0.M2-javadoc.jar
+8a800000-8a900000 rw-p 00000000 00:00 0 
+8a900000-8a902000 r--s 00011000 08:03 1779752    /home/tomy/googleEngine/JavaEE/eclipse/plugins/com.google.appengine.eclipse.sdkbundle_1.7.2.1/appengine-java-sdk-1.7.2.1/lib/shared/jsp-api.jar
+8a902000-8a90d000 r--s 00088000 08:03 1532475    /home/tomy/googleEngine/spring-3.2.0.M2/libs/spring-web-3.2.0.M2-sources.jar
+8a90d000-8a91a000 r--s 00152000 08:03 1532476    /home/tomy/googleEngine/spring-3.2.0.M2/libs/spring-web-3.2.0.M2-javadoc.jar
+8a91a000-8a928000 r--s 00084000 08:03 1532474    /home/tomy/googleEngine/spring-3.2.0.M2/libs/spring-web-3.2.0.M2.jar
+8a928000-8a92e000 r--s 0003e000 08:03 1532472    /home/tomy/googleEngine/spring-3.2.0.M2/libs/spring-tx-3.2.0.M2-sources.jar
+8a92e000-8a936000 r--s 000ad000 08:03 1532473    /home/tomy/googleEngine/spring-3.2.0.M2/libs/spring-tx-3.2.0.M2-javadoc.jar
+8a936000-8a93d000 r--s 00034000 08:03 1532471    /home/tomy/googleEngine/spring-3.2.0.M2/libs/spring-tx-3.2.0.M2.jar
+8a93d000-8a942000 r--s 00036000 08:03 1532469    /home/tomy/googleEngine/spring-3.2.0.M2/libs/spring-test-3.2.0.M2-sources.jar
+8a942000-8a947000 r--s 00087000 08:03 1532470    /home/tomy/googleEngine/spring-3.2.0.M2/libs/spring-test-3.2.0.M2-javadoc.jar
+8a947000-8a94c000 r--s 00034000 08:03 1532468    /home/tomy/googleEngine/spring-3.2.0.M2/libs/spring-test-3.2.0.M2.jar
+8a94c000-8a94e000 r--s 00009000 08:03 1532466    /home/tomy/googleEngine/spring-3.2.0.M2/libs/spring-struts-3.2.0.M2-sources.jar
+8a94e000-8a950000 r--s 0001a000 08:03 1532467    /home/tomy/googleEngine/spring-3.2.0.M2/libs/spring-struts-3.2.0.M2-javadoc.jar
+8a950000-8a951000 r--s 00008000 08:03 1532465    /home/tomy/googleEngine/spring-3.2.0.M2/libs/spring-struts-3.2.0.M2.jar
+8a951000-8a953000 r--s 0000d000 08:03 1532463    /home/tomy/googleEngine/spring-3.2.0.M2/libs/spring-oxm-3.2.0.M2-sources.jar
+8a953000-8a956000 r--s 00027000 08:03 1532464    /home/tomy/googleEngine/spring-3.2.0.M2/libs/spring-oxm-3.2.0.M2-javadoc.jar
+8a956000-8a958000 r--s 00010000 08:03 1532462    /home/tomy/googleEngine/spring-3.2.0.M2/libs/spring-oxm-3.2.0.M2.jar
+8a958000-8a95e000 r--s 0004c000 08:03 1532460    /home/tomy/googleEngine/spring-3.2.0.M2/libs/spring-orm-3.2.0.M2-sources.jar
+8a95e000-8a964000 r--s 000a6000 08:03 1532461    /home/tomy/googleEngine/spring-3.2.0.M2/libs/spring-orm-3.2.0.M2-javadoc.jar
+8a964000-8a96d000 r--s 00055000 08:03 1532459    /home/tomy/googleEngine/spring-3.2.0.M2/libs/spring-orm-3.2.0.M2.jar
+8a96d000-8a971000 r--s 00028000 08:03 1532457    /home/tomy/googleEngine/spring-3.2.0.M2/libs/spring-jms-3.2.0.M2-sources.jar
+8a971000-8a975000 r--s 00066000 08:03 1532458    /home/tomy/googleEngine/spring-3.2.0.M2/libs/spring-jms-3.2.0.M2-javadoc.jar
+8a975000-8a97a000 r--s 0002c000 08:03 1532456    /home/tomy/googleEngine/spring-3.2.0.M2/libs/spring-jms-3.2.0.M2.jar
+8a97a000-8a982000 r--s 0005f000 08:03 1532454    /home/tomy/googleEngine/spring-3.2.0.M2/libs/spring-jdbc-3.2.0.M2-sources.jar
+8a982000-8a98b000 r--s 000ed000 08:03 1532455    /home/tomy/googleEngine/spring-3.2.0.M2/libs/spring-jdbc-3.2.0.M2-javadoc.jar
+8a98b000-8a995000 r--s 00058000 08:03 1532453    /home/tomy/googleEngine/spring-3.2.0.M2/libs/spring-jdbc-3.2.0.M2.jar
+8a995000-8a996000 r--s 00001000 08:03 1532451    /home/tomy/googleEngine/spring-3.2.0.M2/libs/spring-instrument-tomcat-3.2.0.M2-sources.jar
+8a996000-8a997000 r--s 0000a000 08:03 1532452    /home/tomy/googleEngine/spring-3.2.0.M2/libs/spring-instrument-tomcat-3.2.0.M2-javadoc.jar
+8a997000-8a998000 r--s 00002000 08:03 1532450    /home/tomy/googleEngine/spring-3.2.0.M2/libs/spring-instrument-tomcat-3.2.0.M2.jar
+8a998000-8a999000 r--s 00000000 08:03 1532448    /home/tomy/googleEngine/spring-3.2.0.M2/libs/spring-instrument-3.2.0.M2-sources.jar
+8a999000-8a99b000 r--s 00007000 08:03 1532449    /home/tomy/googleEngine/spring-3.2.0.M2/libs/spring-instrument-3.2.0.M2-javadoc.jar
+8a99b000-8a99c000 r--s 00001000 08:03 1532447    /home/tomy/googleEngine/spring-3.2.0.M2/libs/spring-instrument-3.2.0.M2.jar
+8a99c000-8a9a0000 r--s 00022000 08:03 1532445    /home/tomy/googleEngine/spring-3.2.0.M2/libs/spring-expression-3.2.0.M2-sources.jar
+8a9a0000-8a9a5000 r--s 00056000 08:03 1532446    /home/tomy/googleEngine/spring-3.2.0.M2/libs/spring-expression-3.2.0.M2-javadoc.jar
+8a9a5000-8a9a9000 r--s 00027000 08:03 1532444    /home/tomy/googleEngine/spring-3.2.0.M2/libs/spring-expression-3.2.0.M2.jar
+8a9a9000-8a9b1000 r--s 00069000 08:03 1532442    /home/tomy/googleEngine/spring-3.2.0.M2/libs/spring-core-3.2.0.M2-sources.jar
+8a9b1000-8a9b9000 r--s 000de000 08:03 1532443    /home/tomy/googleEngine/spring-3.2.0.M2/libs/spring-core-3.2.0.M2-javadoc.jar
+8a9b9000-8a9cb000 r--s 000ba000 08:03 1532441    /home/tomy/googleEngine/spring-3.2.0.M2/libs/spring-core-3.2.0.M2.jar
+8a9cb000-8a9ce000 r--s 0001a000 08:03 1532439    /home/tomy/googleEngine/spring-3.2.0.M2/libs/spring-context-support-3.2.0.M2-sources.jar
+8a9ce000-8a9d2000 r--s 00044000 08:03 1532440    /home/tomy/googleEngine/spring-3.2.0.M2/libs/spring-context-support-3.2.0.M2-javadoc.jar
+8a9d2000-8a9d5000 r--s 00018000 08:03 1532438    /home/tomy/googleEngine/spring-3.2.0.M2/libs/spring-context-support-3.2.0.M2.jar
+8a9d5000-8a9e6000 r--s 000c1000 08:03 1532436    /home/tomy/googleEngine/spring-3.2.0.M2/libs/spring-context-3.2.0.M2-sources.jar
+8a9e6000-8a9fa000 r--s 001dc000 08:03 1532437    /home/tomy/googleEngine/spring-3.2.0.M2/libs/spring-context-3.2.0.M2-javadoc.jar
+8a9fa000-8a9fd000 ---p 00000000 00:00 0 
+8a9fd000-8aa4b000 rw-p 00000000 00:00 0 
+8aa4b000-8ac4b000 r--p 00000000 08:06 2498598    /usr/lib/locale/locale-archive
+8ac4b000-8ac4e000 ---p 00000000 00:00 0 
+8ac4e000-8ac9c000 rw-p 00000000 00:00 0 
+8ac9c000-8ac9f000 ---p 00000000 00:00 0 
+8ac9f000-8aced000 rw-p 00000000 00:00 0 
+8aced000-8acee000 ---p 00000000 00:00 0 
+8acee000-8ad6e000 rw-p 00000000 00:00 0 
+8ad6e000-8af00000 r--s 037bf000 08:06 2713214    /usr/lib/jvm/java-6-openjdk-i386/jre/lib/rt.jar
+8af00000-8affc000 rw-p 00000000 00:00 0 
+8affc000-8b000000 ---p 00000000 00:00 0 
+8b000000-8b001000 r--s 00001000 08:03 1779803    /home/tomy/googleEngine/JavaEE/eclipse/plugins/com.google.appengine.eclipse.sdkbundle_1.7.2.1/appengine-java-sdk-1.7.2.1/lib/opt/user/jsr107/v1/jsr107cache-1.1.jar
+8b001000-8b00c000 r--s 0008a000 08:03 1532477    /home/tomy/googleEngine/spring-3.2.0.M2/libs/spring-webmvc-3.2.0.M2.jar
+8b00c000-8b020000 r--s 000b8000 08:03 1532435    /home/tomy/googleEngine/spring-3.2.0.M2/libs/spring-context-3.2.0.M2.jar
+8b020000-8b029000 r--s 0007d000 08:03 1532433    /home/tomy/googleEngine/spring-3.2.0.M2/libs/spring-beans-3.2.0.M2-sources.jar
+8b029000-8b033000 r--s 00122000 08:03 1532434    /home/tomy/googleEngine/spring-3.2.0.M2/libs/spring-beans-3.2.0.M2-javadoc.jar
+8b033000-8b03f000 r--s 00087000 08:03 1532432    /home/tomy/googleEngine/spring-3.2.0.M2/libs/spring-beans-3.2.0.M2.jar
+8b03f000-8b041000 r--s 00006000 08:03 1532430    /home/tomy/googleEngine/spring-3.2.0.M2/libs/spring-aspects-3.2.0.M2-sources.jar
+8b041000-8b044000 r--s 0000f000 08:03 1532431    /home/tomy/googleEngine/spring-3.2.0.M2/libs/spring-aspects-3.2.0.M2-javadoc.jar
+8b044000-8b046000 r--s 0000f000 08:03 1532429    /home/tomy/googleEngine/spring-3.2.0.M2/libs/spring-aspects-3.2.0.M2.jar
+8b046000-8b04c000 r--s 00049000 08:03 1532427    /home/tomy/googleEngine/spring-3.2.0.M2/libs/spring-aop-3.2.0.M2-sources.jar
+8b04c000-8b07f000 rw-p 00000000 00:00 0 
+8b07f000-8b080000 ---p 00000000 00:00 0 
+8b080000-8b100000 rw-p 00000000 00:00 0 
+8b100000-8b121000 rw-p 00000000 00:00 0 
+8b121000-8b200000 ---p 00000000 00:00 0 
+8b200000-8b202000 r--s 00006000 08:03 1779753    /home/tomy/googleEngine/JavaEE/eclipse/plugins/com.google.appengine.eclipse.sdkbundle_1.7.2.1/appengine-java-sdk-1.7.2.1/lib/shared/el-api.jar
+8b202000-8b203000 r--s 00006000 08:03 1779755    /home/tomy/googleEngine/JavaEE/eclipse/plugins/com.google.appengine.eclipse.sdkbundle_1.7.2.1/appengine-java-sdk-1.7.2.1/lib/shared/jsp/repackaged-appengine-tomcat-juli-6.0.29.jar
+8b203000-8b20a000 r--s 000af000 08:03 1532428    /home/tomy/googleEngine/spring-3.2.0.M2/libs/spring-aop-3.2.0.M2-javadoc.jar
+8b20a000-8b213000 r--s 00049000 08:03 1532426    /home/tomy/googleEngine/spring-3.2.0.M2/libs/spring-aop-3.2.0.M2.jar
+8b213000-8b214000 ---p 00000000 00:00 0 
+8b214000-8b29c000 rw-p 00000000 00:00 0 
+8b29c000-8b2d4000 rw-p 00000000 00:00 0 
+8b2d4000-8b2e9000 rw-p 00000000 00:00 0 
+8b2e9000-8b37f000 rw-p 00000000 00:00 0 
+8b37f000-8b387000 rw-p 00000000 00:00 0 
+8b387000-8b3bf000 rw-p 00000000 00:00 0 
+8b3bf000-8b3d4000 rw-p 00000000 00:00 0 
+8b3d4000-8b469000 rw-p 00000000 00:00 0 
+8b469000-8b475000 rw-p 00000000 00:00 0 
+8b475000-8b4bf000 rw-p 00000000 00:00 0 
+8b4bf000-8c4c0000 rw-p 00000000 00:00 0 
+8c4c0000-934c0000 rw-p 00000000 00:00 0 
+934c0000-95ec0000 rw-p 00000000 00:00 0 
+95ec0000-a8a20000 rw-p 00000000 00:00 0 
+a8a20000-a9f10000 rw-p 00000000 00:00 0 
+a9f10000-b34c0000 rw-p 00000000 00:00 0 
+b34c0000-b34c1000 r--s 00002000 08:03 1779760    /home/tomy/googleEngine/JavaEE/eclipse/plugins/com.google.appengine.eclipse.sdkbundle_1.7.2.1/appengine-java-sdk-1.7.2.1/lib/shared/jsp/repackaged-appengine-ant-launcher-1.7.1.jar
+b34c1000-b34c4000 r--s 00077000 08:06 2958125    /usr/lib/jvm/java-6-openjdk-common/jre/lib/ext/localedata.jar
+b34c4000-b34cd000 rw-p 00000000 00:00 0 
+b34cd000-b3584000 rw-p 00000000 00:00 0 
+b3584000-b37c4000 rwxp 00000000 00:00 0 
+b37c4000-b6584000 rw-p 00000000 00:00 0 
+b6584000-b658f000 r-xp 00000000 08:06 2474994    /lib/i386-linux-gnu/libnss_files-2.15.so
+b658f000-b6590000 r--p 0000a000 08:06 2474994    /lib/i386-linux-gnu/libnss_files-2.15.so
+b6590000-b6591000 rw-p 0000b000 08:06 2474994    /lib/i386-linux-gnu/libnss_files-2.15.so
+b6591000-b659b000 r-xp 00000000 08:06 2474996    /lib/i386-linux-gnu/libnss_nis-2.15.so
+b659b000-b659c000 r--p 00009000 08:06 2474996    /lib/i386-linux-gnu/libnss_nis-2.15.so
+b659c000-b659d000 rw-p 0000a000 08:06 2474996    /lib/i386-linux-gnu/libnss_nis-2.15.so
+b659d000-b65b3000 r-xp 00000000 08:06 2474991    /lib/i386-linux-gnu/libnsl-2.15.so
+b65b3000-b65b4000 r--p 00015000 08:06 2474991    /lib/i386-linux-gnu/libnsl-2.15.so
+b65b4000-b65b5000 rw-p 00016000 08:06 2474991    /lib/i386-linux-gnu/libnsl-2.15.so
+b65b5000-b65b7000 rw-p 00000000 00:00 0 
+b65b7000-b65be000 r-xp 00000000 08:06 2474992    /lib/i386-linux-gnu/libnss_compat-2.15.so
+b65be000-b65bf000 r--p 00006000 08:06 2474992    /lib/i386-linux-gnu/libnss_compat-2.15.so
+b65bf000-b65c0000 rw-p 00007000 08:06 2474992    /lib/i386-linux-gnu/libnss_compat-2.15.so
+b65c0000-b65c2000 r--s 00001000 08:06 2958127    /usr/lib/jvm/java-6-openjdk-common/jre/lib/ext/dnsns.jar
+b65c2000-b65c6000 r--s 00038000 08:06 2958124    /usr/lib/jvm/java-6-openjdk-common/jre/lib/ext/sunpkcs11.jar
+b65c6000-b65cd000 r-xp 00000000 08:06 2713192    /usr/lib/jvm/java-6-openjdk-i386/jre/lib/i386/libzip.so
+b65cd000-b65ce000 r--p 00006000 08:06 2713192    /usr/lib/jvm/java-6-openjdk-i386/jre/lib/i386/libzip.so
+b65ce000-b65cf000 rw-p 00007000 08:06 2713192    /usr/lib/jvm/java-6-openjdk-i386/jre/lib/i386/libzip.so
+b65cf000-b65d7000 rw-s 00000000 08:06 491578     /tmp/hsperfdata_tomy/8750
+b65d7000-b65fd000 r-xp 00000000 08:06 2713187    /usr/lib/jvm/java-6-openjdk-i386/jre/lib/i386/libjava.so
+b65fd000-b65fe000 r--p 00025000 08:06 2713187    /usr/lib/jvm/java-6-openjdk-i386/jre/lib/i386/libjava.so
+b65fe000-b6600000 rw-p 00026000 08:06 2713187    /usr/lib/jvm/java-6-openjdk-i386/jre/lib/i386/libjava.so
+b6600000-b6700000 rw-p 00000000 00:00 0 
+b6700000-b670a000 r-xp 00000000 08:06 2713207    /usr/lib/jvm/java-6-openjdk-i386/jre/lib/i386/libinstrument.so
+b670a000-b670b000 r--p 00009000 08:06 2713207    /usr/lib/jvm/java-6-openjdk-i386/jre/lib/i386/libinstrument.so
+b670b000-b670c000 rw-p 0000a000 08:06 2713207    /usr/lib/jvm/java-6-openjdk-i386/jre/lib/i386/libinstrument.so
+b670c000-b6713000 r-xp 00000000 08:06 2475001    /lib/i386-linux-gnu/librt-2.15.so
+b6713000-b6714000 r--p 00006000 08:06 2475001    /lib/i386-linux-gnu/librt-2.15.so
+b6714000-b6715000 rw-p 00007000 08:06 2475001    /lib/i386-linux-gnu/librt-2.15.so
+b6715000-b6718000 ---p 00000000 00:00 0 
+b6718000-b6766000 rw-p 00000000 00:00 0 
+b6766000-b6782000 r-xp 00000000 08:06 2475060    /lib/i386-linux-gnu/libgcc_s.so.1
+b6782000-b6783000 r--p 0001b000 08:06 2475060    /lib/i386-linux-gnu/libgcc_s.so.1
+b6783000-b6784000 rw-p 0001c000 08:06 2475060    /lib/i386-linux-gnu/libgcc_s.so.1
+b6784000-b67ae000 r-xp 00000000 08:06 2474989    /lib/i386-linux-gnu/libm-2.15.so
+b67ae000-b67af000 r--p 00029000 08:06 2474989    /lib/i386-linux-gnu/libm-2.15.so
+b67af000-b67b0000 rw-p 0002a000 08:06 2474989    /lib/i386-linux-gnu/libm-2.15.so
+b67b0000-b6888000 r-xp 00000000 08:06 2850838    /usr/lib/i386-linux-gnu/libstdc++.so.6.0.16
+b6888000-b6889000 ---p 000d8000 08:06 2850838    /usr/lib/i386-linux-gnu/libstdc++.so.6.0.16
+b6889000-b688d000 r--p 000d8000 08:06 2850838    /usr/lib/i386-linux-gnu/libstdc++.so.6.0.16
+b688d000-b688e000 rw-p 000dc000 08:06 2850838    /usr/lib/i386-linux-gnu/libstdc++.so.6.0.16
+b688e000-b6895000 rw-p 00000000 00:00 0 
+b6895000-b70b3000 r-xp 00000000 08:06 3293397    /usr/lib/jvm/java-6-openjdk-i386/jre/lib/i386/server/libjvm.so
+b70b3000-b70f8000 r--p 0081e000 08:06 3293397    /usr/lib/jvm/java-6-openjdk-i386/jre/lib/i386/server/libjvm.so
+b70f8000-b7107000 rw-p 00863000 08:06 3293397    /usr/lib/jvm/java-6-openjdk-i386/jre/lib/i386/server/libjvm.so
+b7107000-b7523000 rw-p 00000000 00:00 0 
+b7523000-b7537000 r-xp 00000000 08:06 2475073    /lib/i386-linux-gnu/libz.so.1.2.3.4
+b7537000-b7538000 r--p 00013000 08:06 2475073    /lib/i386-linux-gnu/libz.so.1.2.3.4
+b7538000-b7539000 rw-p 00014000 08:06 2475073    /lib/i386-linux-gnu/libz.so.1.2.3.4
+b7539000-b76d8000 r-xp 00000000 08:06 2474985    /lib/i386-linux-gnu/libc-2.15.so
+b76d8000-b76da000 r--p 0019f000 08:06 2474985    /lib/i386-linux-gnu/libc-2.15.so
+b76da000-b76db000 rw-p 001a1000 08:06 2474985    /lib/i386-linux-gnu/libc-2.15.so
+b76db000-b76de000 rw-p 00000000 00:00 0 
+b76de000-b76e1000 r-xp 00000000 08:06 2474988    /lib/i386-linux-gnu/libdl-2.15.so
+b76e1000-b76e2000 r--p 00002000 08:06 2474988    /lib/i386-linux-gnu/libdl-2.15.so
+b76e2000-b76e3000 rw-p 00003000 08:06 2474988    /lib/i386-linux-gnu/libdl-2.15.so
+b76e3000-b76e7000 r-xp 00000000 08:06 3293389    /usr/lib/jvm/java-6-openjdk-i386/jre/lib/i386/jli/libjli.so
+b76e7000-b76e8000 r--p 00003000 08:06 3293389    /usr/lib/jvm/java-6-openjdk-i386/jre/lib/i386/jli/libjli.so
+b76e8000-b76e9000 rw-p 00004000 08:06 3293389    /usr/lib/jvm/java-6-openjdk-i386/jre/lib/i386/jli/libjli.so
+b76e9000-b76ea000 rw-p 00000000 00:00 0 
+b76ea000-b7701000 r-xp 00000000 08:06 2474999    /lib/i386-linux-gnu/libpthread-2.15.so
+b7701000-b7702000 r--p 00016000 08:06 2474999    /lib/i386-linux-gnu/libpthread-2.15.so
+b7702000-b7703000 rw-p 00017000 08:06 2474999    /lib/i386-linux-gnu/libpthread-2.15.so
+b7703000-b7705000 rw-p 00000000 00:00 0 
+b7705000-b7707000 r--s 0000f000 08:06 2958128    /usr/lib/jvm/java-6-openjdk-common/jre/lib/ext/pulse-java.jar
+b7707000-b7708000 r--s 00007000 08:06 2580799    /usr/share/java/java-atk-wrapper.jar
+b7708000-b770b000 r--s 00031000 08:06 2958126    /usr/lib/jvm/java-6-openjdk-common/jre/lib/ext/sunjce_provider.jar
+b770b000-b770c000 r--p 002c5000 08:06 2498598    /usr/lib/locale/locale-archive
+b770c000-b770d000 rw-p 00000000 00:00 0 
+b770d000-b770e000 ---p 00000000 00:00 0 
+b770e000-b7719000 r-xp 00000000 08:06 2713203    /usr/lib/jvm/java-6-openjdk-i386/jre/lib/i386/libverify.so
+b7719000-b771a000 ---p 0000b000 08:06 2713203    /usr/lib/jvm/java-6-openjdk-i386/jre/lib/i386/libverify.so
+b771a000-b771b000 r--p 0000b000 08:06 2713203    /usr/lib/jvm/java-6-openjdk-i386/jre/lib/i386/libverify.so
+b771b000-b771c000 rw-p 0000c000 08:06 2713203    /usr/lib/jvm/java-6-openjdk-i386/jre/lib/i386/libverify.so
+b771c000-b771e000 rw-p 00000000 00:00 0 
+b771e000-b771f000 r-xp 00000000 00:00 0          [vdso]
+b771f000-b773f000 r-xp 00000000 08:06 2474982    /lib/i386-linux-gnu/ld-2.15.so
+b773f000-b7740000 r--p 0001f000 08:06 2474982    /lib/i386-linux-gnu/ld-2.15.so
+b7740000-b7741000 rw-p 00020000 08:06 2474982    /lib/i386-linux-gnu/ld-2.15.so
+bf7f0000-bf813000 rw-p 00000000 00:00 0          [stack]
+
+VM Arguments:
+jvm_args: -javaagent:/home/tomy/googleEngine/JavaEE/eclipse/plugins/com.google.appengine.eclipse.sdkbundle_1.7.2.1/appengine-java-sdk-1.7.2.1/lib/agent/appengine-agent.jar -Ddatastore.default_high_rep_job_policy_unapplied_job_pct=50 -Xmx512m -Dfile.encoding=UTF-8 
+java_command: com.google.appengine.tools.development.DevAppServerMain --port=8888 /home/tomy/workspaceGoogleEngine/Fuca/war
+Launcher Type: SUN_STANDARD
+
+Environment Variables:
+PATH=/usr/lib/lightdm/lightdm:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games
+LD_LIBRARY_PATH=/usr/lib/jvm/java-6-openjdk-i386/jre/lib/i386/server:/usr/lib/jvm/java-6-openjdk-i386/jre/lib/i386:/usr/lib/jvm/java-6-openjdk-i386/jre/../lib/i386:/usr/lib/jvm/java-6-openjdk-i386/jre/lib/i386/client:/usr/lib/jvm/java-6-openjdk-i386/jre/lib/i386:
+SHELL=/bin/bash
+DISPLAY=:0.0
+
+Signal Handlers:
+SIGSEGV: [libjvm.so+0x66a270], sa_mask[0]=0x7ffbfeff, sa_flags=0x10000004
+SIGBUS: [libjvm.so+0x66a270], sa_mask[0]=0x7ffbfeff, sa_flags=0x10000004
+SIGFPE: [libjvm.so+0x52e160], sa_mask[0]=0x7ffbfeff, sa_flags=0x10000004
+SIGPIPE: SIG_IGN, sa_mask[0]=0x00000000, sa_flags=0x00000000
+SIGXFSZ: [libjvm.so+0x52e160], sa_mask[0]=0x7ffbfeff, sa_flags=0x10000004
+SIGILL: [libjvm.so+0x52e160], sa_mask[0]=0x7ffbfeff, sa_flags=0x10000004
+SIGUSR1: SIG_DFL, sa_mask[0]=0x00000000, sa_flags=0x00000000
+SIGUSR2: [libjvm.so+0x52dff0], sa_mask[0]=0x00000004, sa_flags=0x10000004
+SIGHUP: [libjvm.so+0x531090], sa_mask[0]=0x7ffbfeff, sa_flags=0x10000004
+SIGINT: [libjvm.so+0x531090], sa_mask[0]=0x7ffbfeff, sa_flags=0x10000004
+SIGTERM: [libjvm.so+0x531090], sa_mask[0]=0x7ffbfeff, sa_flags=0x10000004
+SIGQUIT: [libjvm.so+0x531090], sa_mask[0]=0x7ffbfeff, sa_flags=0x10000004
+
+
+---------------  S Y S T E M  ---------------
+
+OS:Ubuntu 12.04 (precise)
+uname:Linux 3.2.0-30-generic-pae #48-Ubuntu SMP Fri Aug 24 17:14:09 UTC 2012 i686
+libc:glibc 2.15 NPTL 2.15 
+rlimit: STACK 8192k, CORE 0k, NPROC 32065, NOFILE 4096, AS infinity
+load average:1.27 1.19 0.98
+
+/proc/meminfo:
+MemTotal:        4124244 kB
+MemFree:          228792 kB
+Buffers:          207124 kB
+Cached:          1727560 kB
+SwapCached:           56 kB
+Active:          2225128 kB
+Inactive:        1321232 kB
+Active(anon):    1268404 kB
+Inactive(anon):   355884 kB
+Active(file):     956724 kB
+Inactive(file):   965348 kB
+Unevictable:           0 kB
+Mlocked:               0 kB
+HighTotal:       3280392 kB
+HighFree:          49324 kB
+LowTotal:         843852 kB
+LowFree:          179468 kB
+SwapTotal:       3976080 kB
+SwapFree:        3975772 kB
+Dirty:               592 kB
+Writeback:             0 kB
+AnonPages:       1611984 kB
+Mapped:           288416 kB
+Shmem:             12284 kB
+Slab:              90592 kB
+SReclaimable:      72884 kB
+SUnreclaim:        17708 kB
+KernelStack:        4072 kB
+PageTables:        12508 kB
+NFS_Unstable:          0 kB
+Bounce:                0 kB
+WritebackTmp:          0 kB
+CommitLimit:     6038200 kB
+Committed_AS:    4891896 kB
+VmallocTotal:     122880 kB
+VmallocUsed:       24352 kB
+VmallocChunk:      96016 kB
+HardwareCorrupted:     0 kB
+AnonHugePages:         0 kB
+HugePages_Total:       0
+HugePages_Free:        0
+HugePages_Rsvd:        0
+HugePages_Surp:        0
+Hugepagesize:       2048 kB
+DirectMap4k:        8184 kB
+DirectMap2M:      905216 kB
+
+
+CPU:total 2 (2 cores per cpu, 1 threads per core) family 6 model 23 stepping 10, cmov, cx8, fxsr, mmx, sse, sse2, sse3, ssse3, sse4.1
+
+Memory: 4k page, physical 4124244k(228792k free), swap 3976080k(3975772k free)
+
+vm_info: OpenJDK Server VM (20.0-b12) for linux-x86 JRE (1.6.0_24-b24), built on Sep  1 2012 19:13:49 by "buildd" with gcc 4.6.3
+
+time: Tue Nov  6 21:13:15 2012
+elapsed time: 5 seconds
+
