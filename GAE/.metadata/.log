@@ -804,3 +804,18 @@ Caused by: com.google.appengine.tools.admin.JspCompilationException: Failed to c
 
 !ENTRY com.google.appengine.eclipse.core 1 0 2013-02-22 22:11:06.055
 !MESSAGE Fuca successfully deployed to Google App Engine
+
+!ENTRY com.android.ide.eclipse.adt 1 0 2013-02-22 22:17:40.460
+!MESSAGE No valid Android XML Editor Delegate found for file /Fuca/war/WEB-INF/appengine-web.xml [Res null, type null]
+
+!ENTRY com.android.ide.eclipse.adt 2 0 2013-02-22 22:17:55.141
+!MESSAGE No projects found for [/home/tomy/git/GAE/Fuca/war/WEB-INF/appengine-web.xml]
+
+!ENTRY com.android.ide.eclipse.adt 1 0 2013-02-22 22:18:16.835
+!MESSAGE No valid Android XML Editor Delegate found for file /Fuca/war/WEB-INF/web.xml [Res null, type null]
+
+!ENTRY com.android.ide.eclipse.adt 2 0 2013-02-22 22:18:34.598
+!MESSAGE No projects found for [/home/tomy/git/GAE/Fuca/war/WEB-INF/web.xml]
+
+!ENTRY com.google.appengine.eclipse.core 1 0 2013-02-22 22:20:06.932
+!MESSAGE Fuca successfully deployed to Google App Engine
