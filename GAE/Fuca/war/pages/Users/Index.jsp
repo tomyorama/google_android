@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ page import="java.util.List"%>
 <%@ page import="com.google.appengine.api.datastore.Entity"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -8,6 +8,6 @@
 </table>
 <div id="user_nav" class="scroll" style="text-align: center;">
 </div>
-<a href="<c:url value="/Admin/AddUser"/>" data-u-button="true">Dodaj
-	novi</a>
+<a style="margin-top: 10px;" href="<c:url value="/Admin/AddUser"/>" data-u-button="true">Dodaj
+	novog</a>
 

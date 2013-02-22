@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE tiles-definitions PUBLIC
+"-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+"http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+ 
+<tiles-definitions>
+ 
+<definition name="baseLayout" template="/pages/Shared/baseLayout.jsp">
+<put-attribute name="login"  value="/pages/Shared/login.jsp"/>
+<put-attribute name="title"  value="Template"/>
+<put-attribute name="header" value="/WEB-INF/tiles/header.jsp"/>
+<put-attribute name="body"   value="/WEB-INF/tiles/body.jsp"/>
+</definition>
+ 
+<definition name="welcome" template="/pages/Home/Home.jsp">
+<put-attribute name="title"  value="Welcome"/>
+<put-attribute name="body"   value="Test"/>     
+</definition>
+ 
+<definition name="home" extends="baseLayout">
+<put-attribute name="title"  value="Home"/>
+<put-attribute name="body"   value="/pages/Home/Index.jsp"/>     
+</definition>
+
+<definition name="termindetails" extends="baseLayout">
+<put-attribute name="title"  value="Home"/>
+<put-attribute name="body"   value="/pages/Termin/DetailsX.jsp"/>     
+</definition>
+
+<definition name="termin" extends="baseLayout">
+<put-attribute name="title"  value="Termin"/>
+<put-attribute name="body"   value="/pages/Termin/Index.jsp"/>     
+</definition>
+ 
+<definition name="users" extends="baseLayout">
+<put-attribute name="title"  value="Users"/>
+<put-attribute name="body"   value="/pages/Users/Index.jsp"/>     
+</definition>
+
+<definition name="addtermin" extends="baseLayout">
+<put-attribute name="title"  value="AddTermin"/>
+<put-attribute name="body"   value="/pages/Termin/AddTermin.jsp"/>     
+</definition>
+
+
+<definition name="adduser" extends="baseLayout">
+<put-attribute name="title"  value="DodaNovog"/>
+<put-attribute name="body"   value="/pages/Users/AddUser.jsp"/>     
+</definition>
+
+<definition name="edituser" extends="baseLayout">
+<put-attribute name="title"  value="Uredi"/>
+<put-attribute name="body"   value="/pages/Users/Edit.jsp"/>     
+</definition>
+
+<definition name="comment" template="/pages/Termin/Comment.jsp">
+</definition>
+
+<definition name="userdetails" extends="baseLayout">
+<put-attribute name="title"  value="Igrac"/>
+<put-attribute name="body"   value="/pages/Users/Details.jsp"/>     
+</definition>
+
+</tiles-definitions>

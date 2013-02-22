@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ page import="com.google.appengine.api.datastore.Entity"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
@@ -8,6 +8,8 @@
 <%@ page
 	import="com.google.appengine.api.blobstore.BlobstoreServiceFactory"%>
 <%@ page import="com.google.appengine.api.blobstore.BlobstoreService"%>
+<%@ page import="com.google.appengine.api.users.UserService"%>
+<%@ page import="com.google.appengine.api.users.UserServiceFactory"%>
 <%
 	BlobstoreService blobstoreService = BlobstoreServiceFactory
 			.getBlobstoreService();
@@ -45,12 +47,20 @@
 	if (isYouTube) {
 		videoId = p.getText().split("v=")[1].split("&")[0];
 	}
+	UserService userService = UserServiceFactory.getUserService();
+	String userName = userService.getCurrentUser().getEmail();
+
+	boolean adminUser = userService.isUserAdmin();
+	boolean isTmpUserOrAdmin = userName.equalsIgnoreCase(p.getUser())
+			|| adminUser;
 %>
 <c:choose>
 	<c:when test="<%=!readonly && isYouTube%>">
 		<tr>
-			<td><a class="removeComment" title="Izbrisi"
-				href="<%=removeCommentUrl%>">(Brisi)</a>${item.user}:</td>
+			<td><c:if test="<%=isTmpUserOrAdmin%>">
+					<a class="removeComment" title="Izbrisi"
+						href="<%=removeCommentUrl%>">(Brisi)</a>
+				</c:if>${item.user}:</td>
 			<td style="text-align: left;"><iframe width="300" height="200"
 					src="http://www.youtube.com/embed/<%=videoId%>"> </iframe></td>
 			<td><c:if test="<%=blobStringPicture != null%>">
@@ -73,14 +83,20 @@
 												href="<%=blobStringVideo%>"> Download it</a> instead.</p>
  						</object>
 					
+					
+					
+					
+					
 					</video>
 				</c:if></td>
 		</tr>
 	</c:when>
 	<c:when test="<%=!readonly && !isYouTube%>">
 		<tr>
-			<td><a class="removeComment" title="Izbrisi"
-				href="<%=removeCommentUrl%>">(Brisi)</a>${item.user}:</td>
+			<td><c:if test="<%=isTmpUserOrAdmin%>">
+					<a class="removeComment" title="Izbrisi"
+						href="<%=removeCommentUrl%>">(Brisi)</a>
+				</c:if>${item.user}:</td>
 			<td class="pre" style="text-align: left;">${item.text}</td>
 			<td><c:if test="<%=blobStringPicture != null%>">
 					<img alt="UserImg" src="<%=blobStringPicture%>">
@@ -101,6 +117,10 @@
     							<p>Your browser can’t play HTML5 video. <a
 												href="<%=blobStringVideo%>"> Download it</a> instead.</p>
  						</object>
+					
+					
+					
+					
 					
 					
 					</video>
@@ -134,6 +154,10 @@
 					
 					
 					
+					
+					
+					
+					
 					</video>
 				</c:if></td>
 		</tr>
@@ -161,6 +185,10 @@
     							<p>Your browser can’t play HTML5 video. <a
 												href="<%=blobStringVideo%>"> Download it</a> instead.</p>
  						</object>
+					
+					
+					
+					
 					
 					
 					

@@ -27,21 +27,17 @@ public class UpdaterService extends Service {
 	public void onCreate() {
 		super.onCreate();
 		this.app = (FucaApp) getApplication();
-
 		this.updater = new Updater(); //
-
 		Log.d(TAG, "onCreated");
 	}
 
 	@Override
 	public int onStartCommand(Intent intent, int flags, int startId) {
+		Log.d(TAG, "onStarted");
 		super.onStartCommand(intent, flags, startId);
 		this.runFlag = true; //
 		this.app.setServiceRunning(true);
-
 		this.updater.start();
-
-		Log.d(TAG, "onStarted");
 		return START_STICKY;
 	}
 

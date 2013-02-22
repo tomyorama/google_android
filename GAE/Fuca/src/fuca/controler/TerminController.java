@@ -1,6 +1,7 @@
 package fuca.controler;
 
 import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collection;
@@ -8,7 +9,6 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
 
@@ -95,8 +95,7 @@ public class TerminController {
 			if (termins != null && termins.size() > 0) {
 				Termin tmpTermin = termins.get(0);
 				mav.addObject("termin", tmpTermin);
-				DateFormat f = DateFormat.getDateInstance(DateFormat.LONG,
-						new Locale("hr_HR"));
+				DateFormat f = new SimpleDateFormat("dd.MM.yyyy");
 				mav.addObject("tmpdate",
 						f.format(tmpTermin.getDate() != null ? tmpTermin
 								.getDate() : new Date()));
@@ -237,7 +236,7 @@ public class TerminController {
 		} finally {
 			pm.close();
 		}
-		return "redirect:/Termin/Details/" + id;
+		return "redirect:/";
 	}
 
 	@RequestMapping(method = RequestMethod.GET, value = "/RemoveUsers2/{id}/{userId}")
@@ -255,7 +254,7 @@ public class TerminController {
 		} finally {
 			pm.close();
 		}
-		return "redirect:/Termin/Details/" + id;
+		return "redirect:/";
 	}
 
 	@RequestMapping(method = RequestMethod.GET, value = "/Confirm1/{id}/{userId}/{comfirmed}")

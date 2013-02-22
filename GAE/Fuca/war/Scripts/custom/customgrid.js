@@ -4,7 +4,7 @@ $(document)
 				function() {
 					function dateFmatter(cellvalue, options, rowObject) {
 						// do something here
-						return new Date(cellvalue).toLocaleFormat();
+						return $.datepicker.formatDate('dd.mm.yy.', new Date(cellvalue)); 
 					}
 					// Search Grid
 					jQuery("#patient_search_grid")
@@ -19,8 +19,8 @@ $(document)
 										height : 255,
 										autowidth : true,
 										mtype : 'POST',
-										colNames : [ 'Ime', 'team1', 'team2',
-												'date', 'result', 'Akcije' ],
+										colNames : [ 'Ime', 'Ekipa 1', 'Ekipa 2',
+												'Datum', 'Rezultat', 'Akcije' ],
 										colModel : [ {
 											name : 'name',
 											index : 'name',

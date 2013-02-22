@@ -61,3 +61,11 @@
 .comments table td,.players table th {
 	text-align: center;
 }
+
+.result {
+	text-align: center;
+	font-size: 52px;
+	float: left;
+	padding-top: 160px;
+	height: 230px;
+}

@@ -1,12 +1,13 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+
 <%@ page import="com.google.appengine.api.datastore.Entity"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ page import="fuca.model.Comment"%>
 <h2>${termin.name}</h2>
 <div>
-	<span>Date: ${tmpdate}</span>
+	<span>Datum: ${tmpdate}</span>
 </div>
 <div style="width: 100%">
 	<div class="players team1">
@@ -53,7 +54,7 @@
 				</tbody>
 			</table>
 		</div>
-		<div id="dialog-form1" title="Dodaj novog igraca">
+		<div id="dialog-form1" title="Dodaj novog igrača">
 			<div style="width: 500px;">
 				<div id="search_users1" data-url="/Users/userdata/${termin.id}/1"></div>
 				<table id="user_search_grid1" class="scroll">
@@ -61,9 +62,10 @@
 				<div id="user_nav1"></div>
 			</div>
 		</div>
-		<button id="create-user1" data-u-button="true">Dodaj igraca</button>
+		<button id="create-user1" data-u-button="true">Dodaj igrača</button>
 
 	</div>
+	<div class="result">${termin.result}</div>
 	<div class="players team2">
 		<div class="teamheader ui-widget-header">
 			<span>${termin.team2}</span>
@@ -110,7 +112,7 @@
 				</tbody>
 			</table>
 		</div>
-		<div id="dialog-form2" title="Dodaj novog igraca">
+		<div id="dialog-form2" title="Dodaj novog igrača">
 			<div style="width: 500px;">
 				<div id="search_users2" data-url="/Users/userdata/${termin.id}/2"></div>
 				<table id="user_search_grid2" class="scroll">
@@ -118,10 +120,11 @@
 				<div id="user_nav2"></div>
 			</div>
 		</div>
-		<button id="create-user2" data-u-button="true">Dodaj igraca</button>
+		<button id="create-user2" data-u-button="true">Dodaj igrača</button>
 	</div>
 </div>
 <div style="clear: both;"></div>
+
 <div class="comments">
 	<div class="teamheader ui-widget-header">
 		<span>Komentari</span>
@@ -169,8 +172,8 @@
 					.dialog(
 							{
 								autoOpen : false,
-								height : 500,
-								width : 550,
+								height : 430,
+								width : 530,
 								modal : true,
 								buttons : {
 									"Dodaj" : function() {

@@ -1,9 +1,10 @@
+<%@page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 <title><tiles:insertAttribute name="title" ignore="true" /></title>
 <link href="/Content/Site.css" rel="stylesheet" type="text/css" />
 <link href="/Content/jquery/blue/jquery-ui-1.8.21.custom.css"
@@ -43,9 +44,9 @@
 				</section>
 				<nav>
 					<ul id="menu">
-						<li><a href="<c:url value="/"/>">Pocetna</a></li>
+						<li><a href="<c:url value="/"/>">Početna</a></li>
 						<li><a href="<c:url value="/Termin"/>">Termin</a></li>
-						<li><a href="<c:url value="/Users"/>">Igraci</a></li>
+						<li><a href="<c:url value="/Users"/>">Igrači</a></li>
 					</ul>
 				</nav>
 			</div>

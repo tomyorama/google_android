@@ -195,7 +195,6 @@ public class UserController {
 			return "edituser";
 		}
 
-
 		PersistenceManager pm = PMF.get().getPersistenceManager();
 		javax.jdo.Query q = pm.newQuery(User.class);
 		q.setFilter("id == teminKey");
@@ -205,14 +204,22 @@ public class UserController {
 			List<User> users = (List<User>) q.execute(userToSave.getId());
 			User tmpUser = users.get(0);
 			BlobstoreService bs = BlobstoreServiceFactory.getBlobstoreService();
-			BlobKey blobKey = bs.getUploads(request).get("picture").get(0);
-			final BlobInfo blobInfo = new BlobInfoFactory().loadBlobInfo(blobKey);
-			long size = blobInfo.getSize();
-			if(size > 0){
-				userToSave.setPicture(blobKey);
-			}else{
-			  bs.delete(blobKey);
-			  userToSave.setPicture(tmpUser.getPicture());
+			BlobKey blobKey = null;
+			if (bs.getUploads(request) != null
+					&& bs.getUploads(request).get("picture") != null
+					&& bs.getUploads(request).get("picture").size() > 0) {
+				blobKey = bs.getUploads(request).get("picture").get(0);
+				final BlobInfo blobInfo = new BlobInfoFactory()
+						.loadBlobInfo(blobKey);
+				long size = blobInfo.getSize();
+				if (size > 0) {
+					userToSave.setPicture(blobKey);
+				} else {
+					bs.delete(blobKey);
+					userToSave.setPicture(tmpUser.getPicture());
+				}
+			} else {
+				userToSave.setPicture(tmpUser.getPicture());
 			}
 			pm.makePersistent(userToSave);
 		} finally {
@@ -270,6 +277,7 @@ public class UserController {
 		byte[] newImageData = newImage.getImageData();
 		response.getOutputStream().write(newImageData);
 	}
+
 	@RequestMapping(method = RequestMethod.GET, value = "/serveVideo/{id}")
 	public void ServeVideo(@PathVariable String id, HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
