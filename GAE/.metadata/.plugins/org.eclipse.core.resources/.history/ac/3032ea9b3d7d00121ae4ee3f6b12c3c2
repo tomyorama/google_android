@@ -6,7 +6,7 @@
 <%@ page import="fuca.model.Comment"%>
 <h2>${termin.name}</h2>
 <div>
-	<span>Datum:${tmpdate}</span>
+	<span>Da:${tmpdate}</span>
 </div>
 <div style="width: 100%">
 	<div class="players team1">
@@ -101,9 +101,9 @@
 	<div class="teamground">
 		<table>
 			<colgroup>
-				<col style="width: 30%;">
+				<col style="width: 20%;">
 				<col style="width: 50%; text-align: left;">
-				<col style="width: 20%; text-align: left;" class="pre">
+				<col style="width: 30%; text-align: left;" class="pre">
 			</colgroup>
 			<thead>
 				<tr>

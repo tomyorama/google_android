@@ -134,9 +134,9 @@
 			action="/Termin/addComment/${termin.id}">
 			<table>
 				<colgroup>
-					<col style="width: 30%;">
+					<col style="width: 20%;">
 					<col style="width: 50%; text-align: left;">
-					<col style="width: 20%; text-align: left;" class="pre">
+					<col style="width: 30%; text-align: left;" class="pre">
 				</colgroup>
 				<thead>
 					<tr>

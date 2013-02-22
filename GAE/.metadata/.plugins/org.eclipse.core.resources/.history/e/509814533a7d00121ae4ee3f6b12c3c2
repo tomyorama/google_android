@@ -6,7 +6,7 @@
 <%@ page import="fuca.model.Comment"%>
 <h2>${termin.name}</h2>
 <div>
-	<span>Datum:${tmpdate}</span>
+	<span>Da:${tmpdate}</span>
 </div>
 <div style="width: 100%">
 	<div class="players team1">
@@ -35,12 +35,14 @@
 							<td>${item.nickname}</td>
 							<td>${item.name}</td>
 							<c:if test="${(empty item.confirmed)||!item.confirmed}">
-								<td><img alt="Nedolazim" title="Nedolazim"
-									src="../../Content/images/1354390210_button_cancel.png" /></td>
+								<td><img
+										alt="Nedolazim" title="Nedolazim"
+										src="../../Content/images/1354390210_button_cancel.png" /></td>
 							</c:if>
 							<c:if test="${(not empty item.confirmed)&&(item.confirmed)}">
-								<td><img alt="Dolazim" title="Dolazim"
-									src="../../Content/images/1354390215_Check.png" /></td>
+								<td><img
+										alt="Dolazim" title="Dolazim"
+										src="../../Content/images/1354390215_Check.png" /></td>
 							</c:if>
 							<td></td>
 						</tr>
@@ -50,7 +52,6 @@
 		</div>
 
 	</div>
-	<div class="result">${termin.result}</div>
 	<div class="players team2">
 		<div class="teamheader ui-widget-header">
 			<span>${termin.team2}</span>
@@ -78,12 +79,15 @@
 							<td>${item.nickname}</td>
 							<td>${item.name}</td>
 							<c:if test="${(empty item.confirmed)||!item.confirmed}">
-								<td><img alt="Nedolazim" title="Nedolazim"
-									src="../../Content/images/1354390210_button_cancel.png" /></td>
+								<td>
+										<img alt="Nedolazim" title="Nedolazim"
+										src="../../Content/images/1354390210_button_cancel.png" />
+								</td>
 							</c:if>
 							<c:if test="${(not empty item.confirmed)&&(item.confirmed)}">
-								<td><img alt="Dolazim" title="Dolazim"
-									src="../../Content/images/1354390215_Check.png" /></td>
+								<td><img
+										alt="Dolazim" title="Dolazim"
+										src="../../Content/images/1354390215_Check.png" /></td>
 							</c:if>
 							<td></td>
 						</tr>
@@ -99,24 +103,24 @@
 		<span>Komentari</span>
 	</div>
 	<div class="teamground">
-		<table>
-			<colgroup>
-				<col style="width: 30%;">
-				<col style="width: 50%; text-align: left;">
-				<col style="width: 20%; text-align: left;" class="pre">
-			</colgroup>
-			<thead>
-				<tr>
-					<th>Od</th>
-					<th>Poruka</th>
-					<th></th>
-				</tr>
-			</thead>
-			<tbody>
-				<c:forEach var="item" items="${termin.comments}">
-					<%@ include file="Comment.jsp"%>
-				</c:forEach>
-			</tbody>
-		</table>
+			<table>
+				<colgroup>
+					<col style="width: 20%;">
+					<col style="width: 50%; text-align: left;">
+					<col style="width: 30%; text-align: left;" class="pre">
+				</colgroup>
+				<thead>
+					<tr>
+						<th>Od</th>
+						<th>Poruka</th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					<c:forEach var="item" items="${termin.comments}">
+						<%@ include file="Comment.jsp"%>
+					</c:forEach>
+				</tbody>
+			</table>
 	</div>
 </div>
