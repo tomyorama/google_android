@@ -6,7 +6,6 @@
 }
 
 .players {
-	width: 45%;
 	background-color: white;
 	border: solid;
 	border-width: 1px;
@@ -17,11 +16,9 @@
 }
 
 .team1 {
-	float: left;
 }
 
-.team2 {
-	float: right;
+.team1 {
 }
 
 .players button {
@@ -65,7 +62,5 @@
 .result {
 	text-align: center;
 	font-size: 52px;
-	float: left;
 	padding-top: 160px;
-	height: 230px;
 }

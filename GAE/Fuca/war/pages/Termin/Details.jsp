@@ -9,87 +9,93 @@
 	<span>Datum:${tmpdate}</span>
 </div>
 <div style="width: 100%">
-	<div class="players team1">
-		<div class="teamheader ui-widget-header">
-			<span>${termin.team1}</span>
-		</div>
-		<div class="teamground">
-			<table>
-				<colgroup>
-					<col style="width: 30%;">
-					<col style="width: 30%;">
-					<col style="width: 20%;">
-					<col style="width: 20%;">
-				</colgroup>
-				<thead>
-					<tr>
-						<th>Nadimak</th>
-						<th>Ime</th>
-						<th>Potvrda</th>
-						<th></th>
-					</tr>
-				</thead>
-				<tbody>
-					<c:forEach var="item" items="${termin.team1Players}">
+	<div style="width: 45%; float: left;">
+		<div class="players team1">
+			<div class="teamheader ui-widget-header">
+				<span>${termin.team1}</span>
+			</div>
+			<div class="teamground">
+				<table>
+					<colgroup>
+						<col style="width: 30%;">
+						<col style="width: 30%;">
+						<col style="width: 20%;">
+						<col style="width: 20%;">
+					</colgroup>
+					<thead>
 						<tr>
-							<td>${item.nickname}</td>
-							<td>${item.name}</td>
-							<c:if test="${(empty item.confirmed)||!item.confirmed}">
-								<td><img alt="Nedolazim" title="Nedolazim"
-									src="../../Content/images/1354390210_button_cancel.png" /></td>
-							</c:if>
-							<c:if test="${(not empty item.confirmed)&&(item.confirmed)}">
-								<td><img alt="Dolazim" title="Dolazim"
-									src="../../Content/images/1354390215_Check.png" /></td>
-							</c:if>
-							<td></td>
+							<th>Nadimak</th>
+							<th>Ime</th>
+							<th>Potvrda</th>
+							<th></th>
 						</tr>
-					</c:forEach>
-				</tbody>
-			</table>
-		</div>
+					</thead>
+					<tbody>
+						<c:forEach var="item" items="${termin.team1Players}">
+							<tr>
+								<td>${item.nickname}</td>
+								<td>${item.name}</td>
+								<c:if test="${(empty item.confirmed)||!item.confirmed}">
+									<td><img alt="Nedolazim" title="Nedolazim"
+										src="../../Content/images/1354390210_button_cancel.png" /></td>
+								</c:if>
+								<c:if test="${(not empty item.confirmed)&&(item.confirmed)}">
+									<td><img alt="Dolazim" title="Dolazim"
+										src="../../Content/images/1354390215_Check.png" /></td>
+								</c:if>
+								<td></td>
+							</tr>
+						</c:forEach>
+					</tbody>
+				</table>
+			</div>
 
+		</div>
 	</div>
-	<div class="result">${termin.result}</div>
-	<div class="players team2">
-		<div class="teamheader ui-widget-header">
-			<span>${termin.team2}</span>
-		</div>
-		<div class="teamground">
-			<table>
-				<colgroup>
-					<col style="width: 30%;">
-					<col style="width: 30%;">
-					<col style="width: 20%;">
-					<col style="width: 20%;">
-				</colgroup>
-				<thead>
-					<tr>
-						<th>Nadimak</th>
-						<th>Ime</th>
-						<th>Potvrda</th>
-						<th></th>
-					</tr>
-				</thead>
-
-				<tbody>
-					<c:forEach var="item" items="${termin.team2Players}">
+	<div class="result" style="width: 10%; float: left;">
+		<span>${termin.result}</span>
+	</div>
+	<div style="width: 45%; float: left;">
+		<div class="players team2">
+			<div class="teamheader ui-widget-header">
+				<span>${termin.team2}</span>
+			</div>
+			<div class="teamground">
+				<table>
+					<colgroup>
+						<col style="width: 30%;">
+						<col style="width: 30%;">
+						<col style="width: 20%;">
+						<col style="width: 20%;">
+					</colgroup>
+					<thead>
 						<tr>
-							<td>${item.nickname}</td>
-							<td>${item.name}</td>
-							<c:if test="${(empty item.confirmed)||!item.confirmed}">
-								<td><img alt="Nedolazim" title="Nedolazim"
-									src="../../Content/images/1354390210_button_cancel.png" /></td>
-							</c:if>
-							<c:if test="${(not empty item.confirmed)&&(item.confirmed)}">
-								<td><img alt="Dolazim" title="Dolazim"
-									src="../../Content/images/1354390215_Check.png" /></td>
-							</c:if>
-							<td></td>
+							<th>Nadimak</th>
+							<th>Ime</th>
+							<th>Potvrda</th>
+							<th></th>
 						</tr>
-					</c:forEach>
-				</tbody>
-			</table>
+					</thead>
+
+					<tbody>
+						<c:forEach var="item" items="${termin.team2Players}">
+							<tr>
+								<td>${item.nickname}</td>
+								<td>${item.name}</td>
+								<c:if test="${(empty item.confirmed)||!item.confirmed}">
+									<td><img alt="Nedolazim" title="Nedolazim"
+										src="../../Content/images/1354390210_button_cancel.png" /></td>
+								</c:if>
+								<c:if test="${(not empty item.confirmed)&&(item.confirmed)}">
+									<td><img alt="Dolazim" title="Dolazim"
+										src="../../Content/images/1354390215_Check.png" /></td>
+								</c:if>
+								<td></td>
+							</tr>
+						</c:forEach>
+					</tbody>
+				</table>
+			</div>
 		</div>
 	</div>
 </div>

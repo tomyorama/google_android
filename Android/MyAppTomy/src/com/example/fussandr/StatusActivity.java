@@ -49,36 +49,76 @@ public class StatusActivity extends BaseActivity implements OnClickListener { //
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		Log.d(TAG, "onCreate");
 		setContentView(R.layout.status_main);
 		// Find views
 		editText = (EditText) findViewById(R.id.editText); //
 		updateButton = (Button) findViewById(R.id.buttonUpdate);
 		updateButton.setOnClickListener(this); //
+		CheckFiles();
+	}
+
+	private void CheckFiles() {
 		// Get intent, action and MIME type
 		Intent intent = getIntent();
+	    Log.d(TAG, "CheckFiles ");
 		// String action = intent.getAction();
 		// String type = intent.getType();
 		VideoView videoView = (VideoView) findViewById(R.id.videoView1);
 		ImageView imageView1 = (ImageView) findViewById(R.id.imageView1);
 		if (intent.getParcelableExtra("BitmapImage") != null) {
+		    Log.d(TAG, "BitmapImage ");
 			editText.setText("DA");
-
-			imageView1.getLayoutParams().height = 80;
-			imageView1.getLayoutParams().width = 80;
+			//imageView1.getLayoutParams().height = 80;
+			//imageView1.getLayoutParams().width = 80;
 			image = (Bitmap) intent.getParcelableExtra("BitmapImage");
 			imageView1.setImageBitmap(image);
 			videoView.setVisibility(View.GONE);
 
 		} else if (intent.getParcelableExtra("VideoData") != null) {
+		    Log.d(TAG, "VideoData ");
 			editText.setText("DA");
 			videoView.getLayoutParams().height = 80;
 			videoView.getLayoutParams().width = 80;
 			video = (Uri) intent.getParcelableExtra("VideoData");
 			videoView.setVideoURI(video);
 			imageView1.setVisibility(View.GONE);
+		} else {
+		    Log.d(TAG, "NOne");
+			imageView1.setVisibility(View.GONE);
+			videoView.setVisibility(View.GONE);
 		}
 	}
 
+	@Override
+	protected void onResume() {
+		super.onResume();
+		Log.d(TAG, "onResume");
+	}
+	@Override
+	public void onPause() {
+	    super.onPause();  // Always call the superclass method first
+		Log.d(TAG, "onPause");
+	}
+	
+	@Override
+	public void onDestroy() {
+	    super.onDestroy();  // Always call the superclass
+	    Log.d(TAG, "onDestroy");
+	    // Stop method tracing that the activity started during onCreate()
+	    //android.os.Debug.stopMethodTracing();
+	}
+	@Override
+	protected void onStop() {
+	    super.onStop();  // Always call the superclass method first
+	    Log.d(TAG, "onStop");
+	}
+	@Override
+	protected void onRestart() {
+	    super.onRestart();  // Always call the superclass method first
+	    Log.d(TAG, "onRestart");  
+		CheckFiles();
+	}
 	// Called when button is clicked //
 	public void onClick(View v) {
 

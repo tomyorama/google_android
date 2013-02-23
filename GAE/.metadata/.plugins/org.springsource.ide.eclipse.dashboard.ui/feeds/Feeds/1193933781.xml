@@ -30,7 +30,7 @@
 		<guid isPermaLink="false">http://blog.springsource.org/?p=12590</guid>
 		<description><![CDATA[The Groovy team is pleased to announce the release of Groovy 2.1.0. With over 1.7 million downloads in 2012, a strong ecosystem of successful projects like Grails, Gradle, Spock or Griffon built on Groovy, the Groovy programming language continues its development and adoption, refines existing features and evolves new ones. In this new release, Groovy 2.1: offers full support  <a href="http://blog.springsource.org/2013/01/25/groovy-2-1-released/"><em>Read more...</em></a>]]></description>
 		<wfw:commentRss>http://blog.springsource.org/2013/01/25/groovy-2-1-released/feed/</wfw:commentRss>
-		<slash:comments>1</slash:comments>
+		<slash:comments>3</slash:comments>
 		</item>
 		<item>
 		<title>Simple templates for the Scripted Editor</title>

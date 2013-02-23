@@ -25,7 +25,7 @@
 	String blobStringVideo = null;
 	if (p.getPicture() != null) {
 		blobStringPicture = "/Users/serve/"
-				+ p.getPicture().getKeyString() + "/100/80";
+				+ p.getPicture().getKeyString() + "/320/240";
 	}
 	if (p.getVideo() != null) {
 		blobStringVideo = "/Users/serveVideo/"
@@ -61,34 +61,42 @@
 					<a class="removeComment" title="Izbrisi"
 						href="<%=removeCommentUrl%>">(Brisi)</a>
 				</c:if>${item.user}:</td>
-			<td style="text-align: left;"><iframe width="300" height="200"
-					src="http://www.youtube.com/embed/<%=videoId%>"> </iframe></td>
-			<td><c:if test="<%=blobStringPicture != null%>">
-					<img alt="UserImg" src="<%=blobStringPicture%>">
-				</c:if> <c:if test="<%=blobStringVideo != null%>">
-					<video controls width="320" height="240"
-						class="video-js vjs-default-skin">
-						<source src="<%=blobStringVideo%>" type="video/mp4">
+			<td>
+				<div style="text-align: left;">
+					<iframe width="300" height="200"
+						src="http://www.youtube.com/embed/<%=videoId%>"> </iframe>
+				</div>
+				<div style="text-align: left;">
+					<c:if test="<%=blobStringPicture != null%>">
+						<div style="margin-top: 15px;">
+							<img alt="UserImg" src="<%=blobStringPicture%>" />
+						</div>
+					</c:if>
+					<c:if test="<%=blobStringVideo != null%>">
+						<div style="margin-top: 15px;">
+							<video controls width="320" height="240"
+								class="video-js vjs-default-skin" style="margin-top: 15px;">
+								<source src="<%=blobStringVideo%>" type="video/mp4">
   						<source src="<%=blobStringVideo%>" type="video/ogg"> 
   						<source src="<%=blobStringVideo%>" type="video/webm"> 
 
 						<object type="application/x-shockwave-flash" data="player.swf"
-										width="320" height="240">
+												width="320" height="240">
     						<param name="allowfullscreen" value="true">
     						<param name="allowscriptaccess" value="always">
    							<param name="flashvars" value="file=<%=blobStringVideo%>">
     						<!--[if IE]><param name="movie" value="player.swf"><![endif]-->
     							<img src="video.jpg" width="854" height="480" alt="Video">
     							<p>Your browser can’t play HTML5 video. <a
-												href="<%=blobStringVideo%>"> Download it</a> instead.</p>
+														href="<%=blobStringVideo%>"> Download it</a> instead.</p>
  						</object>
-					
-					
-					
-					
-					
-					</video>
-				</c:if></td>
+							
+							</video>
+						</div>
+					</c:if>
+				</div>
+			</td>
+			<td></td>
 		</tr>
 	</c:when>
 	<c:when test="<%=!readonly && !isYouTube%>">
@@ -97,103 +105,122 @@
 					<a class="removeComment" title="Izbrisi"
 						href="<%=removeCommentUrl%>">(Brisi)</a>
 				</c:if>${item.user}:</td>
-			<td class="pre" style="text-align: left;">${item.text}</td>
-			<td><c:if test="<%=blobStringPicture != null%>">
-					<img alt="UserImg" src="<%=blobStringPicture%>">
-				</c:if> <c:if test="<%=blobStringVideo != null%>">
-					<video controls width="320" height="240"
-						class="video-js vjs-default-skin">
-						<source src="<%=blobStringVideo%>" type="video/mp4">
+			<td>
+				<div class="pre" style="text-align: left;">${item.text}</div>
+				<div style="text-align: left;">
+					<c:if test="<%=blobStringPicture != null%>">
+						<div style="margin-top: 15px;">
+							<img alt="UserImg" src="<%=blobStringPicture%>" />
+						</div>
+					</c:if>
+					<c:if test="<%=blobStringVideo != null%>">
+						<div style="margin-top: 15px;">
+							<video controls width="320" height="240"
+								class="video-js vjs-default-skin" style="margin-top: 15px;">
+								<source src="<%=blobStringVideo%>" type="video/mp4">
   						<source src="<%=blobStringVideo%>" type="video/ogg"> 
   						<source src="<%=blobStringVideo%>" type="video/webm"> 
 
 						<object type="application/x-shockwave-flash" data="player.swf"
-										width="320" height="240">
+												width="320" height="240">
     						<param name="allowfullscreen" value="true">
     						<param name="allowscriptaccess" value="always">
    							<param name="flashvars" value="file=<%=blobStringVideo%>">
     						<!--[if IE]><param name="movie" value="player.swf"><![endif]-->
     							<img src="video.jpg" width="854" height="480" alt="Video">
     							<p>Your browser can’t play HTML5 video. <a
-												href="<%=blobStringVideo%>"> Download it</a> instead.</p>
+														href="<%=blobStringVideo%>"> Download it</a> instead.</p>
  						</object>
-					
-					
-					
-					
-					
-					
-					</video>
-				</c:if></td>
+							
+							
+							
+							</video>
+						</div>
+					</c:if>
+				</div>
+			</td>
+			<td></td>
 		</tr>
 	</c:when>
 	<c:when test="<%=readonly && isYouTube%>">
 		<tr>
 			<td>${item.user}:</td>
-			<td style="text-align: left;"><iframe width="300" height="200"
-					src="http://www.youtube.com/embed/<%=videoId%>"> </iframe></td>
-			<td><c:if test="<%=blobStringPicture != null%>">
-					<img alt="UserImg" src="<%=blobStringPicture%>">
-				</c:if> <c:if test="<%=blobStringVideo != null%>">
-					<video controls width="320" height="240"
-						class="video-js vjs-default-skin">
-						<source src="<%=blobStringVideo%>" type="video/mp4">
+			<td>
+				<div style="text-align: left;">
+					<iframe width="300" height="200"
+						src="http://www.youtube.com/embed/<%=videoId%>"> </iframe>
+				</div>
+				<div style="text-align: left;">
+					<c:if test="<%=blobStringPicture != null%>">
+						<div style="margin-top: 15px;">
+							<img alt="UserImg" src="<%=blobStringPicture%>" />
+						</div>
+					</c:if>
+					<c:if test="<%=blobStringVideo != null%>">
+						<div style="margin-top: 15px;">
+							<video controls width="320" height="240"
+								class="video-js vjs-default-skin" style="margin-top: 15px;">
+								<source src="<%=blobStringVideo%>" type="video/mp4">
   						<source src="<%=blobStringVideo%>" type="video/ogg"> 
   						<source src="<%=blobStringVideo%>" type="video/webm"> 
 
 						<object type="application/x-shockwave-flash" data="player.swf"
-										width="320" height="240">
+												width="320" height="240">
     						<param name="allowfullscreen" value="true">
     						<param name="allowscriptaccess" value="always">
    							<param name="flashvars" value="file=<%=blobStringVideo%>">
     						<!--[if IE]><param name="movie" value="player.swf"><![endif]-->
     							<img src="video.jpg" width="854" height="480" alt="Video">
     							<p>Your browser can’t play HTML5 video. <a
-												href="<%=blobStringVideo%>"> Download it</a> instead.</p>
+														href="<%=blobStringVideo%>"> Download it</a> instead.</p>
  						</object>
-					
-					
-					
-					
-					
-					
-					
-					</video>
-				</c:if></td>
+							
+							
+							</video>
+						</div>
+					</c:if>
+				</div>
+			</td>
+			<td></td>
 		</tr>
 	</c:when>
 	<c:when test="<%=readonly && !isYouTube%>">
 		<tr>
 			<td>${item.user}:</td>
-			<td class="pre" style="text-align: left;">${item.text}</td>
-			<td><c:if test="<%=blobStringPicture != null%>">
-					<img alt="UserImg" src="<%=blobStringPicture%>">
-				</c:if> <c:if test="<%=blobStringVideo != null%>">
-					<video controls width="320" height="240"
-						class="video-js vjs-default-skin">
-						<source src="<%=blobStringVideo%>" type="video/mp4">
+			<td>
+				<div class="pre" style="text-align: left;">${item.text}</div>
+				<div style="text-align: left;">
+					<c:if test="<%=blobStringPicture != null%>">
+						<div style="margin-top: 15px;">
+							<img alt="UserImg" src="<%=blobStringPicture%>" />
+						</div>
+					</c:if>
+					<c:if test="<%=blobStringVideo != null%>">
+						<div style="margin-top: 15px;">
+							<video controls width="320" height="240"
+								class="video-js vjs-default-skin" style="margin-top: 15px;">
+								<source src="<%=blobStringVideo%>" type="video/mp4">
   						<source src="<%=blobStringVideo%>" type="video/ogg"> 
   						<source src="<%=blobStringVideo%>" type="video/webm"> 
 
 						<object type="application/x-shockwave-flash" data="player.swf"
-										width="320" height="240">
+												width="320" height="240">
     						<param name="allowfullscreen" value="true">
     						<param name="allowscriptaccess" value="always">
    							<param name="flashvars" value="file=<%=blobStringVideo%>">
     						<!--[if IE]><param name="movie" value="player.swf"><![endif]-->
     							<img src="video.jpg" width="854" height="480" alt="Video">
     							<p>Your browser can’t play HTML5 video. <a
-												href="<%=blobStringVideo%>"> Download it</a> instead.</p>
+														href="<%=blobStringVideo%>"> Download it</a> instead.</p>
  						</object>
-					
-					
-					
-					
-					
-					
-					
-					</video>
-				</c:if></td>
+							
+							
+							</video>
+						</div>
+					</c:if>
+				</div>
+			</td>
+			<td></td>
 		</tr>
 	</c:when>
 	<c:otherwise>

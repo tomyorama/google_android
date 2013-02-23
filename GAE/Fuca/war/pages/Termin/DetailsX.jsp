@@ -9,118 +9,124 @@
 <div>
 	<span>Datum: ${tmpdate}</span>
 </div>
-<div style="width: 100%">
-	<div class="players team1">
-		<div class="teamheader ui-widget-header">
-			<span>${termin.team1}</span>
-		</div>
-		<div class="teamground">
-			<table>
-				<colgroup>
-					<col style="width: 30%;">
-					<col style="width: 30%;">
-					<col style="width: 20%;">
-					<col style="width: 20%;">
-				</colgroup>
-				<thead>
-					<tr>
-						<th>Nadimak</th>
-						<th>Ime</th>
-						<th>Potvrda</th>
-						<th></th>
-					</tr>
-				</thead>
-				<tbody>
-					<c:forEach var="item" items="${termin.team1Players}">
-						<tr>
-							<td>${item.nickname}</td>
-							<td>${item.name}</td>
-							<c:if test="${(empty item.confirmed)||!item.confirmed}">
-								<td><a class="confirmlink"
-									href="<c:url value="/Termin/Confirm1/${termin.id}/${item.userId}/true"/>"><img
-										alt="Nedolazim" title="Nedolazim"
-										src="../../Content/images/1354390210_button_cancel.png" /></a></td>
-							</c:if>
-							<c:if test="${(not empty item.confirmed)&&(item.confirmed)}">
-								<td><a class="confirmlink"
-									href="<c:url value="/Termin/Confirm1/${termin.id}/${item.userId}/false"/>"><img
-										alt="Dolazim" title="Dolazim"
-										src="../../Content/images/1354390215_Check.png" /></a></td>
-							</c:if>
-							<td><a
-								href="<c:url value="/Termin/RemoveUsers1/${termin.id}/${item.userId}"/>">Izbaci</a></td>
-						</tr>
-					</c:forEach>
-				</tbody>
-			</table>
-		</div>
-		<div id="dialog-form1" title="Dodaj novog igrača">
-			<div style="width: 500px;">
-				<div id="search_users1" data-url="/Users/userdata/${termin.id}/1"></div>
-				<table id="user_search_grid1" class="scroll">
-				</table>
-				<div id="user_nav1"></div>
+<div style="width: 100%;">
+	<div style="width: 45%; float: left;">
+		<div class="players team1">
+			<div class="teamheader ui-widget-header">
+				<span>${termin.team1}</span>
 			</div>
-		</div>
-		<button id="create-user1" data-u-button="true">Dodaj igrača</button>
+			<div class="teamground">
+				<table>
+					<colgroup>
+						<col style="width: 30%;">
+						<col style="width: 30%;">
+						<col style="width: 20%;">
+						<col style="width: 20%;">
+					</colgroup>
+					<thead>
+						<tr>
+							<th>Nadimak</th>
+							<th>Ime</th>
+							<th>Potvrda</th>
+							<th></th>
+						</tr>
+					</thead>
+					<tbody>
+						<c:forEach var="item" items="${termin.team1Players}">
+							<tr>
+								<td>${item.nickname}</td>
+								<td>${item.name}</td>
+								<c:if test="${(empty item.confirmed)||!item.confirmed}">
+									<td><a class="confirmlink"
+										href="<c:url value="/Termin/Confirm1/${termin.id}/${item.userId}/true"/>"><img
+											alt="Nedolazim" title="Nedolazim"
+											src="../../Content/images/1354390210_button_cancel.png" /></a></td>
+								</c:if>
+								<c:if test="${(not empty item.confirmed)&&(item.confirmed)}">
+									<td><a class="confirmlink"
+										href="<c:url value="/Termin/Confirm1/${termin.id}/${item.userId}/false"/>"><img
+											alt="Dolazim" title="Dolazim"
+											src="../../Content/images/1354390215_Check.png" /></a></td>
+								</c:if>
+								<td><a
+									href="<c:url value="/Termin/RemoveUsers1/${termin.id}/${item.userId}"/>">Izbaci</a></td>
+							</tr>
+						</c:forEach>
+					</tbody>
+				</table>
+			</div>
+			<div id="dialog-form1" title="Dodaj novog igrača">
+				<div style="width: 500px;">
+					<div id="search_users1" data-url="/Users/userdata/${termin.id}/1"></div>
+					<table id="user_search_grid1" class="scroll">
+					</table>
+					<div id="user_nav1"></div>
+				</div>
+			</div>
+			<button id="create-user1" data-u-button="true">Dodaj igrača</button>
 
+		</div>
 	</div>
-	<div class="result">${termin.result}</div>
-	<div class="players team2">
-		<div class="teamheader ui-widget-header">
-			<span>${termin.team2}</span>
-		</div>
-		<div class="teamground">
-			<table>
-				<colgroup>
-					<col style="width: 30%;">
-					<col style="width: 30%;">
-					<col style="width: 20%;">
-					<col style="width: 20%;">
-				</colgroup>
-				<thead>
-					<tr>
-						<th>Nadimak</th>
-						<th>Ime</th>
-						<th>Potvrda</th>
-						<th></th>
-					</tr>
-				</thead>
-
-				<tbody>
-					<c:forEach var="item" items="${termin.team2Players}">
-						<tr>
-							<td>${item.nickname}</td>
-							<td>${item.name}</td>
-							<c:if test="${(empty item.confirmed)||!item.confirmed}">
-								<td><a class="confirmlink"
-									href="<c:url value="/Termin/Confirm2/${termin.id}/${item.userId}/true"/>">
-										<img alt="Nedolazim" title="Nedolazim"
-										src="../../Content/images/1354390210_button_cancel.png" />
-								</a></td>
-							</c:if>
-							<c:if test="${(not empty item.confirmed)&&(item.confirmed)}">
-								<td><a class="confirmlink"
-									href="<c:url value="/Termin/Confirm2/${termin.id}/${item.userId}/false"/>"><img
-										alt="Dolazim" title="Dolazim"
-										src="../../Content/images/1354390215_Check.png" /> </a></td>
-							</c:if>
-							<td><a
-								href="<c:url value="/Termin/RemoveUsers2/${termin.id}/${item.userId}"/>">Izbaci</a></td>
-						</tr>
-					</c:forEach>
-				</tbody>
-			</table>
-		</div>
-		<div id="dialog-form2" title="Dodaj novog igrača">
-			<div style="width: 500px;">
-				<div id="search_users2" data-url="/Users/userdata/${termin.id}/2"></div>
-				<table id="user_search_grid2" class="scroll">
-				</table>
-				<div id="user_nav2"></div>
+	<div class="result" style="width: 10%; float: left;">
+		<span>${termin.result}</span>
+	</div>
+	<div style="width: 45%; float: left;">
+		<div class="players team2">
+			<div class="teamheader ui-widget-header">
+				<span>${termin.team2}</span>
 			</div>
+			<div class="teamground">
+				<table>
+					<colgroup>
+						<col style="width: 30%;">
+						<col style="width: 30%;">
+						<col style="width: 20%;">
+						<col style="width: 20%;">
+					</colgroup>
+					<thead>
+						<tr>
+							<th>Nadimak</th>
+							<th>Ime</th>
+							<th>Potvrda</th>
+							<th></th>
+						</tr>
+					</thead>
+
+					<tbody>
+						<c:forEach var="item" items="${termin.team2Players}">
+							<tr>
+								<td>${item.nickname}</td>
+								<td>${item.name}</td>
+								<c:if test="${(empty item.confirmed)||!item.confirmed}">
+									<td><a class="confirmlink"
+										href="<c:url value="/Termin/Confirm2/${termin.id}/${item.userId}/true"/>">
+											<img alt="Nedolazim" title="Nedolazim"
+											src="../../Content/images/1354390210_button_cancel.png" />
+									</a></td>
+								</c:if>
+								<c:if test="${(not empty item.confirmed)&&(item.confirmed)}">
+									<td><a class="confirmlink"
+										href="<c:url value="/Termin/Confirm2/${termin.id}/${item.userId}/false"/>"><img
+											alt="Dolazim" title="Dolazim"
+											src="../../Content/images/1354390215_Check.png" /> </a></td>
+								</c:if>
+								<td><a
+									href="<c:url value="/Termin/RemoveUsers2/${termin.id}/${item.userId}"/>">Izbaci</a></td>
+							</tr>
+						</c:forEach>
+					</tbody>
+				</table>
+			</div>
+			<div id="dialog-form2" title="Dodaj novog igrača">
+				<div style="width: 500px;">
+					<div id="search_users2" data-url="/Users/userdata/${termin.id}/2"></div>
+					<table id="user_search_grid2" class="scroll">
+					</table>
+					<div id="user_nav2"></div>
+				</div>
+			</div>
+			<button id="create-user2" data-u-button="true">Dodaj igrača</button>
 		</div>
-		<button id="create-user2" data-u-button="true">Dodaj igrača</button>
 	</div>
 </div>
 <div style="clear: both;"></div>
