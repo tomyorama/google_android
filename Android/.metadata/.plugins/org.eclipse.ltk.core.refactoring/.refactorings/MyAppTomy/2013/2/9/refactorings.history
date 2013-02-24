@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename package &apos;com.example.fussandr&apos; to &apos;com.fuca&apos;&#x0A;- Original project: &apos;MyAppTomy&apos;&#x0A;- Original element: &apos;MyAppTomy/src/com.example.fussandr&apos;&#x0A;- Renamed element: &apos;MyAppTomy/src/com.fuca&apos;&#x0A;- Update references to refactored element&#x0A;- Update textual occurrences in comments and strings" description="Rename package &apos;com.example.fussandr&apos;" flags="589830" hierarchical="false" id="org.eclipse.jdt.ui.rename.package" input="/src&lt;com.example.fussandr" name="com.fuca" qualified="false" references="true" stamp="1361734078823" textual="false" version="1.0"/>
+</session>

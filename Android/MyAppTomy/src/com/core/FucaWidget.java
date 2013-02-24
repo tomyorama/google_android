@@ -11,9 +11,9 @@ import android.text.format.DateUtils;
 import android.util.Log;
 import android.widget.RemoteViews;
 
-import com.example.fussandr.CommentsActivity;
 import com.example.fussandr.R;
-import com.example.fussandr.StatusProvider;
+import com.fuca.CommentsActivity;
+import com.fuca.StatusProvider;
 
 public class FucaWidget extends AppWidgetProvider { //
 	private static final String TAG = FucaWidget.class.getSimpleName();
