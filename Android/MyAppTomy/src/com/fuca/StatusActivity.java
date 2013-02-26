@@ -15,6 +15,7 @@ import org.apache.http.entity.mime.MultipartEntity;
 import org.apache.http.entity.mime.content.FileBody;
 import org.apache.http.entity.mime.content.StringBody;
 
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -43,6 +44,7 @@ public class StatusActivity extends BaseActivity implements OnClickListener { //
 	String text = "";
 	Uri image;
 	Uri video;
+	private AlertDialog dialog;
 
 	//
 	// Twitter twitter;
@@ -68,7 +70,7 @@ public class StatusActivity extends BaseActivity implements OnClickListener { //
 		// String type = intent.getType();
 		VideoView videoView = (VideoView) findViewById(R.id.videoView1);
 		ImageView imageView1 = (ImageView) findViewById(R.id.imageView1);
-		if (intent.getParcelableExtra("BitmapImage") != null) {
+		if (intent != null && intent.getParcelableExtra("BitmapImage") != null) {
 			Log.d(TAG, "BitmapImage ");
 			editText.setText("Slika ..");
 
@@ -78,7 +80,8 @@ public class StatusActivity extends BaseActivity implements OnClickListener { //
 			imageView1.setImageURI(image);
 			videoView.setVisibility(View.GONE);
 
-		} else if (intent.getParcelableExtra("VideoData") != null) {
+		} else if (intent != null
+				&& intent.getParcelableExtra("VideoData") != null) {
 			Log.d(TAG, "VideoData ");
 			editText.setText("Video ..");
 			// videoView.getLayoutParams().height = 80;
@@ -97,6 +100,7 @@ public class StatusActivity extends BaseActivity implements OnClickListener { //
 	protected void onResume() {
 		super.onResume();
 		Log.d(TAG, "onResume");
+		CheckFiles();
 	}
 
 	@Override
@@ -137,6 +141,12 @@ public class StatusActivity extends BaseActivity implements OnClickListener { //
 			ConnectivityManager connMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
 			NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
 			if (networkInfo != null && networkInfo.isConnected()) {
+				AlertDialog.Builder builder = new AlertDialog.Builder(this);
+				builder.setMessage("Slanje u tijeku!");
+				// Create the AlertDialog object and return it
+
+				dialog = builder.create();
+				dialog.show();
 				new SendMessage().execute(message);
 				VideoView videoView = (VideoView) findViewById(R.id.videoView1);
 				ImageView imageView1 = (ImageView) findViewById(R.id.imageView1);
@@ -151,9 +161,11 @@ public class StatusActivity extends BaseActivity implements OnClickListener { //
 	}
 
 	class SendMessage extends AsyncTask<String, Integer, String> {
+
 		@Override
 		protected String doInBackground(String... statuses) { //
 			try {
+
 				return downloadUrl(statuses[0]);
 			} catch (IOException e) {
 				Log.d(TAG, "Error  send message!");
@@ -164,10 +176,16 @@ public class StatusActivity extends BaseActivity implements OnClickListener { //
 		@Override
 		protected void onProgressUpdate(Integer... values) { //
 			super.onProgressUpdate(values);
+
 		}
 
 		@Override
-		protected void onPostExecute(String result) { //
+		protected void onPostExecute(String result) {
+			dialog.hide();//
+			startActivity(new Intent(StatusActivity.this,
+					CommentsActivity.class).addFlags(
+					Intent.FLAG_ACTIVITY_SINGLE_TOP).addFlags(
+					Intent.FLAG_ACTIVITY_REORDER_TO_FRONT));
 			Log.d(TAG, result);
 		}
 	}

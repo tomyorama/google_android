@@ -25,7 +25,7 @@ public class FucaWidget extends AppWidgetProvider { //
 		Cursor c = context.getContentResolver().query(
 				StatusProvider.CONTENT_URI, null, null, null, null); //
 		try {
-			if (c.moveToFirst()) { //
+			if (c.moveToLast()) { //
 				CharSequence user = c.getString(c
 						.getColumnIndex(StatusData.C_USER)); //
 				CharSequence createdAt = DateUtils.getRelativeTimeSpanString(
