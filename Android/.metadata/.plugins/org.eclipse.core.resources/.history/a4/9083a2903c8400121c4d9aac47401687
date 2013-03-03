@@ -1,9 +1,13 @@
 package com.fuca;
 
 import java.io.BufferedReader;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.entity.mime.HttpMultipartMode;
@@ -14,16 +18,13 @@ import org.apache.http.entity.mime.content.StringBody;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
-import android.content.res.Resources;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -76,13 +77,7 @@ public class StatusActivity extends BaseActivity implements OnClickListener { //
 			// imageView1.getLayoutParams().height = 80;
 			// imageView1.getLayoutParams().width = 80;
 			image = (Uri) intent.getParcelableExtra("BitmapImage");
-			int size = 10;
-			Bitmap bitmapOriginal = BitmapFactory.decodeFile(image.getPath());
-			Bitmap bitmapsimplesize = Bitmap.createScaledBitmap(bitmapOriginal,
-					bitmapOriginal.getWidth() / size,
-					bitmapOriginal.getHeight() / size, true);
-			bitmapOriginal.recycle();
-			imageView1.setImageBitmap(bitmapsimplesize);
+			imageView1.setImageURI(image);
 			videoView.setVisibility(View.GONE);
 
 		} else if (intent != null
@@ -92,7 +87,6 @@ public class StatusActivity extends BaseActivity implements OnClickListener { //
 			// videoView.getLayoutParams().height = 80;
 			// videoView.getLayoutParams().width = 80;
 			video = (Uri) intent.getParcelableExtra("VideoData");
-
 			videoView.setVideoURI(video);
 			imageView1.setVisibility(View.GONE);
 		} else {
@@ -101,11 +95,7 @@ public class StatusActivity extends BaseActivity implements OnClickListener { //
 			videoView.setVisibility(View.GONE);
 		}
 	}
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) { 
-		//NO MENU
-		return true;
-	}
+
 	@Override
 	protected void onResume() {
 		super.onResume();

@@ -13,7 +13,8 @@
         android:layout_height="100dp"
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
-        android:layout_marginTop="5dp"/>
+        android:layout_marginTop="5dp"
+        android:visibility="gone" />
 
     <VideoView
         android:id="@+id/videoView1"
@@ -22,7 +23,7 @@
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp" 
         android:layout_marginTop="5dp"
-        android:layout_gravity="center" />
+        android:visibility="gone" />
 
     <TextView
         android:layout_width="fill_parent"
