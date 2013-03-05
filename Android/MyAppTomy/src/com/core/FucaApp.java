@@ -1,7 +1,6 @@
 package com.core;
 
 import java.io.IOException;
-import java.util.Calendar;
 import java.util.List;
 
 import org.apache.http.HttpResponse;
@@ -9,18 +8,29 @@ import org.xmlpull.v1.XmlPullParserException;
 
 import android.app.Application;
 import android.content.ContentValues;
+import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.preference.PreferenceManager;
 import android.util.Log;
 
 import com.clents.FucaWebClient;
 import com.core.CommentsXmlParser.Comment;
-import com.core.StatusData.DbHelper;
+import com.example.fussandr.R;
+import com.fuca.UpdaterService;
 
 public class FucaApp extends Application implements
 		OnSharedPreferenceChangeListener { //
 	private static final String TAG = FucaApp.class.getSimpleName();
+	public static String WIFI;
+	public static String ANY;
+	// Whether there is a Wi-Fi connection.
+	private boolean wifiConnected = false;
+	// Whether there is a mobile connection.
+	private boolean mobileConnected = false;
 
 	private SharedPreferences prefs;
 	private boolean serviceRunning;
@@ -33,7 +43,44 @@ public class FucaApp extends Application implements
 		this.prefs = PreferenceManager.getDefaultSharedPreferences(this);
 		this.prefs.registerOnSharedPreferenceChangeListener(this);
 		this.statusData = new StatusData(this);
+		this.WIFI = getResources().getString(R.string.wifi_network);
+		this.ANY = getResources().getString(R.string.any_network);
+		updateConnectedFlags();
+	}
 
+	// Checks the network connection and sets the wifiConnected and
+	// mobileConnected
+	// variables accordingly.
+	public void updateConnectedFlags() {
+		ConnectivityManager connMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+
+		NetworkInfo activeInfo = connMgr.getActiveNetworkInfo();
+		if (activeInfo != null && activeInfo.isConnected()) {
+			wifiConnected = activeInfo.getType() == ConnectivityManager.TYPE_WIFI;
+			mobileConnected = activeInfo.getType() == ConnectivityManager.TYPE_MOBILE;
+		} else {
+			wifiConnected = false;
+			mobileConnected = false;
+		}
+		// check permisions
+		String prefsValue = prefs.getString("network_to_use", "wifi");
+
+		boolean startServiceConditionWifi = prefsValue.equals(this.WIFI)
+				&& wifiConnected;
+		boolean startServiceConditionAny = prefsValue.equals(this.ANY)
+				&& (mobileConnected || wifiConnected);
+
+		if (startServiceConditionWifi || startServiceConditionAny) {
+			if (!this.isServiceRunning()) {
+				Log.d(TAG, "onReceive: connected, starting Service");
+				this.startService(new Intent(this, UpdaterService.class));
+			}//
+		} else {
+			if (this.isServiceRunning()) {
+				Log.d(TAG, "onReceive: NOT connected, stopping Service");
+				this.stopService(new Intent(this, UpdaterService.class));
+			}
+		}
 	}
 
 	public SharedPreferences getPrefs() {
@@ -133,5 +180,9 @@ public class FucaApp extends Application implements
 			String key) {
 		// TODO Auto-generated method stub
 
+		if (key.equals("network_to_use")) {
+			updateConnectedFlags();
+		}
 	}
+
 }

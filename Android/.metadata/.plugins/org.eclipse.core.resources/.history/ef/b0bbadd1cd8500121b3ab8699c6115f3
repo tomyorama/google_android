@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <PreferenceCategory
+        android:key="first_category"
+        android:title="First Category" >
+        <CheckBoxPreference
+            android:defaultValue="true"
+            android:key="perform_updates"
+            android:summary="Enable or disable data updates"
+            android:title="Enable updates" />
+
+        <ListPreference
+            android:defaultValue="1000"
+            android:dependency="perform_updates"
+            android:entries="@array/updateInterval"
+            android:entryValues="@array/updateIntervalValues"
+            android:key="updates_interval"
+            android:summary="Define how often updates will be performed"
+            android:title="Updates interval" />
+    </PreferenceCategory>
+    <PreferenceCategory
+        android:key="second_category"
+        android:title="Second Category" >
+        <EditTextPreference
+            android:defaultValue="tomislav.slade"
+            android:key="Username"
+            android:summary="@string/summaryUsername"
+            android:title="@string/Username" />
+        <EditTextPreference
+            android:defaultValue="451819451819"
+            android:key="Password"
+            android:password="true"
+            android:summary="@string/summaryPassword"
+            android:title="@string/Password" />
+    </PreferenceCategory>
+
+</PreferenceScreen>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-<fullyQualifiedTypeName name="com.example.fussandr.R"/>
 <fullyQualifiedTypeName name="android.support.v4.app.DialogFragment"/>
 <fullyQualifiedTypeName name="java.lang.Thread"/>
 <fullyQualifiedTypeName name="com.fuca.StatusActivity"/>
+<fullyQualifiedTypeName name="com.example.fussandr.R"/>
 </qualifiedTypeNameHistroy>
