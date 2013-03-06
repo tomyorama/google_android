@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="updateInterval">
+        <item name="30000">Svako 30 sekundi</item>
+        <item name="60000">Svako 1 minutu</item>
+        <item name="300000">Svako 5 minuta</item>
+        <item name="300000">Svako 15 minuta</item>
+    </string-array>
+    <string-array name="updateIntervalValues">
+        <item name="30000">30000</item>
+        <item name="60000">60000</item>
+        <item name="300000">300000</item>
+        <item name="900000">900000</item>
+    </string-array>
+    <string-array name="choose_network">
+        <item name="wifi">Samo wifi</item>
+        <item name="all">Sve mreze</item>
+    </string-array>
+    <string-array name="choose_networkValues">
+        <item name="wifi">@string/wifi_network</item>
+        <item name="all">@string/any_network</item>
+    </string-array>
+
+</resources>

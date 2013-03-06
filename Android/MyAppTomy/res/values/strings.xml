@@ -1,9 +1,7 @@
 <resources>
 
-    <string name="app_name">FussAndr</string>
-    <string name="hello_world">Hello world!</string>
-    <string name="menu_settings">Settings</string>
-    <string name="title_activity_main">MainActivity</string>
+    <string name="app_name">Fuca-Termin</string>
+    <string name="menu_settings">Postavke</string>
     <string name="Pick">Pick</string>
     <string name="Save">Save</string>
     <string name="Team1">Team1</string>
@@ -17,17 +15,15 @@
     <string name="Password">Password</string>
     <string name="summaryUsername">Please enter your username</string>
     <string name="summaryPassword">Please enter your password</string>
-    <string name="Settings">Settings</string>
-    <string name="titleStatus">Status</string>
-    <string name="hintText">Enter text max 140 chars</string>
-    <string name="buttonUpdate">Update</string>
+    <string name="Settings">Postavke</string>
+    <string name="titleStatus">Nova poruka</string>
+    <string name="hintText">Unesite poruku</string>
+    <string name="buttonUpdate">Šalji</string>
     <string name="StartService">StartServive</string>
     <string name="StopService">StopService</string>
-    <string name="Comments">Komentari</string>
-    <string name="titlePurge">titlePurge</string>
-    <string name="msgAllDataPurged">All data purged!</string>
+    <string name="Comments">Svi komentari</string>
     <!--  -->
-    <string name="msgSetupPrefs">Please set perfs!</string>
+    <string name="msgSetupPrefs">Molim postavite postavke!</string>
     <string name="send_timeline_notifications_permission_label">My send NOtification label</string>
     <string name="send_timeline_notifications_permission_description">My send NOtification label description</string>
     <string name="receive_timeline_notifications_permission_label">My Receive NOtification label</string>

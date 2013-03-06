@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <item
+        android:id="@+id/itemStatus"
+        android:icon="@android:drawable/ic_menu_edit"
+        android:title="@string/titleStatus">
+    </item>
+	<item
+        android:id="@+id/itemTakePicture"
+        android:icon="@android:drawable/ic_menu_edit"
+        android:title="@string/takePicture">
+    </item>
+    	<item
+        android:id="@+id/itemTakeVideo"
+        android:icon="@android:drawable/ic_menu_edit"
+        android:title="@string/takeVideo">
+    </item>
+    <item
+        android:id="@+id/itemTimeline"
+        android:icon="@android:drawable/ic_menu_sort_by_size"
+        android:title="@string/Comments">
+    </item>
+
+    <item
+        android:id="@+id/itemPrefs"
+        android:icon="@android:drawable/ic_menu_preferences"
+        android:title="@string/Settings">
+    </item>
+
+    <!--  -->
+
+    <item
+        android:id="@+id/itemToggleService"
+        android:icon="@android:drawable/ic_media_play"
+        android:title="@string/StartService">
+    </item>
+
+</menu>

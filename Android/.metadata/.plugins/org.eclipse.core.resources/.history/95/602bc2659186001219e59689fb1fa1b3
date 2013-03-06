@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="updateInterval">
+        <item name="30000">Every 30 seconds</item>
+        <item name="60000">Every 1 minute</item>
+        <item name="300000">Every 5 minutes</item>
+        <item name="300000">Every 15 minutes</item>
+    </string-array>
+    <string-array name="updateIntervalValues">
+        <item name="30000">30000</item>
+        <item name="60000">60000</item>
+        <item name="300000">300000</item>
+        <item name="900000">900000</item>
+    </string-array>
+    <string-array name="choose_network">
+        <item name="wifi">Samo wifi</item>
+        <item name="all">Sve mreze</item>
+    </string-array>
+    <string-array name="choose_networkValues">
+        <item name="wifi">@string/wifi_network</item>
+        <item name="all">@string/any_network</item>
+    </string-array>
+
+</resources>

@@ -7,17 +7,17 @@
         <CheckBoxPreference
             android:defaultValue="true"
             android:key="perform_updates"
-            android:summary="Enable or disable data updates"
-            android:title="Enable updates" />
+            android:summary="Omoguci automatsko dobijanje poruka"
+            android:title="Omoguci dobijanje poruka" />
 
         <ListPreference
-            android:defaultValue="1000"
+            android:defaultValue="30000"
             android:dependency="perform_updates"
             android:entries="@array/updateInterval"
             android:entryValues="@array/updateIntervalValues"
             android:key="updates_interval"
-            android:summary="Define how often updates will be performed"
-            android:title="Updates interval" />
+            android:summary="Definiraj koliko cesto slati upite"
+            android:title="Interval upita" />
     </PreferenceCategory>
     <PreferenceCategory
         android:key="user_category"

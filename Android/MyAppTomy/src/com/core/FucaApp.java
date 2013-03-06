@@ -31,6 +31,9 @@ public class FucaApp extends Application implements
 	private boolean wifiConnected = false;
 	// Whether there is a mobile connection.
 	private boolean mobileConnected = false;
+	private boolean updatesEnabled = false;
+	private boolean canSend = false;
+
 
 	private SharedPreferences prefs;
 	private boolean serviceRunning;
@@ -47,7 +50,9 @@ public class FucaApp extends Application implements
 		this.ANY = getResources().getString(R.string.any_network);
 		updateConnectedFlags();
 	}
-
+	public boolean isCanSend() {
+		return canSend;
+	}
 	// Checks the network connection and sets the wifiConnected and
 	// mobileConnected
 	// variables accordingly.
@@ -64,12 +69,16 @@ public class FucaApp extends Application implements
 		}
 		// check permisions
 		String prefsValue = prefs.getString("network_to_use", "wifi");
-
+		updatesEnabled = prefs.getBoolean("perform_updates", true);
+		//handle send messages!
+		canSend = (prefsValue.equals(this.WIFI) && wifiConnected)
+				|| (prefsValue.equals(this.ANY) && (mobileConnected || wifiConnected));
 		boolean startServiceConditionWifi = prefsValue.equals(this.WIFI)
-				&& wifiConnected;
+				&& wifiConnected && updatesEnabled;
 		boolean startServiceConditionAny = prefsValue.equals(this.ANY)
-				&& (mobileConnected || wifiConnected);
+				&& (mobileConnected || wifiConnected) && updatesEnabled;
 
+		//handle service!
 		if (startServiceConditionWifi || startServiceConditionAny) {
 			if (!this.isServiceRunning()) {
 				Log.d(TAG, "onReceive: connected, starting Service");
@@ -180,7 +189,7 @@ public class FucaApp extends Application implements
 			String key) {
 		// TODO Auto-generated method stub
 
-		if (key.equals("network_to_use")) {
+		if (key.equals("network_to_use") || key.equals("perform_updates")) {
 			updateConnectedFlags();
 		}
 	}

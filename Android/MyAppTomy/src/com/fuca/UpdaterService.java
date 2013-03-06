@@ -11,12 +11,10 @@ import com.core.StatusData;
 
 public class UpdaterService extends Service {
 	private static final String TAG = "UpdaterService";
-	static final int DELAY = 10 * 1000; // a 10 seconds
 	private boolean runFlag = false; //
 	private Updater updater;
 	private FucaApp app;
 	SQLiteDatabase db;
-
 
 	@Override
 	public IBinder onBind(Intent intent) {
@@ -54,11 +52,11 @@ public class UpdaterService extends Service {
 	/**
 	 * Thread that performs the actual update from the online service
 	 */
-	private class Updater extends Thread { 
-		static final String RECEIVE_TIMELINE_NOTIFICATIONS =
-				"com.marakana.yamba.RECEIVE_TIMELINE_NOTIFICATIONS";
+	private class Updater extends Thread {
+		static final String RECEIVE_TIMELINE_NOTIFICATIONS = "com.marakana.yamba.RECEIVE_TIMELINE_NOTIFICATIONS";
 
 		Intent intent;//
+
 		public Updater() {
 			super("UpdaterService-Updater");
 		}
@@ -75,14 +73,19 @@ public class UpdaterService extends Service {
 					if (newUpdates > 0) { //
 						Log.d(TAG, "We have a new status");
 						intent = new Intent(StatusData.NEW_STATUS_INTENT); //
-						intent.putExtra(StatusData.NEW_STATUS_EXTRA_COUNT, newUpdates); //
-						updaterService.sendBroadcast(intent,RECEIVE_TIMELINE_NOTIFICATIONS); //
+						intent.putExtra(StatusData.NEW_STATUS_EXTRA_COUNT,
+								newUpdates); //
+						updaterService.sendBroadcast(intent,
+								RECEIVE_TIMELINE_NOTIFICATIONS); //
 
 					}
-					
+
 					// next--
 					Log.d(TAG, "Updater ran");
-					Thread.sleep(DELAY);
+					int waitTime = Integer.parseInt(UpdaterService.this.app
+							.getPrefs().getString("updates_interval", "60000"));
+					Log.d(TAG, "Sleep for " + waitTime);
+					Thread.sleep(waitTime);
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();

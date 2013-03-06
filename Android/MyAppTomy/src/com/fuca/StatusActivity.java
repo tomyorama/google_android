@@ -101,11 +101,13 @@ public class StatusActivity extends BaseActivity implements OnClickListener { //
 			videoView.setVisibility(View.GONE);
 		}
 	}
+
 	@Override
-	public boolean onCreateOptionsMenu(Menu menu) { 
-		//NO MENU
+	public boolean onCreateOptionsMenu(Menu menu) {
+		// NO MENU
 		return true;
 	}
+
 	@Override
 	protected void onResume() {
 		super.onResume();
@@ -143,28 +145,27 @@ public class StatusActivity extends BaseActivity implements OnClickListener { //
 	// Called when button is clicked //
 	public void onClick(View v) {
 
-		// twitter.setStatus(editText.getText().toString()); //
-
-		// Gets the URL from the UI's text field.
+		//check network!
+		if (!app.isCanSend()) {
+			Log.d(TAG, "no network");
+			Toast.makeText(this,
+					"Trnutno nema mreze ili mobile data niju omoguceno!",
+					Toast.LENGTH_LONG).show();
+			return;
+		}
 		String message = editText.getText().toString();
 		if (message != null && message.length() > 1) {
-			ConnectivityManager connMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-			NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
-			if (networkInfo != null && networkInfo.isConnected()) {
-				AlertDialog.Builder builder = new AlertDialog.Builder(this);
-				builder.setMessage("Slanje u tijeku!");
-				// Create the AlertDialog object and return it
+			AlertDialog.Builder builder = new AlertDialog.Builder(this);
+			builder.setMessage("Slanje u tijeku!");
+			// Create the AlertDialog object and return it
+			dialog = builder.create();
+			dialog.show();
+			new SendMessage().execute(message);
+			VideoView videoView = (VideoView) findViewById(R.id.videoView1);
+			ImageView imageView1 = (ImageView) findViewById(R.id.imageView1);
+			imageView1.setVisibility(View.GONE);
+			videoView.setVisibility(View.GONE);
 
-				dialog = builder.create();
-				dialog.show();
-				new SendMessage().execute(message);
-				VideoView videoView = (VideoView) findViewById(R.id.videoView1);
-				ImageView imageView1 = (ImageView) findViewById(R.id.imageView1);
-				imageView1.setVisibility(View.GONE);
-				videoView.setVisibility(View.GONE);
-			} else {
-				// textView.setText("No network connection available.");
-			}
 			Log.d(TAG, "onClicked");
 			editText.setText("");
 		}
@@ -214,49 +215,9 @@ public class StatusActivity extends BaseActivity implements OnClickListener { //
 				entity.addPart("commentString", new StringBody(message));
 				String url = "/sendComment";
 				if (image != null) {
-					// Log.d(TAG, "Read file");
-					// String timeStamp = new
-					// SimpleDateFormat("yyyyMMdd_HHmmss")
-					// .format(new Date());
-					// File fileToUpload = new File(this.getCacheDir(),
-					// "tmpfile"
-					// + timeStamp);
-					// fileToUpload.createNewFile();
-					//
-					// // Convert bitmap to byte array
-					// Bitmap bitmap = image;
-					// ByteArrayOutputStream bos = new ByteArrayOutputStream();
-					// bitmap.compress(Bitmap.CompressFormat.JPEG, 100, bos);
-					// byte[] bitmapdata = bos.toByteArray();
-					//
-					// // write the bytes in file
-					// FileOutputStream fos = new
-					// FileOutputStream(fileToUpload);
-					// fos.write(bitmapdata);
-					// fos.flush();
-					// bos.close();
-					// fos.close();
-					// FileBody fileBody = new FileBody(fileToUpload,
-					// "application/octet-stream");
-					// entity.addPart("upload_file", fileBody);
-					// // entity.addPart("tos", new StringBody("agree"));
-					// Log.d(TAG, "Make request for upload");
-					// HttpResponse responseGetUrl = client.makeRequest(
-					// "/sendCommentUrl", null);
-					// reader = new BufferedReader(new InputStreamReader(
-					// responseGetUrl.getEntity().getContent()));
-					// url = "";
-					// String line = null;
-					// while ((line = reader.readLine()) != null) {
-					// url += line;
-					// }
-					// Log.d(TAG, "Url requested: " + url);
-					// image = null;
-
 					FileBody fileBody = new FileBody(new File(image.getPath()),
 							"application/octet-stream");
 					entity.addPart("upload_file", fileBody);
-					// entity.addPart("tos", new StringBody("agree"));
 					Log.d(TAG, "Make request for upload");
 					HttpResponse responseGetUrl = client.makeRequest(
 							"/sendCommentUrl", null);
@@ -293,11 +254,6 @@ public class StatusActivity extends BaseActivity implements OnClickListener { //
 				HttpResponse response = client.makeRequest(url, entity);
 				Log.d(TAG, "Comment Response Code: "
 						+ response.getStatusLine().getStatusCode());
-				Toast.makeText(
-						this,
-						"Response Code::\n"
-								+ response.getStatusLine().getStatusCode(),
-						Toast.LENGTH_LONG).show();
 				// reader = new BufferedReader(new InputStreamReader(response
 				// .getEntity().getContent()));
 				//

@@ -29,14 +29,6 @@
     </item>
 
     <item
-        android:id="@+id/itemPurge"
-        android:icon="@android:drawable/ic_menu_delete"
-        android:title="@string/titlePurge">
-    </item>
-
-    <!--  -->
-
-    <item
         android:id="@+id/itemToggleService"
         android:icon="@android:drawable/ic_media_play"
         android:title="@string/StartService">

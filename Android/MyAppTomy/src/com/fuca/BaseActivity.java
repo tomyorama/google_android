@@ -61,11 +61,6 @@ public class BaseActivity extends Activity { //
 				startService(new Intent(this, UpdaterService.class));
 			}
 			break;
-		case R.id.itemPurge:
-			// app.getStatusData().delete();
-			Toast.makeText(this, R.string.msgAllDataPurged, Toast.LENGTH_LONG)
-					.show();
-			break;
 		case R.id.itemTimeline:
 			startActivity(new Intent(this, CommentsActivity.class).addFlags(
 					Intent.FLAG_ACTIVITY_SINGLE_TOP).addFlags(
@@ -84,10 +79,6 @@ public class BaseActivity extends Activity { //
 				Log.d(TAG, "itemTakePicture");
 				startActivityForResult(takePictureIntent,
 						CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);
-				// Intent takePictureIntent = new Intent(
-				// MediaStore.ACTION_IMAGE_CAPTURE);
-				// startActivityForResult(takePictureIntent,
-				// CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);
 
 			}
 			break;
@@ -120,14 +111,18 @@ public class BaseActivity extends Activity { //
 	@Override
 	public boolean onMenuOpened(int featureId, Menu menu) { //
 		MenuItem toggleItem = menu.findItem(R.id.itemToggleService); //
-		if (app.isServiceRunning()) { //
-			toggleItem.setTitle(R.string.StopService);
-			toggleItem.setIcon(android.R.drawable.ic_media_pause);
-		} else { //
-			toggleItem.setTitle(R.string.StartService);
-			toggleItem.setIcon(android.R.drawable.ic_media_play);
+		if (toggleItem != null) {
+			if (app.isServiceRunning()) { //
+				toggleItem.setTitle(R.string.StopService);
+				toggleItem.setIcon(android.R.drawable.ic_media_pause);
+			} else { //
+				toggleItem.setTitle(R.string.StartService);
+				toggleItem.setIcon(android.R.drawable.ic_media_play);
+			}
+			return true;
 		}
-		return true;
+		return false;
+
 	}
 
 	@Override
