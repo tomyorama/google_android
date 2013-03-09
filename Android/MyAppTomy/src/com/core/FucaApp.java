@@ -48,7 +48,6 @@ public class FucaApp extends Application implements
 		this.statusData = new StatusData(this);
 		this.WIFI = getResources().getString(R.string.wifi_network);
 		this.ANY = getResources().getString(R.string.any_network);
-		updateConnectedFlags();
 	}
 	public boolean isCanSend() {
 		return canSend;

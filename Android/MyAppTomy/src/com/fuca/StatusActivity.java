@@ -64,37 +64,68 @@ public class StatusActivity extends BaseActivity implements OnClickListener { //
 	private void CheckFiles() {
 		// Get intent, action and MIME type
 		Intent intent = getIntent();
+		String action = intent.getAction();
+		String type = intent.getType();
 		Log.d(TAG, "CheckFiles ");
-		// String action = intent.getAction();
-		// String type = intent.getType();
 		VideoView videoView = (VideoView) findViewById(R.id.videoView1);
 		ImageView imageView1 = (ImageView) findViewById(R.id.imageView1);
-		if (intent != null && intent.getParcelableExtra("BitmapImage") != null) {
-			Log.d(TAG, "BitmapImage ");
-			editText.setText("Slika ..");
+		if (action.equalsIgnoreCase(Intent.ACTION_SEND) && type != null) {
+			if ("text/plain".equals(type)) {
+				String sharedText = intent.getStringExtra(Intent.EXTRA_TEXT);
+				editText.setText(sharedText);
+				imageView1.setVisibility(View.GONE);
+				videoView.setVisibility(View.GONE);
+			} else if (type.startsWith("image/")) {
+				image = (Uri) intent.getParcelableExtra(Intent.EXTRA_STREAM);
+				//getContentResolver().openInputStream(image);
+				if (image == null) {
+					imageView1.setVisibility(View.GONE);
+					videoView.setVisibility(View.GONE);
+					Toast.makeText(
+							this,
+							"Molimo prebacite sliku na SD karticu da bi je mogli poslati!",
+							Toast.LENGTH_LONG).show();
+					return;
 
-			// imageView1.getLayoutParams().height = 80;
-			// imageView1.getLayoutParams().width = 80;
-			image = (Uri) intent.getParcelableExtra("BitmapImage");
-			int size = 10;
-			Bitmap bitmapOriginal = BitmapFactory.decodeFile(image.getPath());
-			Bitmap bitmapsimplesize = Bitmap.createScaledBitmap(bitmapOriginal,
-					bitmapOriginal.getWidth() / size,
-					bitmapOriginal.getHeight() / size, true);
-			bitmapOriginal.recycle();
-			imageView1.setImageBitmap(bitmapsimplesize);
-			videoView.setVisibility(View.GONE);
-
-		} else if (intent != null
-				&& intent.getParcelableExtra("VideoData") != null) {
-			Log.d(TAG, "VideoData ");
-			editText.setText("Video ..");
-			// videoView.getLayoutParams().height = 80;
-			// videoView.getLayoutParams().width = 80;
-			video = (Uri) intent.getParcelableExtra("VideoData");
-
-			videoView.setVideoURI(video);
-			imageView1.setVisibility(View.GONE);
+				}
+				Log.d(TAG, " path " + image.getPath());
+				Log.d(TAG, "BitmapImage ");
+				// editText.setText("Slika ..");
+				int size = 10;
+				Bitmap bitmapOriginal = BitmapFactory.decodeFile(image
+						.getPath());
+				if (bitmapOriginal == null) {
+					imageView1.setVisibility(View.GONE);
+					videoView.setVisibility(View.GONE);
+					Toast.makeText(
+							this,
+							"Molimo prebacite sliku na SD karticu da bi je mogli poslati!",
+							Toast.LENGTH_LONG).show();
+					return;
+				}
+				Bitmap bitmapsimplesize = Bitmap.createScaledBitmap(
+						bitmapOriginal, bitmapOriginal.getWidth() / size,
+						bitmapOriginal.getHeight() / size, true);
+				bitmapOriginal.recycle();
+				imageView1.setImageBitmap(bitmapsimplesize);
+				videoView.setVisibility(View.GONE);
+			} else if (type.startsWith("video/")) {
+				video = (Uri) intent.getParcelableExtra(Intent.EXTRA_STREAM);
+				if (video == null) {
+					imageView1.setVisibility(View.GONE);
+					videoView.setVisibility(View.GONE);
+					Toast.makeText(
+							this,
+							"Molimo prebacite sliku na SD karticu da bi je mogli poslati!",
+							Toast.LENGTH_LONG).show();
+					return;
+				}
+				Log.d(TAG, " path " + video.getPath());
+				Log.d(TAG, "VideoData ");
+				// editText.setText("Video ..");
+				videoView.setVideoURI(video);
+				imageView1.setVisibility(View.GONE);
+			}
 		} else {
 			Log.d(TAG, "NOne");
 			imageView1.setVisibility(View.GONE);
@@ -112,7 +143,7 @@ public class StatusActivity extends BaseActivity implements OnClickListener { //
 	protected void onResume() {
 		super.onResume();
 		Log.d(TAG, "onResume");
-		CheckFiles();
+		//CheckFiles();
 	}
 
 	@Override
@@ -145,7 +176,7 @@ public class StatusActivity extends BaseActivity implements OnClickListener { //
 	// Called when button is clicked //
 	public void onClick(View v) {
 
-		//check network!
+		// check network!
 		if (!app.isCanSend()) {
 			Log.d(TAG, "no network");
 			Toast.makeText(this,
@@ -168,6 +199,8 @@ public class StatusActivity extends BaseActivity implements OnClickListener { //
 
 			Log.d(TAG, "onClicked");
 			editText.setText("");
+		} else {
+			Toast.makeText(this, "Unesite poruku!", Toast.LENGTH_LONG).show();
 		}
 	}
 

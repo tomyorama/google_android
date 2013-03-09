@@ -76,6 +76,7 @@ public class BaseActivity extends Activity { //
 				Intent takePictureIntent = new Intent(
 						MediaStore.ACTION_IMAGE_CAPTURE);
 				takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, fileUri);
+
 				Log.d(TAG, "itemTakePicture");
 				startActivityForResult(takePictureIntent,
 						CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);
@@ -134,20 +135,14 @@ public class BaseActivity extends Activity { //
 			if (resultCode == RESULT_OK) {
 				Log.d(TAG, "Image");
 				Log.d(TAG, "fileUri" + fileUri);
-				// Bundle extras = data.getExtras();
-				// Intent statusActivity = new Intent(this,
-				// StatusActivity.class);
-				// statusActivity.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-				// statusActivity.putExtra("BitmapImage", (Bitmap) data
-				// .getExtras().get("data"));
-				// startActivity(statusActivity);
-
-				// Image captured and saved to fileUri specified in the Intent
 				Toast.makeText(this, "Image saved to:\n" + fileUri,
 						Toast.LENGTH_LONG).show();
-				Intent statusActivity = new Intent(this, StatusActivity.class);
+				Intent statusActivity = new Intent(Intent.ACTION_SEND, fileUri,
+						this, StatusActivity.class);
 				statusActivity.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-				statusActivity.putExtra("BitmapImage", fileUri);
+				// statusActivity.putExtra("BitmapImage", fileUri);
+				statusActivity.putExtra(Intent.EXTRA_STREAM, fileUri);
+				statusActivity.setType("image/jpeg");
 				startActivity(statusActivity);
 			} else if (resultCode == RESULT_CANCELED) {
 				// User cancelled the image capture
@@ -159,9 +154,12 @@ public class BaseActivity extends Activity { //
 				// Video captured and saved to fileUri specified in the Intent
 				Toast.makeText(this, "Video saved to:\n" + fileUri,
 						Toast.LENGTH_LONG).show();
-				Intent statusActivity = new Intent(this, StatusActivity.class);
+				Intent statusActivity = new Intent(Intent.ACTION_SEND, fileUri,
+						this, StatusActivity.class);
 				statusActivity.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-				statusActivity.putExtra("VideoData", fileUri);
+				// statusActivity.putExtra("VideoData", fileUri);
+				statusActivity.putExtra(Intent.EXTRA_STREAM, fileUri);
+				statusActivity.setType("video/mp4");
 				startActivity(statusActivity);
 			} else if (resultCode == RESULT_CANCELED) {
 				// User cancelled the video capture
