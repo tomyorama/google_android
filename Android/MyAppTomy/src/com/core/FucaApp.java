@@ -32,7 +32,7 @@ public class FucaApp extends Application implements
 	// Whether there is a mobile connection.
 	private boolean mobileConnected = false;
 	private boolean updatesEnabled = false;
-	private boolean canSend = false;
+	private boolean canSend = true;
 
 
 	private SharedPreferences prefs;

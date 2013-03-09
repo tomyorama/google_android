@@ -25,6 +25,7 @@ import com.example.fussandr.R;
 
 public class BaseActivity extends Activity { //
 	private static final String TAG = "BaseActivity";
+	public static final String StoreDirectory = "FucaTerminV01";
 	FucaApp app; //
 	public static final int MEDIA_TYPE_IMAGE = 1;
 	public static final int MEDIA_TYPE_VIDEO = 2;
@@ -170,19 +171,19 @@ public class BaseActivity extends Activity { //
 	}
 
 	/** Create a file Uri for saving an image or video */
-	private static Uri getOutputMediaFileUri(int type) {
+	protected static Uri getOutputMediaFileUri(int type) {
 		return Uri.fromFile(getOutputMediaFile(type));
 	}
 
 	/** Create a File for saving an image or video */
-	private static File getOutputMediaFile(int type) {
+	protected static File getOutputMediaFile(int type) {
 		// To be safe, you should check that the SDCard is mounted
 		// using Environment.getExternalStorageState() before doing this.
 
 		File mediaStorageDir = new File(
 				Environment
 						.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES),
-				"FucaTermin");
+				StoreDirectory);
 		// This location works best if you want the created images to be shared
 		// between applications and persist after your app has been uninstalled.
 

@@ -1,9 +1,14 @@
 package com.fuca;
 
+import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.entity.mime.HttpMultipartMode;
@@ -12,16 +17,13 @@ import org.apache.http.entity.mime.content.FileBody;
 import org.apache.http.entity.mime.content.StringBody;
 
 import android.app.AlertDialog;
-import android.content.Context;
 import android.content.Intent;
-import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Environment;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
@@ -69,7 +71,12 @@ public class StatusActivity extends BaseActivity implements OnClickListener { //
 		Log.d(TAG, "CheckFiles ");
 		VideoView videoView = (VideoView) findViewById(R.id.videoView1);
 		ImageView imageView1 = (ImageView) findViewById(R.id.imageView1);
-		if (action.equalsIgnoreCase(Intent.ACTION_SEND) && type != null) {
+		File dirPath = new File(
+				Environment
+						.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES),
+				StoreDirectory);
+		if (action != null && action.equalsIgnoreCase(Intent.ACTION_SEND)
+				&& type != null) {
 			if ("text/plain".equals(type)) {
 				String sharedText = intent.getStringExtra(Intent.EXTRA_TEXT);
 				editText.setText(sharedText);
@@ -77,32 +84,14 @@ public class StatusActivity extends BaseActivity implements OnClickListener { //
 				videoView.setVisibility(View.GONE);
 			} else if (type.startsWith("image/")) {
 				image = (Uri) intent.getParcelableExtra(Intent.EXTRA_STREAM);
-				//getContentResolver().openInputStream(image);
-				if (image == null) {
-					imageView1.setVisibility(View.GONE);
-					videoView.setVisibility(View.GONE);
-					Toast.makeText(
-							this,
-							"Molimo prebacite sliku na SD karticu da bi je mogli poslati!",
-							Toast.LENGTH_LONG).show();
-					return;
-
+				if (!image.getPath().startsWith(dirPath.getAbsolutePath())) {
+					image = CheckFile(image, MEDIA_TYPE_IMAGE);
 				}
 				Log.d(TAG, " path " + image.getPath());
 				Log.d(TAG, "BitmapImage ");
-				// editText.setText("Slika ..");
 				int size = 10;
 				Bitmap bitmapOriginal = BitmapFactory.decodeFile(image
 						.getPath());
-				if (bitmapOriginal == null) {
-					imageView1.setVisibility(View.GONE);
-					videoView.setVisibility(View.GONE);
-					Toast.makeText(
-							this,
-							"Molimo prebacite sliku na SD karticu da bi je mogli poslati!",
-							Toast.LENGTH_LONG).show();
-					return;
-				}
 				Bitmap bitmapsimplesize = Bitmap.createScaledBitmap(
 						bitmapOriginal, bitmapOriginal.getWidth() / size,
 						bitmapOriginal.getHeight() / size, true);
@@ -111,18 +100,11 @@ public class StatusActivity extends BaseActivity implements OnClickListener { //
 				videoView.setVisibility(View.GONE);
 			} else if (type.startsWith("video/")) {
 				video = (Uri) intent.getParcelableExtra(Intent.EXTRA_STREAM);
-				if (video == null) {
-					imageView1.setVisibility(View.GONE);
-					videoView.setVisibility(View.GONE);
-					Toast.makeText(
-							this,
-							"Molimo prebacite sliku na SD karticu da bi je mogli poslati!",
-							Toast.LENGTH_LONG).show();
-					return;
+				if (!video.getPath().startsWith(dirPath.getAbsolutePath())) {
+					video = CheckFile(video, MEDIA_TYPE_VIDEO);
 				}
 				Log.d(TAG, " path " + video.getPath());
 				Log.d(TAG, "VideoData ");
-				// editText.setText("Video ..");
 				videoView.setVideoURI(video);
 				imageView1.setVisibility(View.GONE);
 			}
@@ -131,6 +113,48 @@ public class StatusActivity extends BaseActivity implements OnClickListener { //
 			imageView1.setVisibility(View.GONE);
 			videoView.setVisibility(View.GONE);
 		}
+	}
+
+	private Uri CheckFile(Uri file, int type) {
+		// not picture taked by this application!!
+		Uri mediaStorageDir = getOutputMediaFileUri(type);
+		Log.d(TAG, "Writing new file");
+		InputStream reader = null;
+		OutputStream stream = null;
+		try {
+			reader = getContentResolver().openInputStream(file);
+			stream = new BufferedOutputStream(new FileOutputStream(
+					mediaStorageDir.getPath()));
+			int bufferSize = 1024;
+			byte[] buffer = new byte[bufferSize];
+			int len = 0;
+			while ((len = reader.read(buffer)) != -1) {
+				stream.write(buffer, 0, len);
+			}
+
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			Log.d(TAG, "ERROR");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			Log.d(TAG, "ERROR");
+		} finally {
+			// clese streams
+			try {
+				if (stream != null)
+					stream.close();
+				if (reader != null)
+					reader.close();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+		}
+		return mediaStorageDir;
+
 	}
 
 	@Override
@@ -143,7 +167,7 @@ public class StatusActivity extends BaseActivity implements OnClickListener { //
 	protected void onResume() {
 		super.onResume();
 		Log.d(TAG, "onResume");
-		//CheckFiles();
+		// CheckFiles();
 	}
 
 	@Override
