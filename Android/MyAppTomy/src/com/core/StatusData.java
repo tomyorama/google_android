@@ -12,7 +12,7 @@ public class StatusData { //
 	static final int VERSION = 1;
 	static final String DATABASE = "timeline.db";
 	public static final String TABLE = "comments";
-	
+
 	public static final String NEW_STATUS_EXTRA_COUNT = "count";
 	public static final String NEW_STATUS_INTENT = "com.marakana.yamba.NEW_STATUS";
 	public static final String C_ID = "_id";
@@ -94,8 +94,13 @@ public class StatusData { //
 			db.close();
 		}
 	}
-	
-	//Private class
+
+	public void delete_byID(long id) {
+		SQLiteDatabase db = this.dbHelper.getWritableDatabase();
+		db.delete(TABLE, C_ID + "=" + id, null);
+	}
+
+	// Private class
 	public class DbHelper extends SQLiteOpenHelper { //
 		Context context;
 
@@ -117,13 +122,14 @@ public class StatusData { //
 			Log.d(TAG, "onCreated sql: " + sql);
 		}
 
-
 		// Called whenever newVersion != oldVersion
 		@Override
 		public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) { //
-			// Typically do ALTER TABLE statements, but...we're just in development,
+			// Typically do ALTER TABLE statements, but...we're just in
+			// development,
 			// so:
-			db.execSQL("drop table if exists " + TABLE); // drops the old database
+			db.execSQL("drop table if exists " + TABLE); // drops the old
+															// database
 			Log.d(TAG, "onUpdated");
 			onCreate(db); // run onCreate to get new database
 		}

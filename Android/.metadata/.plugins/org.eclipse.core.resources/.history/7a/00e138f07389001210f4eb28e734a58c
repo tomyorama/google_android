@@ -1,0 +1,165 @@
+package com.fuca;
+
+import android.app.AlertDialog;
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
+import android.database.Cursor;
+import android.os.Bundle;
+import android.provider.MediaStore;
+import android.support.v4.widget.SimpleCursorAdapter.ViewBinder;
+import android.text.format.DateUtils;
+import android.util.Log;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.Toast;
+import android.widget.VideoView;
+
+import com.core.StatusData;
+import com.core.TimelineAdapter;
+import com.example.fussandr.R;
+import com.fuca.StatusActivity.SendMessage;
+
+public class CommentsActivity extends BaseActivity {
+	private static final String TAG = "CommentsActivity";
+	static final String SEND_TIMELINE_NOTIFICATIONS = "com.marakana.yamba.SEND_TIMELINE_NOTIFICATIONS";
+	Cursor cursor; //
+	ListView listTimeline; //
+	static final String[] FROM = { StatusData.C_USER, StatusData.C_TEXT }; //
+	static final int[] TO = { R.id.textUser, R.id.textText }; //
+	TimelineAdapter adapter;
+	TimelineReceiver receiver;
+	IntentFilter filter;
+
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.timeline);
+
+		// Check if preferences have been set
+		if (app.getPrefs().getString("Username", null) == null) { //
+			startActivity(new Intent(this, PrefsActivity.class));
+			Toast.makeText(this, R.string.msgSetupPrefs, Toast.LENGTH_LONG)
+					.show();
+		}
+
+		// Find your views
+		listTimeline = (ListView) findViewById(R.id.listTimeline);
+		receiver = new TimelineReceiver();//
+		filter = new IntentFilter(StatusData.NEW_STATUS_INTENT);
+
+	}
+
+	@Override
+	public void onDestroy() {
+		super.onDestroy();
+		// Close the database
+		app.getStatusData().close();
+		// UNregister the receiver
+		unregisterReceiver(receiver);
+
+	}
+
+	@Override
+	protected void onResume() {
+		super.onResume();
+		this.setupList();
+
+	}
+
+	// Called when button is clicked //
+	public void onClickNew(View v) {
+		startActivity(new Intent(this, StatusActivity.class)
+				.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT));
+	}
+
+	// Called when button is clicked //
+	public void onClickNewPicture(View v) {
+		if (isIntentAvailable(this, MediaStore.ACTION_IMAGE_CAPTURE)) {
+			fileUri = getOutputMediaFileUri(MEDIA_TYPE_IMAGE);
+			Intent takePictureIntent = new Intent(
+					MediaStore.ACTION_IMAGE_CAPTURE);
+			takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, fileUri);
+
+			Log.d(TAG, "itemTakePicture");
+			startActivityForResult(takePictureIntent,
+					CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);
+
+		}
+	}
+
+	// Called when button is clicked //
+	public void onClickNewVideo(View v) {
+		if (isIntentAvailable(this, MediaStore.ACTION_VIDEO_CAPTURE)) {
+			fileUri = getOutputMediaFileUri(MEDIA_TYPE_VIDEO);
+
+			Intent takePictureIntent = new Intent(
+					MediaStore.ACTION_VIDEO_CAPTURE);
+			takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, fileUri);
+
+			takePictureIntent.putExtra(MediaStore.EXTRA_VIDEO_QUALITY, 1);
+			startActivityForResult(takePictureIntent,
+					CAPTURE_VIDEO_ACTIVITY_REQUEST_CODE);
+		}
+	}
+	// Called when button is clicked //
+	public void onClickNewSettings(View v) {
+		if (isIntentAvailable(this, MediaStore.ACTION_VIDEO_CAPTURE)) {
+			fileUri = getOutputMediaFileUri(MEDIA_TYPE_VIDEO);
+
+			Intent takePictureIntent = new Intent(
+					MediaStore.ACTION_VIDEO_CAPTURE);
+			takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, fileUri);
+
+			takePictureIntent.putExtra(MediaStore.EXTRA_VIDEO_QUALITY, 1);
+			startActivityForResult(takePictureIntent,
+					CAPTURE_VIDEO_ACTIVITY_REQUEST_CODE);
+		}
+	}
+	// Responsible for fetching data and setting up the list and the adapter
+	private void setupList() { //
+		// Get the data
+		cursor = app.getStatusData().getStatusUpdates();
+		// Setup Adapter
+		adapter = new TimelineAdapter(this, cursor);
+		listTimeline.setAdapter(adapter);
+		// Register the receiver
+		super.registerReceiver(receiver, filter, SEND_TIMELINE_NOTIFICATIONS,
+				null); //
+
+	}
+
+	// EXAMPLE!!
+	// View binder constant to inject business logic that converts a timestamp
+	// to
+	// relative time
+	static final ViewBinder VIEW_BINDER = new ViewBinder() {
+		//
+		public boolean setViewValue(View view, Cursor cursor, int columnIndex) { //
+			if (view.getId() != R.id.textCreatedAt)
+				return false; //
+			// Update the created at text to relative time
+			long timestamp = cursor.getLong(columnIndex); //
+			CharSequence relTime = DateUtils.getRelativeTimeSpanString(
+					view.getContext(), timestamp); //
+			((TextView) view).setText(relTime); //
+			return true; //
+		}
+	};
+
+	class TimelineReceiver extends BroadcastReceiver {
+
+		//
+		@Override
+		public void onReceive(Context context, Intent intent) { //
+			cursor = app.getStatusData().getStatusUpdates();
+			adapter.swapCursor(cursor);
+			adapter.notifyDataSetChanged(); //
+			Log.d("TimelineReceiver", "onReceived");
+		}
+	}
+
+}

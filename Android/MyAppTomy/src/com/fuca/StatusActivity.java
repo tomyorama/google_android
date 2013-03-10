@@ -20,12 +20,15 @@ import android.app.AlertDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.Handler;
 import android.util.Log;
 import android.view.Menu;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -46,6 +49,7 @@ public class StatusActivity extends BaseActivity implements OnClickListener { //
 	Uri image;
 	Uri video;
 	private AlertDialog dialog;
+	boolean bVideoIsBeingTouched = false;
 
 	//
 	// Twitter twitter;
@@ -107,6 +111,31 @@ public class StatusActivity extends BaseActivity implements OnClickListener { //
 				Log.d(TAG, "VideoData ");
 				videoView.setVideoURI(video);
 				imageView1.setVisibility(View.GONE);
+
+				// toggle video playing
+				videoView.setOnTouchListener(new View.OnTouchListener() {
+					public boolean onTouch(View v, MotionEvent event) {
+						VideoView videoView = (VideoView) findViewById(R.id.videoView1);
+						Log.d(TAG, "ToggleVideo");
+						if (!bVideoIsBeingTouched) {
+							bVideoIsBeingTouched = true;
+							if (videoView.isPlaying()) {
+								videoView.pause();
+							} else {
+								videoView.start();
+							}
+							Handler mhandler = new Handler();
+							mhandler.postDelayed(new Runnable() {
+								public void run() {
+									bVideoIsBeingTouched = false;
+								}
+							}, 100);
+						} else {
+
+						}
+						return false;
+					}
+				});
 			}
 		} else {
 			Log.d(TAG, "NOne");
@@ -208,6 +237,12 @@ public class StatusActivity extends BaseActivity implements OnClickListener { //
 					Toast.LENGTH_LONG).show();
 			return;
 		}
+		VideoView videoView = (VideoView) findViewById(R.id.videoView1);
+		ImageView imageView1 = (ImageView) findViewById(R.id.imageView1);
+		if (videoView.isPlaying()) {
+			videoView.pause();
+			videoView.stopPlayback();
+		}
 		String message = editText.getText().toString();
 		if (message != null && message.length() > 1) {
 			AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -216,8 +251,7 @@ public class StatusActivity extends BaseActivity implements OnClickListener { //
 			dialog = builder.create();
 			dialog.show();
 			new SendMessage().execute(message);
-			VideoView videoView = (VideoView) findViewById(R.id.videoView1);
-			ImageView imageView1 = (ImageView) findViewById(R.id.imageView1);
+
 			imageView1.setVisibility(View.GONE);
 			videoView.setVisibility(View.GONE);
 

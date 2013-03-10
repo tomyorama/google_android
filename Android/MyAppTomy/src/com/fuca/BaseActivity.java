@@ -29,9 +29,9 @@ public class BaseActivity extends Activity { //
 	FucaApp app; //
 	public static final int MEDIA_TYPE_IMAGE = 1;
 	public static final int MEDIA_TYPE_VIDEO = 2;
-	private static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 100;
-	private static final int CAPTURE_VIDEO_ACTIVITY_REQUEST_CODE = 200;
-	private static Uri fileUri;
+	protected static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 100;
+	protected static final int CAPTURE_VIDEO_ACTIVITY_REQUEST_CODE = 200;
+	protected static Uri fileUri;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -62,41 +62,41 @@ public class BaseActivity extends Activity { //
 				startService(new Intent(this, UpdaterService.class));
 			}
 			break;
-		case R.id.itemTimeline:
-			startActivity(new Intent(this, CommentsActivity.class).addFlags(
-					Intent.FLAG_ACTIVITY_SINGLE_TOP).addFlags(
-					Intent.FLAG_ACTIVITY_REORDER_TO_FRONT));
-			break;
-		case R.id.itemStatus:
-			startActivity(new Intent(this, StatusActivity.class)
-					.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT));
-			break;
-		case R.id.itemTakePicture:
-			if (isIntentAvailable(this, MediaStore.ACTION_IMAGE_CAPTURE)) {
-				fileUri = getOutputMediaFileUri(MEDIA_TYPE_IMAGE);
-				Intent takePictureIntent = new Intent(
-						MediaStore.ACTION_IMAGE_CAPTURE);
-				takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, fileUri);
-
-				Log.d(TAG, "itemTakePicture");
-				startActivityForResult(takePictureIntent,
-						CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);
-
-			}
-			break;
-		case R.id.itemTakeVideo:
-			if (isIntentAvailable(this, MediaStore.ACTION_VIDEO_CAPTURE)) {
-				fileUri = getOutputMediaFileUri(MEDIA_TYPE_VIDEO);
-
-				Intent takePictureIntent = new Intent(
-						MediaStore.ACTION_VIDEO_CAPTURE);
-				takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, fileUri);
-
-				takePictureIntent.putExtra(MediaStore.EXTRA_VIDEO_QUALITY, 1);
-				startActivityForResult(takePictureIntent,
-						CAPTURE_VIDEO_ACTIVITY_REQUEST_CODE);
-			}
-			break;
+		// case R.id.itemTimeline:
+		// startActivity(new Intent(this, CommentsActivity.class).addFlags(
+		// Intent.FLAG_ACTIVITY_SINGLE_TOP).addFlags(
+		// Intent.FLAG_ACTIVITY_REORDER_TO_FRONT));
+		// break;
+		// case R.id.itemStatus:
+		// startActivity(new Intent(this, StatusActivity.class)
+		// .addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT));
+		// break;
+		// case R.id.itemTakePicture:
+		// if (isIntentAvailable(this, MediaStore.ACTION_IMAGE_CAPTURE)) {
+		// fileUri = getOutputMediaFileUri(MEDIA_TYPE_IMAGE);
+		// Intent takePictureIntent = new Intent(
+		// MediaStore.ACTION_IMAGE_CAPTURE);
+		// takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, fileUri);
+		//
+		// Log.d(TAG, "itemTakePicture");
+		// startActivityForResult(takePictureIntent,
+		// CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);
+		//
+		// }
+		// break;
+		// case R.id.itemTakeVideo:
+		// if (isIntentAvailable(this, MediaStore.ACTION_VIDEO_CAPTURE)) {
+		// fileUri = getOutputMediaFileUri(MEDIA_TYPE_VIDEO);
+		//
+		// Intent takePictureIntent = new Intent(
+		// MediaStore.ACTION_VIDEO_CAPTURE);
+		// takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, fileUri);
+		//
+		// takePictureIntent.putExtra(MediaStore.EXTRA_VIDEO_QUALITY, 1);
+		// startActivityForResult(takePictureIntent,
+		// CAPTURE_VIDEO_ACTIVITY_REQUEST_CODE);
+		// }
+		// break;
 		}
 		return true;
 	}

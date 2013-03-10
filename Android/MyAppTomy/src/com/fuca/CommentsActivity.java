@@ -1,15 +1,20 @@
 package com.fuca;
 
+import android.app.AlertDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.v4.widget.SimpleCursorAdapter.ViewBinder;
 import android.text.format.DateUtils;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -19,8 +24,8 @@ import com.core.TimelineAdapter;
 import com.example.fussandr.R;
 
 public class CommentsActivity extends BaseActivity {
-	static final String SEND_TIMELINE_NOTIFICATIONS =
-			"com.marakana.yamba.SEND_TIMELINE_NOTIFICATIONS";
+	private static final String TAG = "CommentsActivity";
+	static final String SEND_TIMELINE_NOTIFICATIONS = "com.marakana.yamba.SEND_TIMELINE_NOTIFICATIONS";
 	Cursor cursor; //
 	ListView listTimeline; //
 	static final String[] FROM = { StatusData.C_USER, StatusData.C_TEXT }; //
@@ -63,7 +68,48 @@ public class CommentsActivity extends BaseActivity {
 		super.onResume();
 		this.setupList();
 
+	}
 
+	// Called when button is clicked //
+	public void onClickNew(View v) {
+		startActivity(new Intent(this, StatusActivity.class)
+				.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT));
+	}
+
+	// Called when button is clicked //
+	public void onClickNewPicture(View v) {
+		if (isIntentAvailable(this, MediaStore.ACTION_IMAGE_CAPTURE)) {
+			fileUri = getOutputMediaFileUri(MEDIA_TYPE_IMAGE);
+			Intent takePictureIntent = new Intent(
+					MediaStore.ACTION_IMAGE_CAPTURE);
+			takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, fileUri);
+
+			Log.d(TAG, "itemTakePicture");
+			startActivityForResult(takePictureIntent,
+					CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);
+
+		}
+	}
+
+	// Called when button is clicked //
+	public void onClickNewVideo(View v) {
+		if (isIntentAvailable(this, MediaStore.ACTION_VIDEO_CAPTURE)) {
+			fileUri = getOutputMediaFileUri(MEDIA_TYPE_VIDEO);
+
+			Intent takePictureIntent = new Intent(
+					MediaStore.ACTION_VIDEO_CAPTURE);
+			takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, fileUri);
+
+			takePictureIntent.putExtra(MediaStore.EXTRA_VIDEO_QUALITY, 1);
+			startActivityForResult(takePictureIntent,
+					CAPTURE_VIDEO_ACTIVITY_REQUEST_CODE);
+		}
+	}
+
+	// Called when button is clicked //
+	public void onClickSettings(View v) {
+		startActivity(new Intent(this, PrefsActivity.class)
+				.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT));
 	}
 
 	// Responsible for fetching data and setting up the list and the adapter
@@ -73,10 +119,35 @@ public class CommentsActivity extends BaseActivity {
 		// Setup Adapter
 		adapter = new TimelineAdapter(this, cursor);
 		listTimeline.setAdapter(adapter);
+		listTimeline.setOnItemClickListener(new OnItemClickListener() {
+			public void onItemClick(AdapterView<?> a, View v, int position,
+					long id) {
+				// return if first
+				if (position == 0)
+					return;
+				// show delete dialog
+				AlertDialog.Builder adb = new AlertDialog.Builder(
+						CommentsActivity.this);
+				adb.setTitle("Brisanje");
+				adb.setMessage("Obisati ovu poruku? ");
+				final int positionToRemove = position;
+				final long idToRemove = id;
+				adb.setNegativeButton("Cancel", null);
+				adb.setPositiveButton("Ok", new AlertDialog.OnClickListener() {
+					public void onClick(DialogInterface dialog, int which) {
+						app.getStatusData().delete_byID(idToRemove);
+						cursor = app.getStatusData().getStatusUpdates();
+						adapter.swapCursor(cursor);
+						adapter.notifyDataSetChanged(); 
+					}
+				});
+				adb.show();
+			}
+		});
 		// Register the receiver
-		super.registerReceiver(receiver, filter,
-				SEND_TIMELINE_NOTIFICATIONS, null); //
-		
+		super.registerReceiver(receiver, filter, SEND_TIMELINE_NOTIFICATIONS,
+				null); //
+
 	}
 
 	// EXAMPLE!!
@@ -98,8 +169,8 @@ public class CommentsActivity extends BaseActivity {
 	};
 
 	class TimelineReceiver extends BroadcastReceiver {
-		
-//
+
+		//
 		@Override
 		public void onReceive(Context context, Intent intent) { //
 			cursor = app.getStatusData().getStatusUpdates();

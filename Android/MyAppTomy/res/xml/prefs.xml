@@ -3,12 +3,12 @@
 
     <PreferenceCategory
         android:key="service_category"
-        android:title="@string/service_category" >
+        android:title="@string/category_service" >
         <CheckBoxPreference
             android:defaultValue="false"
             android:key="perform_updates"
-            android:summary="Omoguci automatsko dobijanje poruka"
-            android:title="Omoguci dobijanje poruka" />
+            android:summary="@string/enable_service_desc"
+            android:title="@string/enable_service" />
 
         <ListPreference
             android:defaultValue="30000"
@@ -16,34 +16,34 @@
             android:entries="@array/updateInterval"
             android:entryValues="@array/updateIntervalValues"
             android:key="updates_interval"
-            android:summary="Definiraj koliko cesto slati upite"
-            android:title="Interval upita" />
+            android:summary="@string/update_interval_desc"
+            android:title="@string/update_interval" />
     </PreferenceCategory>
     <PreferenceCategory
         android:key="user_category"
-        android:title="@string/user_category" >
+        android:title="@string/category_user" >
         <EditTextPreference
             android:defaultValue="tomislav.slade"
             android:key="Username"
-            android:summary="@string/summaryUsername"
-            android:title="@string/Username" />
+            android:summary="@string/username_desc"
+            android:title="@string/username" />
         <EditTextPreference
             android:defaultValue="451819451819"
             android:key="Password"
             android:password="true"
-            android:summary="@string/summaryPassword"
-            android:title="@string/Password" />
+            android:summary="@string/password_desc"
+            android:title="@string/password" />
     </PreferenceCategory>
     <PreferenceCategory
         android:key="send_category"
-        android:title="@string/send_category" >
+        android:title="@string/category_network" >
         <ListPreference
             android:defaultValue="@string/any_network"
             android:entries="@array/choose_network"
             android:entryValues="@array/choose_networkValues"
             android:key="network_to_use"
-            android:summary="Definiraj mrezu"
-            android:title="Definicija slanja" />
+            android:summary="@string/network_chooser_desc"
+            android:title="@string/network_chooser" />
     </PreferenceCategory>
 
 </PreferenceScreen>

@@ -1,0 +1,47 @@
+<resources>
+
+    <string name="app_name">Fuca-Termin</string>
+    <string name="menu_settings">Postavke</string>
+    <string name="Pick">Pick</string>
+    <string name="Save">Save</string>
+    <string name="Team1">Team1</string>
+    <string name="Team2">Team2</string>
+    <string name="Date">Date</string>
+    <string name="Description">Description</string>
+    <string name="CreateNew">Nova</string>
+    <string name="Display">Display</string>
+    <string name="title_activity_create_new">CreateNew</string>
+    <string name="Username">Username</string>
+    <string name="Password">Password</string>
+    <string name="summaryUsername">Please enter your username</string>
+    <string name="summaryPassword">Please enter your password</string>
+    <string name="Settings">Postavke</string>
+    <string name="titleStatus">Nova poruka</string>
+    <string name="hintText">Unesite poruku</string>
+    <string name="buttonUpdate">Šalji</string>
+    <string name="StartService">Pokreni servis</string>
+    <string name="StopService">Zaustavi servis</string>
+    <string name="Comments">Fuca-Termin</string>
+    <!--  -->
+    <string name="msgSetupPrefs">Molim postavite postavke!</string>
+    <string name="send_timeline_notifications_permission_label">My send NOtification label</string>
+    <string name="send_timeline_notifications_permission_description">My send NOtification label description</string>
+    <string name="receive_timeline_notifications_permission_label">My Receive NOtification label</string>
+    <string name="receive_timeline_notifications_permission_description">My Receive NOtification label description</string>
+    <string name="msgLastTimelineUpdate">LastTimeline Update</string>
+    <string name="takePicture">Nova(Slikaj)</string>
+    <string name="takeVideo">Nova(Snimi)</string>
+    <string name="service_category">Podaci o servisu</string>
+    <string name="user_category">Podaci o korisniku</string>
+    <string name="send_category">Podaci o slanju</string>
+    <string name="wifi_network">WIFI</string>
+    <string name="any_network">ANY</string>
+    <string name="category_service">Podaci o servisu</string>
+    <string name="category_user">Podaci o korisniku</string>
+    <string name="category_network">Mreže</string>
+    <string name="enable_service">Primanje poruka</string>
+    <string name="enable_service_desc">Omogući automatsko primanje poruka</string>
+    <string name="update_interval">Interval primanja poruka</string>
+    <string name="update_interval_desc">Koliko često slati upite na server</string>
+
+</resources>
