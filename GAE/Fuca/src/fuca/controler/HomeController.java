@@ -34,7 +34,6 @@ public class HomeController {
 	public ModelAndView handleRequestInternal(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 
-		
 		ModelAndView mav = new ModelAndView("termindetails");
 		PersistenceManager pm = PMF.get().getPersistenceManager();
 		javax.jdo.Query q = pm.newQuery(Termin.class);
@@ -108,8 +107,8 @@ public class HomeController {
 
 	@RequestMapping(value = "/sendComment")
 	public @ResponseBody
-	String addCommentMob(String commentString, HttpServletRequest request)
-			throws Exception {
+	String addCommentMob(String commentString, String userName,
+			HttpServletRequest request) throws Exception {
 		BlobKey picture = null;
 		BlobKey video = null;
 		Map<String, List<BlobKey>> blobs = blobstoreService.getUploads(request);
@@ -130,8 +129,8 @@ public class HomeController {
 		comment.setText(commentString);
 		if (request.getUserPrincipal() != null) {
 			comment.setUser(request.getUserPrincipal().getName());
-		}else {
-			comment.setUser("admin");	
+		} else {
+			comment.setUser(userName);
 		}
 		comment.setDateCreated(Calendar.getInstance().getTime());
 		comment.setPicture(picture);

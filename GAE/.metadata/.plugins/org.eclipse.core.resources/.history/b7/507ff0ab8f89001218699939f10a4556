@@ -1,0 +1,70 @@
+.pre {
+	white-space: pre-line;
+	/* fix IE7 */
+	*white-space: pre;
+	*word-wrap: break-word;
+}
+
+.players {
+	background-color: white;
+	border: solid;
+	border-width: 1px;
+	background-image: url("images/football-camo-icon.png");
+	background-repeat: no-repeat;
+	background-position: center;
+	margin-bottom: 15px;
+}
+
+.team1 {
+}
+
+.team1 {
+}
+
+.players button {
+	margin: 10px;
+}
+
+.players table {
+	width: 100%;
+	margin: 2px;
+}
+
+.players table td,.players table th {
+	text-align: center;
+}
+
+.teamheader {
+	text-align: center;
+	vertical-align: middle;
+	min-height: 20px;
+}
+
+.players  .teamground {
+	height: 300px;
+}
+
+.comments {
+	background-color: white;
+	border: solid;
+	border-width: 1px;
+}
+
+.comments table {
+	width: 100%;
+	margin: 2px;
+}
+
+.comments table td,.players table th {
+	text-align: center;
+}
+.comments table td{
+	border-top: solid;
+	border-color: blue;
+	
+}
+.result {
+	text-align: center;
+	font-size: 52px;
+	padding-top: 160px;
+}

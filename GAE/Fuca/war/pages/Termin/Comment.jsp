@@ -10,6 +10,7 @@
 <%@ page import="com.google.appengine.api.blobstore.BlobstoreService"%>
 <%@ page import="com.google.appengine.api.users.UserService"%>
 <%@ page import="com.google.appengine.api.users.UserServiceFactory"%>
+<%@ page import="java.text.SimpleDateFormat"%>
 <%
 	BlobstoreService blobstoreService = BlobstoreServiceFactory
 			.getBlobstoreService();
@@ -50,6 +51,8 @@
 	UserService userService = UserServiceFactory.getUserService();
 	String userName = userService.getCurrentUser().getEmail();
 
+	SimpleDateFormat ftime = new SimpleDateFormat("dd.MM.yyyy HH:mm");
+	String time = ftime.format(p.getDate());
 	boolean adminUser = userService.isUserAdmin();
 	boolean isTmpUserOrAdmin = userName.equalsIgnoreCase(p.getUser())
 			|| adminUser;
@@ -91,12 +94,23 @@
 														href="<%=blobStringVideo%>"> Download it</a> instead.</p>
  						</object>
 							
+							
+							
+							
+							
+							
+							
+							
+							
+							
 							</video>
 						</div>
 					</c:if>
 				</div>
 			</td>
-			<td></td>
+			<td><div class="timecreated">
+					<span><%=time%></span>
+				</div></td>
 		</tr>
 	</c:when>
 	<c:when test="<%=!readonly && !isYouTube%>">
@@ -134,12 +148,23 @@
 							
 							
 							
+							
+							
+							
+							
+							
+							
+							
+							
+							
 							</video>
 						</div>
 					</c:if>
 				</div>
 			</td>
-			<td></td>
+			<td><div class="timecreated">
+					<span><%=time%></span>
+				</div></td>
 		</tr>
 	</c:when>
 	<c:when test="<%=readonly && isYouTube%>">
@@ -176,12 +201,23 @@
  						</object>
 							
 							
+							
+							
+							
+							
+							
+							
+							
+							
+							
 							</video>
 						</div>
 					</c:if>
 				</div>
 			</td>
-			<td></td>
+			<td><div class="timecreated">
+					<span><%=time%></span>
+				</div></td>
 		</tr>
 	</c:when>
 	<c:when test="<%=readonly && !isYouTube%>">
@@ -215,12 +251,23 @@
  						</object>
 							
 							
+							
+							
+							
+							
+							
+							
+							
+							
+							
 							</video>
 						</div>
 					</c:if>
 				</div>
 			</td>
-			<td></td>
+			<td><div class="timecreated">
+					<span><%=time%></span>
+				</div></td>
 		</tr>
 	</c:when>
 	<c:otherwise>

@@ -99,6 +99,7 @@ public class TerminController {
 				mav.addObject("tmpdate",
 						f.format(tmpTermin.getDate() != null ? tmpTermin
 								.getDate() : new Date()));
+
 			} else {
 				Termin dummy = new Termin();
 				dummy.setName("Dummy");

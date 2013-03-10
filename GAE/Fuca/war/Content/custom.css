@@ -16,9 +16,11 @@
 }
 
 .team1 {
+	
 }
 
 .team1 {
+	
 }
 
 .players button {
@@ -52,15 +54,26 @@
 
 .comments table {
 	width: 100%;
-	margin: 2px;
 }
 
 .comments table td,.players table th {
 	text-align: center;
 }
 
+.comments table td {
+	border-top: solid;
+	border-width: 1px;
+	border-color: gray;
+}
+
 .result {
 	text-align: center;
 	font-size: 52px;
 	padding-top: 160px;
+}
+
+.timecreated {
+	font-size: xx-small;
+	vertical-align: top;
+	height: 10px;
 }
