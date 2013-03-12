@@ -34,7 +34,6 @@ public class FucaApp extends Application implements
 	private boolean updatesEnabled = false;
 	private boolean canSend = true;
 
-
 	private SharedPreferences prefs;
 	private boolean serviceRunning;
 	private StatusData statusData; //
@@ -46,18 +45,19 @@ public class FucaApp extends Application implements
 		this.prefs = PreferenceManager.getDefaultSharedPreferences(this);
 		this.prefs.registerOnSharedPreferenceChangeListener(this);
 		this.statusData = new StatusData(this);
-		this.WIFI = getResources().getString(R.string.wifi_network);
-		this.ANY = getResources().getString(R.string.any_network);
+		FucaApp.WIFI = getResources().getString(R.string.wifi_network);
+		FucaApp.ANY = getResources().getString(R.string.any_network);
 	}
+
 	public boolean isCanSend() {
 		return canSend;
 	}
+
 	// Checks the network connection and sets the wifiConnected and
 	// mobileConnected
 	// variables accordingly.
-	public void updateConnectedFlags() {
+	public synchronized void updateConnectedFlags() {
 		ConnectivityManager connMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-
 		NetworkInfo activeInfo = connMgr.getActiveNetworkInfo();
 		if (activeInfo != null && activeInfo.isConnected()) {
 			wifiConnected = activeInfo.getType() == ConnectivityManager.TYPE_WIFI;
@@ -69,15 +69,15 @@ public class FucaApp extends Application implements
 		// check permisions
 		String prefsValue = prefs.getString("network_to_use", "wifi");
 		updatesEnabled = prefs.getBoolean("perform_updates", true);
-		//handle send messages!
-		canSend = (prefsValue.equals(this.WIFI) && wifiConnected)
-				|| (prefsValue.equals(this.ANY) && (mobileConnected || wifiConnected));
-		boolean startServiceConditionWifi = prefsValue.equals(this.WIFI)
+		// handle send messages!
+		canSend = (prefsValue.equals(FucaApp.WIFI) && wifiConnected)
+				|| (prefsValue.equals(FucaApp.ANY) && (mobileConnected || wifiConnected));
+		boolean startServiceConditionWifi = prefsValue.equals(FucaApp.WIFI)
 				&& wifiConnected && updatesEnabled;
-		boolean startServiceConditionAny = prefsValue.equals(this.ANY)
+		boolean startServiceConditionAny = prefsValue.equals(FucaApp.ANY)
 				&& (mobileConnected || wifiConnected) && updatesEnabled;
 
-		//handle service!
+		// handle service!
 		if (startServiceConditionWifi || startServiceConditionAny) {
 			if (!this.isServiceRunning()) {
 				Log.d(TAG, "onReceive: connected, starting Service");

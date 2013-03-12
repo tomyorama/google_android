@@ -50,6 +50,7 @@ public class StatusActivity extends BaseActivity implements OnClickListener { //
 	Uri video;
 	private AlertDialog dialog;
 	boolean bVideoIsBeingTouched = false;
+	private String dialogMessage;
 
 	//
 	// Twitter twitter;
@@ -180,7 +181,6 @@ public class StatusActivity extends BaseActivity implements OnClickListener { //
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-
 		}
 		return mediaStorageDir;
 
@@ -196,6 +196,9 @@ public class StatusActivity extends BaseActivity implements OnClickListener { //
 	protected void onResume() {
 		super.onResume();
 		Log.d(TAG, "onResume");
+		if (this.dialogMessage != null) {
+			this.ToggleDialog(this.dialogMessage);
+		}
 		// CheckFiles();
 	}
 
@@ -245,11 +248,7 @@ public class StatusActivity extends BaseActivity implements OnClickListener { //
 		}
 		String message = editText.getText().toString();
 		if (message != null && message.length() > 1) {
-			AlertDialog.Builder builder = new AlertDialog.Builder(this);
-			builder.setMessage("Slanje u tijeku!");
-			// Create the AlertDialog object and return it
-			dialog = builder.create();
-			dialog.show();
+			ToggleDialog("Slanje u tijeku!");
 			new SendMessage().execute(message);
 
 			imageView1.setVisibility(View.GONE);
@@ -283,12 +282,13 @@ public class StatusActivity extends BaseActivity implements OnClickListener { //
 
 		@Override
 		protected void onPostExecute(String result) {
-			dialog.hide();//
+			StatusActivity.this.ToggleDialog(null);
 			startActivity(new Intent(StatusActivity.this,
 					CommentsActivity.class).addFlags(
 					Intent.FLAG_ACTIVITY_SINGLE_TOP).addFlags(
 					Intent.FLAG_ACTIVITY_REORDER_TO_FRONT));
 			Log.d(TAG, result);
+			finish();
 		}
 	}
 
@@ -363,5 +363,30 @@ public class StatusActivity extends BaseActivity implements OnClickListener { //
 				reader.close();
 			}
 		}
+	}
+
+	// /
+	@Override
+	public void onSaveInstanceState(Bundle savedInstanceState) {
+		super.onSaveInstanceState(savedInstanceState);
+		savedInstanceState.putString("dialogMessage", this.dialogMessage);
+	}
+
+	@Override
+	public void onRestoreInstanceState(Bundle savedInstanceState) {
+		super.onRestoreInstanceState(savedInstanceState);
+		this.dialogMessage = savedInstanceState.getString("dialogMessage");
+	}
+
+	private synchronized void ToggleDialog(String message) {
+		if (message != null) {
+			AlertDialog.Builder builder = new AlertDialog.Builder(this);
+			builder.setMessage(message);
+			dialog = builder.create();
+			dialog.show();
+		} else {
+			dialog.hide();//
+		}
+		this.dialogMessage = message;
 	}
 }
