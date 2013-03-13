@@ -136,12 +136,9 @@ public class CommentsActivity extends BaseActivity {
 				adb.setPositiveButton("Ok", new AlertDialog.OnClickListener() {
 					public void onClick(DialogInterface dialog, int which) {
 						app.getStatusData().delete_byID(idToRemove);
-						if (cursor != null) {
-							cursor.close();
-						}
 						cursor = app.getStatusData().getStatusUpdates();
 						adapter.swapCursor(cursor);
-						adapter.notifyDataSetChanged();
+						adapter.notifyDataSetChanged(); 
 					}
 				});
 				adb.show();
@@ -175,10 +172,7 @@ public class CommentsActivity extends BaseActivity {
 
 		//
 		@Override
-		public void onReceive(Context context, Intent intent) {
-			if (cursor != null) {
-				cursor.close();
-			}
+		public void onReceive(Context context, Intent intent) { //
 			cursor = app.getStatusData().getStatusUpdates();
 			adapter.swapCursor(cursor);
 			adapter.notifyDataSetChanged(); //

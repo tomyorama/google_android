@@ -136,9 +136,6 @@ public class CommentsActivity extends BaseActivity {
 				adb.setPositiveButton("Ok", new AlertDialog.OnClickListener() {
 					public void onClick(DialogInterface dialog, int which) {
 						app.getStatusData().delete_byID(idToRemove);
-						if (cursor != null) {
-							cursor.close();
-						}
 						cursor = app.getStatusData().getStatusUpdates();
 						adapter.swapCursor(cursor);
 						adapter.notifyDataSetChanged();

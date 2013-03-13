@@ -186,11 +186,11 @@ public class StatusActivity extends BaseActivity implements OnClickListener { //
 
 	}
 
-//	@Override
-//	public boolean onCreateOptionsMenu(Menu menu) {
-//		// NO MENU
-//		return true;
-//	}
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		// NO MENU
+		return true;
+	}
 
 	@Override
 	protected void onResume() {
@@ -236,7 +236,7 @@ public class StatusActivity extends BaseActivity implements OnClickListener { //
 		if (!app.isCanSend()) {
 			Log.d(TAG, "no network");
 			Toast.makeText(this,
-					"Trnutno nema mreže ili slanje niju omogućeno!",
+					"Trnutno nema mreze ili mobile data niju omoguceno!",
 					Toast.LENGTH_LONG).show();
 			return;
 		}
