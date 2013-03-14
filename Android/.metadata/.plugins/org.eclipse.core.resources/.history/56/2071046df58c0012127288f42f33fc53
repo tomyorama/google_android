@@ -142,7 +142,6 @@ public class StatusActivity extends BaseActivity implements OnClickListener { //
 			Log.d(TAG, "NOne");
 			imageView1.setVisibility(View.GONE);
 			videoView.setVisibility(View.GONE);
-			findViewById(R.id.itemsLayout).setVisibility(View.GONE);
 		}
 	}
 
