@@ -1,0 +1,111 @@
+package fuca.controler;
+
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.List;
+import java.util.Map;
+
+import javax.jdo.PersistenceManager;
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.google.appengine.api.blobstore.BlobKey;
+import com.google.appengine.api.blobstore.BlobstoreService;
+import com.google.appengine.api.blobstore.BlobstoreServiceFactory;
+
+import fuca.model.Comment;
+import fuca.model.PMF;
+import fuca.model.Termin;
+
+public class FucaApiController {
+	private BlobstoreService blobstoreService = BlobstoreServiceFactory
+			.getBlobstoreService();
+
+	private Termin GetLastTermin() {
+		PersistenceManager pm = PMF.get().getPersistenceManager();
+		javax.jdo.Query q = pm.newQuery(Termin.class);
+		q.setOrdering("date desc");
+		q.setRange(0, 1);
+		try {
+			@SuppressWarnings("unchecked")
+			List<Termin> termins = (List<Termin>) q.execute();
+			if (termins != null && termins.size() > 0) {
+				return termins.get(0);
+			} else {
+				return null;
+			}
+		} finally {
+			q.closeAll();
+		}
+
+	}
+
+	@RequestMapping(value = "/testWeb", produces = "application/xml")
+	public @ResponseBody
+	Termin testWeb() throws Exception {
+		Termin termin = GetLastTermin();
+
+		return termin;
+	}
+
+	@RequestMapping(value = "/sendCommentUrl")
+	public @ResponseBody
+	String getUrlToWriteComment() {
+		return blobstoreService.createUploadUrl("/sendComment");
+	}
+
+	@RequestMapping(value = "/sendComment")
+	public @ResponseBody
+	String addCommentMob(String commentString, String userName,
+			HttpServletRequest request) throws Exception {
+		BlobKey picture = null;
+		BlobKey video = null;
+		Map<String, List<BlobKey>> blobs = blobstoreService.getUploads(request);
+		if (blobs != null && !blobs.isEmpty()
+				&& blobs.get("upload_file") != null
+				&& !blobs.get("upload_file").isEmpty()) {
+			picture = blobs.get("upload_file").get(0);
+		} else if (blobs != null && !blobs.isEmpty()
+				&& blobs.get("upload_file_video") != null
+				&& !blobs.get("upload_file_video").isEmpty()) {
+			video = blobs.get("upload_file_video").get(0);
+		}
+
+		if (commentString == null || commentString.isEmpty()) {
+			return "Error";
+		}
+		Comment comment = new Comment();
+		comment.setText(commentString);
+		if (request.getUserPrincipal() != null) {
+			comment.setUser(request.getUserPrincipal().getName());
+		} else {
+			comment.setUser(userName);
+		}
+		comment.setDateCreated(Calendar.getInstance().getTime());
+		comment.setPicture(picture);
+		comment.setVideo(video);
+		PersistenceManager pm = PMF.get().getPersistenceManager();
+		javax.jdo.Query q = pm.newQuery(Termin.class);
+		q.setOrdering("date desc");
+		q.setRange(0, 1);
+		try {
+			@SuppressWarnings("unchecked")
+			List<Termin> termins = (List<Termin>) q.execute();
+			Termin termin = termins.get(0);
+			if (termin.getComments() != null) {
+				termin.getComments().add(comment);
+			} else {
+				List<Comment> comments = new ArrayList<Comment>();
+				comments.add(comment);
+				termin.setComments(comments);
+			}
+			pm.makePersistent(termin);
+
+		} finally {
+			q.closeAll();
+		}
+		return "Ok";
+	}
+}

@@ -6,7 +6,7 @@ $(document)
 						// do something here
 						return $.datepicker.formatDate('dd.mm.yy.', new Date(cellvalue)); 
 					}
-					// Search Grid
+					// 
 					jQuery("#patient_search_grid")
 							.jqGrid(
 									{
@@ -61,8 +61,8 @@ $(document)
 										jsonReader : {
 											repeatitems : false
 										},
-										rowNum : 10,
-										rowList : [ 5, 10, 20 ],
+										rowNum : 20,
+										rowList : [ 10, 20, 30 ],
 										pager : jQuery('#patient_nav'),
 										// pgbuttons: false,
 										// pgtext: false,
@@ -76,7 +76,7 @@ $(document)
 													.jqGrid('getDataIDs');
 											for ( var i = 0; i < ids.length; i++) {
 												var id = ids[i];
-														edit = "<a href=\"/Termin/EditPatient/"
+														edit = "<a href=\"/Admin/EditTermin/"
 																+ id
 																+ "\" >Pregledaj</a>",
 														details = "<a href=\"/Termin/Details/"

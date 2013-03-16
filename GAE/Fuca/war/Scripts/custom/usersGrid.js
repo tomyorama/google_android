@@ -60,8 +60,8 @@ $(document)
 											jsonReader : {
 												repeatitems : false
 											},
-											rowNum : 10,
-											rowList : [ 5, 10, 20 ],
+											rowNum : 20,
+											rowList : [ 10, 20, 30 ],
 											pager : pagerSelector,
 											// pgbuttons: false,
 											// pgtext: false,

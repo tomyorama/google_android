@@ -141,7 +141,7 @@
 		<guid isPermaLink="false">http://blog.springsource.org/?p=12463</guid>
 		<description><![CDATA[Dear Spring community, I&#039;m happy to announce that the next iteration of the core framework will be Spring Framework 4.0! The current 3.2 generation is a natural conclusion of the 3.x line, with Java-based configuration and REST having been recent focus areas next to Java SE 7 and Servlet 3.0 support. For Spring Framework 4.0,  <a href="http://blog.springsource.org/2013/01/16/next-stop-spring-framework-4-0/"><em>Read more...</em></a>]]></description>
 		<wfw:commentRss>http://blog.springsource.org/2013/01/16/next-stop-spring-framework-4-0/feed/</wfw:commentRss>
-		<slash:comments>17</slash:comments>
+		<slash:comments>18</slash:comments>
 		</item>
 		<item>
 		<title>Scripted Editor 0.3 release available</title>

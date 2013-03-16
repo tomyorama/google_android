@@ -307,10 +307,10 @@ public class StatusActivity extends BaseActivity implements OnClickListener { //
 				entity.addPart("commentString", new StringBody(message));
 				entity.addPart("userName", new StringBody(app.getPrefs()
 						.getString("Username", "UnknownUser")));
-				String url = "/sendComment";
+				String url = FucaWebClient.API_SEND_COMMENT;
 				Log.d(TAG, "Make request for upload");
 				HttpResponse responseGetUrl = client.makeRequest(
-						"/sendCommentUrl", null);
+						FucaWebClient.API_GET_URL, null);
 				reader = new BufferedReader(new InputStreamReader(
 						responseGetUrl.getEntity().getContent()));
 				url = "";

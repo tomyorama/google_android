@@ -120,7 +120,7 @@ public class FucaApp extends Application implements
 					.getString("Username", "error"));
 			HttpResponse response;
 
-			response = client.makeRequest("/testWeb", null);
+			response = client.makeRequest(FucaWebClient.API_GET_COMMENTS, null);
 
 			Log.d(TAG, "Response Code: "
 					+ response.getStatusLine().getStatusCode());
