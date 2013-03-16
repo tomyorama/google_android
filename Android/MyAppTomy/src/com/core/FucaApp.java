@@ -116,8 +116,8 @@ public class FucaApp extends Application implements
 		try {
 			// Logic:
 			Log.d(TAG, "Start query ");
-			FucaWebClient client = new FucaWebClient(this,
-					"tomislav.slade@gmail.com");
+			FucaWebClient client = new FucaWebClient(this, this.getPrefs()
+					.getString("Username", "error"));
 			HttpResponse response;
 
 			response = client.makeRequest("/testWeb", null);

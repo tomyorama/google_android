@@ -23,16 +23,16 @@
         android:key="user_category"
         android:title="@string/category_user" >
         <EditTextPreference
-            android:defaultValue="tomislav.slade"
+            android:defaultValue=""
             android:key="Username"
             android:summary="@string/username_desc"
             android:title="@string/username" />
-        <EditTextPreference
-            android:defaultValue="451819451819"
-            android:key="Password"
-            android:password="true"
-            android:summary="@string/password_desc"
-            android:title="@string/password" />
+<!--         <EditTextPreference -->
+<!--             android:defaultValue="" -->
+<!--             android:key="Password" -->
+<!--             android:password="true" -->
+<!--             android:summary="@string/password_desc" -->
+<!--             android:title="@string/password" /> -->
     </PreferenceCategory>
     <PreferenceCategory
         android:key="send_category"
@@ -44,6 +44,12 @@
             android:key="network_to_use"
             android:summary="@string/network_chooser_desc"
             android:title="@string/network_chooser" />
+
+        <EditTextPreference
+            android:defaultValue="http://fuca-termin.appspot.com"
+            android:key="app_url"
+            android:summary="@string/app_url_desc"
+            android:title="@string/app_url" />
     </PreferenceCategory>
 
 </PreferenceScreen>

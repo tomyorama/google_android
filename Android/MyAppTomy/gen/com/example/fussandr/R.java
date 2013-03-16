@@ -76,6 +76,8 @@ public final class R {
         public static final int Team2=0x7f060005;
         public static final int any_network=0x7f060019;
         public static final int app_name=0x7f060000;
+        public static final int app_url=0x7f060027;
+        public static final int app_url_desc=0x7f060028;
         public static final int buttonUpdate=0x7f06000e;
         public static final int category_network=0x7f06001c;
         public static final int category_service=0x7f06001a;

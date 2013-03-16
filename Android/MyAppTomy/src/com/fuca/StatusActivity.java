@@ -187,11 +187,11 @@ public class StatusActivity extends BaseActivity implements OnClickListener { //
 
 	}
 
-//	@Override
-//	public boolean onCreateOptionsMenu(Menu menu) {
-//		// NO MENU
-//		return true;
-//	}
+	// @Override
+	// public boolean onCreateOptionsMenu(Menu menu) {
+	// // NO MENU
+	// return true;
+	// }
 
 	@Override
 	protected void onResume() {
@@ -298,9 +298,9 @@ public class StatusActivity extends BaseActivity implements OnClickListener { //
 		BufferedReader reader = null;
 		try {
 			Log.d(TAG, "Start query ");
-
-			FucaWebClient client = new FucaWebClient(
-					((FucaApp) getApplication()), "tomislav.slade@gmail.com");
+			FucaApp app = (FucaApp) getApplication();
+			FucaWebClient client = new FucaWebClient(app, app.getPrefs()
+					.getString("Username", "error"));
 			try {
 				MultipartEntity entity = new MultipartEntity(
 						HttpMultipartMode.BROWSER_COMPATIBLE);

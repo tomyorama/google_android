@@ -33,10 +33,11 @@
 
     <uses-sdk
         android:minSdkVersion="8"
-        android:targetSdkVersion="15" />
+        android:targetSdkVersion="17" />
 
     <application
         android:name="com.core.FucaApp"
+        android:allowBackup="false"
         android:icon="@drawable/fuca_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
@@ -81,15 +82,15 @@
         <!--  -->
         <service android:name="com.fuca.UpdaterService" />
 
-<!--         <receiver android:name="com.fuca.BootReceiver" > -->
-<!--             <intent-filter> -->
-<!--                 <action android:name="android.intent.action.BOOT_COMPLETED" /> -->
-<!--             </intent-filter> -->
-<!--         </receiver> -->
+        <!-- <receiver android:name="com.fuca.BootReceiver" > -->
+        <!-- <intent-filter> -->
+        <!-- <action android:name="android.intent.action.BOOT_COMPLETED" /> -->
+        <!-- </intent-filter> -->
+        <!-- </receiver> -->
         <receiver android:name="com.fuca.NetworkReceiver" >
             <intent-filter>
                 <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
-                <action android:name="android.net.wifi.STATE_CHANGE"/>
+                <action android:name="android.net.wifi.STATE_CHANGE" />
             </intent-filter>
         </receiver>
 

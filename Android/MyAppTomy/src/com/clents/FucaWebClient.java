@@ -1,25 +1,16 @@
 package com.clents;
 
-import java.io.File;
 import java.io.IOException;
 import java.net.URLEncoder;
-import java.util.List;
 
-import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
-import org.apache.http.NameValuePair;
 import org.apache.http.client.ClientProtocolException;
-import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.params.ClientPNames;
 import org.apache.http.cookie.Cookie;
-import org.apache.http.entity.mime.HttpMultipartMode;
 import org.apache.http.entity.mime.MultipartEntity;
-import org.apache.http.entity.mime.content.FileBody;
-import org.apache.http.entity.mime.content.StringBody;
 import org.apache.http.impl.client.DefaultHttpClient;
-
 import android.accounts.Account;
 import android.accounts.AccountManager;
 import android.accounts.AccountManagerFuture;
@@ -31,11 +22,10 @@ import android.util.Log;
 
 import com.core.FucaApp;
 
-@SuppressLint("NewApi")
 public class FucaWebClient {
-	private static final String BASE_URL = "http://fuca-termin.appspot.com";
-	private static final String AUTH_URL = BASE_URL + "/_ah/login";
-	private static final String AUTH_TOKEN_TYPE = "ah";
+	private String BASE_URL; // ;
+	private String AUTH_URL; // ;
+	private String AUTH_TOKEN_TYPE; // ;
 
 	private final FucaApp mContext;
 	private final String mAccountName;
@@ -45,12 +35,23 @@ public class FucaWebClient {
 	public FucaWebClient(FucaApp context, String accountName) {
 		this.mContext = context;
 		this.mAccountName = accountName;
+		// set URLs
+		this.BASE_URL = context.getPrefs().getString("app_url",
+				"http://fuca-termin.appspot.com");
+		Log.d(TAG, "BASE_URL " + this.BASE_URL);
+		if (this.BASE_URL.matches("^https?://.*/$")) {
+			this.BASE_URL = this.BASE_URL.subSequence(0,
+					this.BASE_URL.length() - 1).toString();
+			Log.d(TAG, "BASE_URL " + this.BASE_URL);
+		}
+		this.AUTH_URL = BASE_URL + "/_ah/login";
+		this.AUTH_TOKEN_TYPE = "ah";
 	}
 
 	public HttpResponse makeRequest(String urlPath, MultipartEntity entity)
 			throws Exception {
 		HttpResponse res = makeRequestNoRetry(urlPath, entity, false);
-		if (res.getStatusLine().getStatusCode() == 302) {
+		if (res.getStatusLine().getStatusCode() != 200) {
 			res = makeRequestNoRetry(urlPath, entity, true);
 		}
 		return res;
@@ -62,11 +63,13 @@ public class FucaWebClient {
 		Account account = new Account(mAccountName, "com.google");
 		String authToken = getAuthToken(account);
 
-		if (newToken) { // invalidate the cached token
+		if (newToken) {
+			// invalidate the cached token
+			Log.d(TAG, "New Token ");
 			AccountManager accountManager = AccountManager.get(mContext);
 			accountManager.invalidateAuthToken(account.type, authToken);
 			authToken = getAuthToken(account);
-			Log.d(TAG, "New Token ");
+
 		}
 		Log.d(TAG, "Token " + authToken);
 		// Get SACSID cookie
@@ -138,19 +141,33 @@ public class FucaWebClient {
 		return result;
 	}
 
+	@SuppressLint("NewApi")
 	private String getAuthToken(Account account) throws PendingAuthException {
 		String authToken = null;
 		AccountManager accountManager = AccountManager.get(mContext);
 		// Account[] accts = accountManager.getAccountsByType("com.google");
 		// Account acct = accts[0];
-		Account acct = new Account("tomislav.slade@gmail.com", "com.google");
+		Account acct = account;// new Account("tomislav.slade@gmail.com",
+								// "com.google");
 		try {
-			AccountManagerFuture<Bundle> future = accountManager.getAuthToken(
-					acct, AUTH_TOKEN_TYPE, null, true, null, null);
-			Bundle bundle = future.getResult();
-			authToken = bundle.getString(AccountManager.KEY_AUTHTOKEN);
-			if (authToken == null) {
-				throw new PendingAuthException(bundle);
+			int currentapiVersion = android.os.Build.VERSION.SDK_INT;
+			if (currentapiVersion >= android.os.Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
+				AccountManagerFuture<Bundle> future = accountManager
+						.getAuthToken(acct, AUTH_TOKEN_TYPE, null, false, null,
+								null);
+				Bundle bundle = future.getResult();
+				authToken = bundle.getString(AccountManager.KEY_AUTHTOKEN);
+				if (authToken == null) {
+					throw new PendingAuthException(bundle);
+				}
+			} else {
+				AccountManagerFuture<Bundle> future = accountManager
+						.getAuthToken(acct, AUTH_TOKEN_TYPE, false, null, null);
+				Bundle bundle = future.getResult();
+				authToken = bundle.getString(AccountManager.KEY_AUTHTOKEN);
+				if (authToken == null) {
+					throw new PendingAuthException(bundle);
+				}
 			}
 		} catch (OperationCanceledException e) {
 			Log.w(TAG, e.getMessage());

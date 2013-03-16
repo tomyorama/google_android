@@ -37,8 +37,10 @@
     <string name="network_chooser">Vrste mreže</string>
     <string name="network_chooser_desc">Odabrite vrstu mreže</string>
     <string name="username">Korisničko ime</string>
-    <string name="username_desc">Unesite svoj Google korisnički račun</string>
+    <string name="username_desc">Unesite svoj Google korisnički račun\n(Mora biti aktivni google račun na mobu)</string>
     <string name="password">Korisnička lozinka</string>
     <string name="password_desc">Unesite svoju Google korisničku lozinku</string>
+    <string name="app_url">Web adresa aplikacije</string>
+    <string name="app_url_desc">Web adresa aplikacije na koju slati podatke</string>
 
 </resources>
